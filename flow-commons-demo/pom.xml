@@ -34,7 +34,7 @@
     </parent>
 
     <artifactId>flow-commons-demo</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <modules/>
@@ -44,7 +44,7 @@
         ==== Versions
         =========================-->
 
-        <flow-commons.version>0.0.1</flow-commons.version>
+        <flow-commons.version>1.0.1</flow-commons.version>
 
         <spring.version>2.5.2</spring.version>
     </properties>
@@ -66,7 +66,7 @@
     <dependencies>
         <!-- Vaadin Fluent. -->
         <dependency>
-            <groupId>org.vaadin.addons</groupId>
+            <groupId>org.vaadin.addons.oliveryasuna</groupId>
             <artifactId>flow-commons</artifactId>
             <version>${flow-commons.version}</version>
         </dependency>
