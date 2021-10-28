@@ -48,8 +48,8 @@ public final class Descriptors {
    * More details can be found <a href="https://html.spec.whatwg.org/multipage/syntax.html#attributes-2">here</a>.
    *
    * @param name            The attribute's name.
-   * @param getterConverter A function that takes the raw attribute value (,which is a string,) and produces a value of type {@link #<G>}.
-   * @param setterConverter A function that takes a value of type {@link #<S>} and produces a raw attribute value (, which is a string).
+   * @param getterConverter A function that takes the raw attribute value (,which is a string,) and produces a value of type {@code <G>}.
+   * @param setterConverter A function that takes a value of type {@code <S>} and produces a raw attribute value (, which is a string).
    * @param <G>             The type used when getting the property's value.
    * @param <S>             The type used when setting the property's value.
    * @return A new {@link Descriptor}.
@@ -74,15 +74,15 @@ public final class Descriptors {
    *
    * @param name            The attribute's name.
    * @param delimiter       The element delimiter.
-   * @param getterConverter A function that takes the raw attribute value element (,which is a string,) and produces a value of type {@link #<G>}.
-   * @param setterConverter A function that takes a value of type {@link #<S>} and produces a raw attribute value element (, which is a string).
+   * @param getterConverter A function that takes the raw attribute value element (,which is a string,) and produces a value of type {@code <G>}.
+   * @param setterConverter A function that takes a value of type {@code <S>} and produces a raw attribute value element (, which is a string).
    * @param <G>             The type used when getting the property's value.
    * @param <S>             The type used when setting the property's value.
    * @param generator       A function that produces a new array of the desired type and the provided length.
    * @return A new {@link Descriptor}.
-   * @bug Since the {@code delimiter} argument is passed into {@link String#split(String)} for the getter converter, it can be a pattern, producing unexpected
-   *     behavior in the setter converter.
    */
+  // TODO: Since the {@code delimiter} argument is passed into {@link String#split(String)} for the getter converter, it can be a pattern, producing unexpected
+  //       behavior in the setter converter.
   public static <G, S> Descriptor<G[], S[]> listAttribute(final String name, final String delimiter, final Function<String, G> getterConverter,
       final Function<S, String> setterConverter, final IntFunction<G[]> generator) {
     return quotedAttribute(
