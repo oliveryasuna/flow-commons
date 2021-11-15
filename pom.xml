@@ -33,14 +33,12 @@
         <version>1</version>
     </parent>
 
-    <artifactId>flow-commons-parent</artifactId>
-    <version>1</version>
-    <packaging>pom</packaging>
+    <groupId>org.vaadin.addons.oliveryasuna</groupId>
+    <artifactId>flow-commons</artifactId>
+    <version>1.0.2</version>
+    <packaging>jar</packaging>
 
-    <modules>
-        <module>flow-commons-addon</module>
-        <module>flow-commons-demo</module>
-    </modules>
+    <modules/>
 
     <properties>
         <!--=========================
@@ -62,6 +60,13 @@
         =========================-->
 
         <vaadin.version>14.6.8</vaadin.version>
+
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.3.0</maven-javadoc-plugin.version>
+        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+
+        <jetty-maven-plugin.version>9.4.43.v20210629</jetty-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -111,6 +116,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- Slf4j. -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <!--==================================================
@@ -118,24 +131,40 @@
     ==================================================-->
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <!-- Vaadin plugin. -->
-                <plugin>
-                    <groupId>com.vaadin</groupId>
-                    <artifactId>vaadin-maven-plugin</artifactId>
-                    <version>${vaadin.version}</version>
+        <plugins>
+            <!-- Vaadin plugin. -->
+            <plugin>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-maven-plugin</artifactId>
 
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>prepare-frontend</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-frontend</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Jetty plugin. -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty-maven-plugin.version}</version>
+
+                <configuration>
+                    <scanIntervalSeconds>3</scanIntervalSeconds>
+
+                    <useTestScope>true</useTestScope>
+
+                    <supportedPackagings>
+                        <supportedPackaging>jar</supportedPackaging>
+                    </supportedPackagings>
+
+                    <reload>manual</reload>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
     <reporting/>
@@ -144,8 +173,8 @@
     ==== Details
     ==================================================-->
 
-    <name>Flow Commons Parent</name>
-    <description>Parent for all Flow Commons projects.</description>
+    <name>Flow Commons</name>
+    <description>Commons library for Vaadin Flow.</description>
     <url>https://github.com/oliveryasuna/flow-commons</url>
     <inceptionYear>2021</inceptionYear>
     <licenses>
@@ -195,6 +224,119 @@
 
     <distributionManagement/>
 
-    <profiles/>
+    <profiles>
+        <!-- For publishing to the Vaadin Directory. -->
+        <profile>
+            <id>vaadin-directory</id>
+
+            <build>
+                <plugins>
+                    <!-- Vaadin plugin. -->
+                    <plugin>
+                        <groupId>com.vaadin</groupId>
+                        <artifactId>vaadin-maven-plugin</artifactId>
+                        <version>${vaadin.version}</version>
+
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>prepare-frontend</goal>
+                                    <goal>build-frontend</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Jar. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>${maven-jar-plugin.version}</version>
+
+                        <configuration>
+                            <archive>
+                                <index>true</index>
+
+                                <manifest>
+                                    <addClasspath>false</addClasspath>
+                                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                </manifest>
+                                <manifestEntries>
+                                    <Vaadin-Package-Version>1</Vaadin-Package-Version>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                    </plugin>
+
+                    <!-- Source plugin. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven-source-plugin.version}</version>
+
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+
+                                <phase>verify</phase>
+
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Javadocs plugin. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven-javadoc-plugin.version}</version>
+
+                        <configuration>
+                            <quiet>true</quiet>
+                            <doclint>all</doclint>
+                        </configuration>
+
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+
+                                <phase>verify</phase>
+
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Assembly plugin. -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>${maven-assembly-plugin.version}</version>
+
+                        <configuration>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>assembly/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+
+                        <executions>
+                            <execution>
+                                <phase>install</phase>
+
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
