@@ -5,22 +5,22 @@
 # ==================================================
 # IntelliJ
 
-./.idea/
+/.idea/
 
 # ==================================================
 # Maven
 
-./target/
+/target/
 
 # ==================================================
 # Node/NPM
 
-./node_modules/
+/node_modules/
 
 # ==================================================
 # Vaadin
 
-./VAADIN/
+/VAADIN/
 
 # ==================================================
 # --- Files
@@ -29,16 +29,16 @@
 # ==================================================
 # IntelliJ
 
-**/*.iml
+/*.iml
 
 # ==================================================
 # Node/NPM
 
-**/package.json
-**/package-lock.json
+/package.json
+/package-lock.json
 
-**/webpack.config.js
-**/webpack.generated.js
+/webpack.config.js
+/webpack.generated.js
 
 # ==================================================
 # Vaadin
