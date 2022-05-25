@@ -28,12 +28,26 @@ import elemental.json.JsonValue;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Various utilities for working with {@link Element}s.
+ *
+ * @author Oliver Yasuna
+ */
 @Utility
 public final class ElementUtils {
 
   // Static utility methods
   //--------------------------------------------------
 
+  /**
+   * Sets or removes an elements {@link String} attribute.
+   *
+   * @param element The element.
+   * @param name    The name of the attribute.
+   * @param value   The value of the attribute. {@code null} removes the attribute.
+   *
+   * @return The element.
+   */
   public static Element setAttribute(final Element element, final String name, final String value) {
     Arguments.requireNotNull(element);
     Arguments.requireNotNull(name);
@@ -41,6 +55,15 @@ public final class ElementUtils {
     return (value != null ? element.setAttribute(name, value) : element.removeAttribute(name));
   }
 
+  /**
+   * Sets or removes an elements {@code boolean} attribute.
+   *
+   * @param element The element.
+   * @param name    The name of the attribute.
+   * @param value   The value of the attribute. {@code null} removes the attribute.
+   *
+   * @return The element.
+   */
   public static Element setAttribute(final Element element, final String name, final Boolean value) {
     Arguments.requireNotNull(element);
     Arguments.requireNotNull(name);
@@ -48,6 +71,15 @@ public final class ElementUtils {
     return (value != null ? element.setAttribute(name, value) : element.removeAttribute(name));
   }
 
+  /**
+   * Sets or removes an elements {@link AbstractStreamResource} attribute.
+   *
+   * @param element The element.
+   * @param name    The name of the attribute.
+   * @param value   The value of the attribute. {@code null} removes the attribute.
+   *
+   * @return The element.
+   */
   public static Element setAttribute(final Element element, final String name, final AbstractStreamResource value) {
     Arguments.requireNotNull(element);
     Arguments.requireNotNull(name);
@@ -55,6 +87,15 @@ public final class ElementUtils {
     return (value != null ? element.setAttribute(name, value) : element.removeAttribute(name));
   }
 
+  /**
+   * Sets or removes an elements {@link String} property.
+   *
+   * @param element The element.
+   * @param name    The name of the property.
+   * @param value   The value of the property. {@code null} removes the property.
+   *
+   * @return The element.
+   */
   public static Element setProperty(final Element element, final String name, final String value) {
     Arguments.requireNotNull(element);
     Arguments.requireNotNull(name);
@@ -62,6 +103,15 @@ public final class ElementUtils {
     return (value != null ? element.setProperty(name, value) : element.removeProperty(name));
   }
 
+  /**
+   * Sets or removes an elements {@code boolean} property.
+   *
+   * @param element The element.
+   * @param name    The name of the property.
+   * @param value   The value of the property. {@code null} removes the property.
+   *
+   * @return The element.
+   */
   public static Element setProperty(final Element element, final String name, final Boolean value) {
     Arguments.requireNotNull(element);
     Arguments.requireNotNull(name);
@@ -69,6 +119,15 @@ public final class ElementUtils {
     return (value != null ? element.setProperty(name, value) : element.removeProperty(name));
   }
 
+  /**
+   * Sets or removes an elements {@code double} property.
+   *
+   * @param element The element.
+   * @param name    The name of the property.
+   * @param value   The value of the property. {@code null} removes the property.
+   *
+   * @return The element.
+   */
   public static Element setProperty(final Element element, final String name, final Double value) {
     Arguments.requireNotNull(element);
     Arguments.requireNotNull(name);
@@ -76,6 +135,15 @@ public final class ElementUtils {
     return (value != null ? element.setProperty(name, value) : element.removeProperty(name));
   }
 
+  /**
+   * Sets or removes an elements {@link JsonValue} property.
+   *
+   * @param element The element.
+   * @param name    The name of the property.
+   * @param value   The value of the property. {@code null} removes the property.
+   *
+   * @return The element.
+   */
   public static Element setPropertyJson(final Element element, final String name, final JsonValue value) {
     Arguments.requireNotNull(element);
     Arguments.requireNotNull(name);
@@ -83,10 +151,22 @@ public final class ElementUtils {
     return (value != null ? element.setPropertyJson(name, value) : element.removeProperty(name));
   }
 
+  /**
+   * Alias for {@link #setPropertyJson(Element, String, JsonValue)}.
+   */
   public static Element setProperty(final Element element, final String name, final JsonValue value) {
     return setPropertyJson(element, name, value);
   }
 
+  /**
+   * Sets or removes an elements {@link Object} property.
+   *
+   * @param element The element.
+   * @param name    The name of the property.
+   * @param value   The value of the property. {@code null} removes the property.
+   *
+   * @return The element.
+   */
   public static Element setPropertyBean(final Element element, final String name, final Object value) {
     Arguments.requireNotNull(element);
     Arguments.requireNotNull(name);
@@ -94,10 +174,22 @@ public final class ElementUtils {
     return (value != null ? element.setPropertyBean(name, value) : element.removeProperty(name));
   }
 
+  /**
+   * Alias for {@link #setPropertyBean(Element, String, Object)}.
+   */
   public static Element setProperty(final Element element, final String name, final Object value) {
     return setPropertyBean(element, name, value);
   }
 
+  /**
+   * Sets or removes an elements {@link List} property.
+   *
+   * @param element The element.
+   * @param name    The name of the property.
+   * @param value   The value of the property. {@code null} removes the property.
+   *
+   * @return The element.
+   */
   public static <T> Element setPropertyList(final Element element, final String name, final List<T> value) {
     Arguments.requireNotNull(element);
     Arguments.requireNotNull(name);
@@ -105,10 +197,22 @@ public final class ElementUtils {
     return (value != null ? element.setPropertyList(name, value) : element.removeProperty(name));
   }
 
+  /**
+   * Alias for {@link #setPropertyList(Element, String, List)}.
+   */
   public static <T> Element setProperty(final Element element, final String name, final List<T> value) {
     return setPropertyList(element, name, value);
   }
 
+  /**
+   * Sets or removes an elements {@link Map} property.
+   *
+   * @param element The element.
+   * @param name    The name of the property.
+   * @param value   The value of the property. {@code null} removes the property.
+   *
+   * @return The element.
+   */
   public static Element setPropertyMap(final Element element, final String name, final Map<String, ?> value) {
     Arguments.requireNotNull(element);
     Arguments.requireNotNull(name);
@@ -116,6 +220,9 @@ public final class ElementUtils {
     return (value != null ? element.setPropertyMap(name, value) : element.removeProperty(name));
   }
 
+  /**
+   * Alias for {@link #setPropertyMap(Element, String, Map)}.
+   */
   public static Element setProperty(final Element element, final String name, final Map<String, ?> value) {
     return setPropertyMap(element, name, value);
   }

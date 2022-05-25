@@ -23,14 +23,30 @@ import com.vaadin.flow.component.*;
 
 import java.util.Optional;
 
+/**
+ * An interface to add functionality to {@link Component}s.
+ *
+ * @author Oliver Yasuna
+ */
 public interface ComponentExtension {
 
+  /**
+   * Fires an event.
+   *
+   * @param event The event.
+   */
   default void fireEvent(final ComponentEvent<?> event) {
     Arguments.requireNotNull(event);
 
     ComponentUtil.fireEvent((Component)this, event);
   }
 
+  /**
+   * Removes this component from its parent, if it has a parent.
+   *
+   * @return {@code true}, if it was assumed to be removed.
+   *     {@code false}, if this has no parent.
+   */
   default boolean removeFromParent() {
     final Optional<Component> parentOptional = ((Component)this).getParent();
 
@@ -41,6 +57,14 @@ public interface ComponentExtension {
     return true;
   }
 
+  /**
+   * Inserts a sibling before this component, if it has a parent and that parent implements {@link HasOrderedComponents}.
+   *
+   * @param newSibling The new component.
+   *
+   * @return {@code true}, if it was assumed that the new component was added to this component's parent.
+   *     {@code false}, if this component has no parent or its parent does not have ordered children.
+   */
   default boolean insertBefore(final Component newSibling) {
     Arguments.requireNotNull(newSibling);
 
@@ -55,6 +79,14 @@ public interface ComponentExtension {
     return true;
   }
 
+  /**
+   * Inserts a sibling after this component, if it has a parent and that parent implements {@link HasOrderedComponents}.
+   *
+   * @param newSibling The new component.
+   *
+   * @return {@code true}, if it was assumed that the new component was added to this component's parent.
+   *     {@code false}, if this component has no parent or its parent does not have ordered children.
+   */
   default boolean insertAfter(final Component newSibling) {
     Arguments.requireNotNull(newSibling);
 
