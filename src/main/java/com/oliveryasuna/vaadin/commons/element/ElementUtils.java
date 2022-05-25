@@ -27,6 +27,7 @@ import elemental.json.JsonValue;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * Various utilities for working with {@link Element}s.
@@ -38,6 +39,38 @@ public final class ElementUtils {
 
   // Static utility methods
   //--------------------------------------------------
+
+  // Children
+  //
+
+  /**
+   * Gets slotted children.
+   *
+   * @param element  The parent element.
+   * @param slotName The name of the slot. If {@code null}, all children are returned.
+   *
+   * @return A stream of matched elements.
+   */
+  public static Stream<Element> getSlotted(final Element element, final String slotName) {
+    Arguments.requireNotNull(element);
+
+    return element.getChildren()
+        .filter(child -> slotName == null || slotName.equals(child.getAttribute("slot")));
+  }
+
+  /**
+   * Removes all slotted elements in a specific slot.
+   *
+   * @param element  The parent element.
+   * @param slotName The name of the slot. Per {@link #getSlotted(Element, String)}, if {@code null}, all children are removed.
+   */
+  public static void clearSlot(final Element element, final String slotName) {
+    getSlotted(element, slotName)
+        .forEach(element::removeChild);
+  }
+
+  // Attributes
+  //
 
   /**
    * Sets or removes an elements {@link String} attribute.
@@ -102,6 +135,9 @@ public final class ElementUtils {
 
     return (value != null ? element.setProperty(name, value) : element.removeProperty(name));
   }
+
+  // Properties
+  //
 
   /**
    * Sets or removes an elements {@code boolean} property.
