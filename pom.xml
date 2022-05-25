@@ -35,7 +35,7 @@
 
   <groupId>org.vaadin.addons.oliveryasuna</groupId>
   <artifactId>flow-commons</artifactId>
-  <version>2.0.0-vaadin23.0.7</version>
+  <version>2.0.0</version>
   <packaging>jar</packaging>
 
   <modules/>
@@ -52,7 +52,7 @@
     ==== Versions
     =========================-->
 
-    <vaadin.version>23.0.7</vaadin.version>
+    <vaadin.version>14.8.11</vaadin.version>
   </properties>
 
   <dependencyManagement>
@@ -205,7 +205,7 @@
   ==== Details
   ==================================================-->
 
-  <name>${project.groupId}:${project.artifactId}</name>
+  <name>Flow Commons</name>
   <description/>
   <url>https://github.com/oliveryasuna/flow-commons</url>
   <inceptionYear>2022</inceptionYear>
