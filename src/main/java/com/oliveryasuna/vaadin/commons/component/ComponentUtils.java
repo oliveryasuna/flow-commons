@@ -25,6 +25,7 @@ import com.vaadin.flow.component.*;
 import com.vaadin.flow.shared.Registration;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -135,7 +136,7 @@ public final class ComponentUtils {
     descriptor.set(component, value);
   }
 
-  // Listeners
+  // Events
   //
 
   /**
@@ -155,6 +156,73 @@ public final class ComponentUtils {
     Arguments.requireNotNull(listener);
 
     return ComponentUtil.addListener(component, eventType, (ComponentEventListener<E>)listener);
+  }
+
+  /**
+   * Fires an event.
+   *
+   * @param component The component.
+   * @param event     The event.
+   * @param <C>       The type of component.
+   */
+  public static <C extends Component> void fireEvent(final C component, final ComponentEvent<C> event) {
+    Arguments.requireNotNull(component);
+    Arguments.requireNotNull(event);
+
+    ComponentUtil.fireEvent(component, event);
+  }
+
+  // Hierarchy
+  //
+
+  /**
+   * Removes a component from its parent, if it has a parent and that parent implements {@link HasComponents}.
+   *
+   * @param component The component.
+   *
+   * @return {@code true}, if the component was assumed to be removed.
+   *     {@code false}, if the component has no parent or its parent does not have children.
+   */
+  public static boolean removeFromParent(final Component component) {
+    Arguments.requireNotNull(component);
+
+    final Optional<Component> parentOptional = component.getParent();
+
+    if(parentOptional.isEmpty() || !(parentOptional.get() instanceof HasComponents)) return false;
+
+    ((HasComponents)parentOptional.get()).remove(component);
+
+    return true;
+  }
+
+  public static boolean insertBefore(final Component component, final Component newSibling) {
+    Arguments.requireNotNull(component);
+    Arguments.requireNotNull(newSibling);
+
+    final Optional<Component> parentOptional = component.getParent();
+
+    if(parentOptional.isEmpty() || !(parentOptional.get() instanceof HasOrderedComponents)) return false;
+
+    final HasOrderedComponents parent = (HasOrderedComponents)parentOptional.get();
+
+    parent.addComponentAtIndex(parent.indexOf(component), newSibling);
+
+    return true;
+  }
+
+  public static boolean insertAfter(final Component component, final Component newSibling) {
+    Arguments.requireNotNull(component);
+    Arguments.requireNotNull(newSibling);
+
+    final Optional<Component> parentOptional = component.getParent();
+
+    if(parentOptional.isEmpty() || !(parentOptional.get() instanceof HasOrderedComponents)) return false;
+
+    final HasOrderedComponents parent = (HasOrderedComponents)parentOptional.get();
+
+    parent.addComponentAtIndex(parent.indexOf(component) + 1, newSibling);
+
+    return true;
   }
 
   // Constructors

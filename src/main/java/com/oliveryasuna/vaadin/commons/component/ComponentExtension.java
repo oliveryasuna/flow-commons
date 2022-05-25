@@ -42,15 +42,15 @@ public interface ComponentExtension {
   }
 
   /**
-   * Removes this component from its parent, if it has a parent.
+   * Removes this component from its parent, if it has a parent and that parent implements {@link HasComponents}.
    *
    * @return {@code true}, if it was assumed to be removed.
-   *     {@code false}, if this has no parent.
+   *     {@code false}, if this has no parent or its parent does not have children.
    */
   default boolean removeFromParent() {
     final Optional<Component> parentOptional = ((Component)this).getParent();
 
-    if(parentOptional.isEmpty()) return false;
+    if(parentOptional.isEmpty() || !(parentOptional.get() instanceof HasComponents)) return false;
 
     ((HasComponents)parentOptional.get()).remove((Component)this);
 
