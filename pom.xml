@@ -52,7 +52,7 @@
     ==== Versions
     =========================-->
 
-    <vaadin.version>14.8.11</vaadin.version>
+    <vaadin.version>17.0.11</vaadin.version>
   </properties>
 
   <dependencyManagement>
