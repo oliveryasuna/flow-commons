@@ -1,0 +1,39 @@
+# IntelliJ
+#--------------------------------------------------
+
+/.idea/
+
+/*.iml
+
+# Maven
+#--------------------------------------------------
+
+/target/
+
+# Vaadin
+#--------------------------------------------------
+
+/frontend/generated/
+/frontend/index.html
+
+/screenshots/
+
+# Node
+#--------------------------------------------------
+
+/node_modules/
+
+/package.json
+/package-lock.json
+
+# Webpack
+#--------------------------------------------------
+
+/webpack.config.js
+/webpack.generated.js
+
+# TypeScript
+#--------------------------------------------------
+
+/tsconfig.json
+/types.d.ts
