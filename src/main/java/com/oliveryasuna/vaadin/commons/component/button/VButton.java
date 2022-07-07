@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,44 +16,51 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.component.descriptor;
+package com.oliveryasuna.vaadin.commons.component.button;
 
-import com.oliveryasuna.commons.language.condition.Arguments;
-import com.vaadin.flow.component.HasElement;
-import com.vaadin.flow.dom.Element;
+import com.oliveryasuna.vaadin.commons.component.ComponentExtension;
+import com.vaadin.flow.component.ClickEvent;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.button.Button;
 
 /**
- * Basically an alias for {@link com.vaadin.flow.component.PropertyDescriptor}, but with the order of the parameterized types reversed.
- * <p>
- * <i>Getters before setters, right?</i>
- *
- * @param <G> See {@link com.vaadin.flow.component.PropertyDescriptor}.
- * @param <S> See {@link com.vaadin.flow.component.PropertyDescriptor}.
+ * A {@link Button} with extended functionality.
  *
  * @author Oliver Yasuna
- * @since 1.0.0
+ * @since 3.0.0
  */
-public interface Descriptor<G, S> extends com.vaadin.flow.component.PropertyDescriptor<S, G> {
+public class VButton extends Button implements ComponentExtension, HasButtonVariants {
 
-  // Methods
+  // Constructors
   //--------------------------------------------------
 
-  /**
-   * Removes the property for the given component.
-   *
-   * @param hasElement The component.
-   */
-  default void remove(final HasElement hasElement) {
-    Arguments.requireNotNull(hasElement, "Must specify an argument.");
-
-    remove(hasElement.getElement());
+  public VButton() {
+    super();
   }
 
-  /**
-   * Removes the property for the given element.
-   *
-   * @param element The element.
-   */
-  void remove(Element element);
+  public VButton(final String text) {
+    super(text);
+  }
+
+  public VButton(final Component icon) {
+    super(icon);
+  }
+
+  public VButton(final String text, final Component icon) {
+    super(text, icon);
+  }
+
+  public VButton(final String text, final ComponentEventListener<ClickEvent<Button>> clickListener) {
+    super(text, clickListener);
+  }
+
+  public VButton(final Component icon, final ComponentEventListener<ClickEvent<Button>> clickListener) {
+    super(icon, clickListener);
+  }
+
+  public VButton(final String text, final Component icon, final ComponentEventListener<ClickEvent<Button>> clickListener) {
+    super(text, icon, clickListener);
+  }
 
 }

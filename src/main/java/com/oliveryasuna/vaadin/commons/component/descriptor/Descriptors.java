@@ -322,8 +322,19 @@ public final class Descriptors {
      */
     private final Consumer<Element> remover;
 
-    // methods
+    // Overrides
     //--------------------------------------------------
+
+    // Descriptor
+    //
+
+    @Override
+    public final void remove(final Element element) {
+      set(element, null);
+    }
+
+    // PropertyDescriptor
+    //
 
     /**
      * @return If the element has the property, then the property's value, otherwise {@code null}.

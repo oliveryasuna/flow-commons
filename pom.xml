@@ -35,7 +35,7 @@
 
   <groupId>org.vaadin.addons.oliveryasuna</groupId>
   <artifactId>flow-commons</artifactId>
-  <version>2.1.0</version>
+  <version>3.0.0</version>
   <packaging>jar</packaging>
 
   <modules/>
@@ -94,7 +94,7 @@
     <dependency>
       <groupId>com.oliveryasuna</groupId>
       <artifactId>commons-language</artifactId>
-      <version>5.3.0</version>
+      <version>5.4.0</version>
     </dependency>
 
     <!--=========================

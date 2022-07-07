@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 Oliver Yasuna
+ * Copyright 2022 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,44 +16,44 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.component.descriptor;
+package com.oliveryasuna.vaadin.commons.component.progressbar;
 
-import com.oliveryasuna.commons.language.condition.Arguments;
-import com.vaadin.flow.component.HasElement;
-import com.vaadin.flow.dom.Element;
+import com.vaadin.flow.component.HasTheme;
+import com.vaadin.flow.component.progressbar.ProgressBarVariant;
 
 /**
- * Basically an alias for {@link com.vaadin.flow.component.PropertyDescriptor}, but with the order of the parameterized types reversed.
- * <p>
- * <i>Getters before setters, right?</i>
- *
- * @param <G> See {@link com.vaadin.flow.component.PropertyDescriptor}.
- * @param <S> See {@link com.vaadin.flow.component.PropertyDescriptor}.
+ * Ease-of-use for components with {@link ProgressBarVariant}s.
  *
  * @author Oliver Yasuna
- * @since 1.0.0
+ * @since 3.0.0
  */
-public interface Descriptor<G, S> extends com.vaadin.flow.component.PropertyDescriptor<S, G> {
+public interface HasProgressBarVariants extends HasTheme {
 
   // Methods
   //--------------------------------------------------
 
-  /**
-   * Removes the property for the given component.
-   *
-   * @param hasElement The component.
-   */
-  default void remove(final HasElement hasElement) {
-    Arguments.requireNotNull(hasElement, "Must specify an argument.");
-
-    remove(hasElement.getElement());
+  default boolean isLumoContrast() {
+    return getThemeNames().contains(ProgressBarVariant.LUMO_CONTRAST.getVariantName());
   }
 
-  /**
-   * Removes the property for the given element.
-   *
-   * @param element The element.
-   */
-  void remove(Element element);
+  default void setLumoContrast(final boolean lumoContrast) {
+    getThemeNames().set(ProgressBarVariant.LUMO_CONTRAST.getVariantName(), lumoContrast);
+  }
+
+  default boolean isLumoError() {
+    return getThemeNames().contains(ProgressBarVariant.LUMO_ERROR.getVariantName());
+  }
+
+  default void setLumoError(final boolean lumoError) {
+    getThemeNames().set(ProgressBarVariant.LUMO_ERROR.getVariantName(), lumoError);
+  }
+
+  default boolean isLumoSuccess() {
+    return getThemeNames().contains(ProgressBarVariant.LUMO_SUCCESS.getVariantName());
+  }
+
+  default void setLumoSuccess(final boolean lumoSuccess) {
+    getThemeNames().set(ProgressBarVariant.LUMO_SUCCESS.getVariantName(), lumoSuccess);
+  }
 
 }
