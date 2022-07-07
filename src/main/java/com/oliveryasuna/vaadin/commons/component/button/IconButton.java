@@ -19,7 +19,9 @@
 package com.oliveryasuna.vaadin.commons.component.button;
 
 import com.oliveryasuna.commons.language.condition.Arguments;
+import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 
@@ -29,7 +31,7 @@ import com.vaadin.flow.component.button.ButtonVariant;
  * @author Oliver Yasuna
  * @since 3.0.0
  */
-public class IconButton extends Button {
+public class IconButton extends VButton {
 
   // Constructors
   //--------------------------------------------------
@@ -63,6 +65,14 @@ public class IconButton extends Button {
     }
   }
 
+  public IconButton(final String label, final Component icon, final IconButtonType type, final ComponentEventListener<ClickEvent<Button>> clickListener) {
+    this(label, icon, type);
+
+    Arguments.requireNotNull(clickListener, "Must specify a click listener.");
+
+    addClickListener(clickListener);
+  }
+
   /**
    * Creates an icon-only button.
    *
@@ -71,6 +81,14 @@ public class IconButton extends Button {
    */
   public IconButton(final String label, final Component icon) {
     this(label, icon, IconButtonType.ICON_ONLY);
+  }
+
+  public IconButton(final String label, final Component icon, final ComponentEventListener<ClickEvent<Button>> clickListener) {
+    this(label, icon);
+
+    Arguments.requireNotNull(clickListener, "Must specify a click listener.");
+
+    addClickListener(clickListener);
   }
 
   // Nested
