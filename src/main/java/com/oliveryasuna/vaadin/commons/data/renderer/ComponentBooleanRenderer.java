@@ -18,32 +18,44 @@
 
 package com.oliveryasuna.vaadin.commons.data.renderer;
 
+import com.oliveryasuna.commons.language.condition.Arguments;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.function.ValueProvider;
 
+import java.util.function.Supplier;
+
 /**
- * A {@link BooleanRenderer} that uses {@link VaadinIcon#CHECK_SQUARE} and {@link VaadinIcon#THIN_SQUARE}.
+ * A {@link AbstractBooleanRenderer}.
  *
  * @author Oliver Yasuna
  * @since 3.0.0
  */
-public class IconBooleanRenderer<SOURCE> extends BooleanRenderer<SOURCE> {
+public class ComponentBooleanRenderer<SOURCE> extends AbstractBooleanRenderer<SOURCE> {
 
   // Constructors
   //--------------------------------------------------
 
-  public IconBooleanRenderer(final ValueProvider<SOURCE, Boolean> valueProvider) {
+  public ComponentBooleanRenderer(final ValueProvider<SOURCE, Boolean> valueProvider, final Supplier<Component> trueComponentSupplier,
+      final Supplier<Component> falseComponentSupplier) {
     super(valueProvider);
+
+    Arguments.requireNotNull(trueComponentSupplier, "Must specify a true component supplier.");
+    Arguments.requireNotNull(falseComponentSupplier, "Must specify a false component supplier.");
+
+    this.trueComponentSupplier = trueComponentSupplier;
+    this.falseComponentSupplier = falseComponentSupplier;
   }
 
   // Fields
   //--------------------------------------------------
 
-  private Icon trueComponent;
+  private final Supplier<Component> trueComponentSupplier;
 
-  private Icon falseComponent;
+  private final Supplier<Component> falseComponentSupplier;
+
+  private Component trueComponent;
+
+  private Component falseComponent;
 
   // Overrides
   //--------------------------------------------------
@@ -53,12 +65,12 @@ public class IconBooleanRenderer<SOURCE> extends BooleanRenderer<SOURCE> {
 
   @Override
   protected Component trueComponent() {
-    return (trueComponent != null ? trueComponent : (trueComponent = VaadinIcon.CHECK_SQUARE.create()));
+    return (trueComponent != null ? trueComponent : (trueComponent = trueComponentSupplier.get()));
   }
 
   @Override
   protected Component falseComponent() {
-    return (falseComponent != null ? falseComponent : (falseComponent = VaadinIcon.THIN_SQUARE.create()));
+    return (falseComponent != null ? falseComponent : (falseComponent = falseComponentSupplier.get()));
   }
 
 }

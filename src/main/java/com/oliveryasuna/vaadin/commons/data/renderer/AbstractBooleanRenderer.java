@@ -33,12 +33,12 @@ import java.util.function.Function;
  * @since 3.0.0
  */
 @Immutable
-public abstract class BooleanRenderer<SOURCE> extends ComponentRenderer<Component, SOURCE> {
+public abstract class AbstractBooleanRenderer<SOURCE> extends ComponentRenderer<Component, SOURCE> {
 
   // Constructors
   //--------------------------------------------------
 
-  public BooleanRenderer(final ValueProvider<SOURCE, Boolean> valueProvider) {
+  public AbstractBooleanRenderer(final ValueProvider<SOURCE, Boolean> valueProvider) {
     super();
 
     Arguments.requireNotNull(valueProvider, "Must specify a value provider.");
