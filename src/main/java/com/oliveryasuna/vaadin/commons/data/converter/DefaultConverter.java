@@ -26,6 +26,15 @@ import com.vaadin.flow.data.converter.Converter;
 
 import java.util.Objects;
 
+/**
+ * Converter that uses a default model and presentation.
+ *
+ * @param <P> The type of presentation value.
+ * @param <M> The type of model value.
+ *
+ * @author Oliver Yasuna
+ * @since 2.0.0
+ */
 @Immutable
 public class DefaultConverter<P, M> implements Converter<P, M> {
 

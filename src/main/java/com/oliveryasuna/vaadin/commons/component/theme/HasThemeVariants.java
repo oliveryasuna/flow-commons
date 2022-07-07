@@ -25,6 +25,7 @@ import com.vaadin.flow.component.HasTheme;
  * Functions for components that have theme variants.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 public interface HasThemeVariants<V extends Enum<V> & ThemeVariant> extends HasTheme {
 

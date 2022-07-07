@@ -28,6 +28,7 @@ import com.vaadin.flow.component.page.PendingJavaScriptResult;
  * Various JavaScript utilities.
  *
  * @author Oliver Yasuna
+ * @since 2.0.0
  */
 @Utility
 public final class JavaScript {

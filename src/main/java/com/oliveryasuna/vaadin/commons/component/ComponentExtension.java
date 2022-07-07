@@ -27,6 +27,7 @@ import java.util.Optional;
  * An interface to add functionality to {@link Component}s.
  *
  * @author Oliver Yasuna
+ * @since 2.0.0
  */
 public interface ComponentExtension {
 

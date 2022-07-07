@@ -25,6 +25,7 @@ import com.vaadin.flow.component.ComponentEventListener;
  * Ease-of-use {@link AttachEvent} listener interface.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface AttachListener extends ComponentEventListener<AttachEvent> {

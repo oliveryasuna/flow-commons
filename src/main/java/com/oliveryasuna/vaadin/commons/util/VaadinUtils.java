@@ -33,6 +33,7 @@ import java.util.List;
  * Various Vaadin utilities.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @Utility
 public final class VaadinUtils {

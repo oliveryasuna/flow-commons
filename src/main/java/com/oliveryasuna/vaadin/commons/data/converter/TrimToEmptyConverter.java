@@ -23,6 +23,12 @@ import com.vaadin.flow.data.binder.ValueContext;
 import com.vaadin.flow.data.converter.Converter;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Converter that trims strings to empty strings.
+ *
+ * @author Oliver Yasuna
+ * @since 2.0.0
+ */
 public class TrimToEmptyConverter implements Converter<String, String> {
 
   // Constructors

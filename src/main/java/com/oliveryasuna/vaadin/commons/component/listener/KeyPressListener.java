@@ -25,6 +25,7 @@ import com.vaadin.flow.component.KeyPressEvent;
  * Ease-of-use {@link KeyPressEvent} listener interface.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface KeyPressListener extends ComponentEventListener<KeyPressEvent> {

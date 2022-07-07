@@ -25,6 +25,7 @@ import com.vaadin.flow.server.SessionInitListener;
  * Alias for a class that extends both {@link SessionInitListener} and {@link SessionDestroyListener}.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 public interface VaadinSessionLifecycleListener extends SessionInitListener, SessionDestroyListener {
 

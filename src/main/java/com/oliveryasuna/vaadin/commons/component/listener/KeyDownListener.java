@@ -25,6 +25,7 @@ import com.vaadin.flow.component.KeyDownEvent;
  * Ease-of-use {@link KeyDownEvent} listener interface.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface KeyDownListener extends ComponentEventListener<KeyDownEvent> {

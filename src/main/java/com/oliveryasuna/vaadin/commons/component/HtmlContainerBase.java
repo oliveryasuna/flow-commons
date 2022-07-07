@@ -25,6 +25,7 @@ import com.vaadin.flow.component.HtmlContainer;
  * Base class for classes that would extend {@link HtmlContainer}, enforcing an {@link com.vaadin.flow.component.Tag} annotation.
  *
  * @author Oliver Yasuna
+ * @since 2.0.0
  */
 public class HtmlContainerBase extends HtmlContainer {
 

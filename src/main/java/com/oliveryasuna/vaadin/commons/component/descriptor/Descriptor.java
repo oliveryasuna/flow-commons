@@ -25,7 +25,9 @@ package com.oliveryasuna.vaadin.commons.component.descriptor;
  *
  * @param <G> See {@link com.vaadin.flow.component.PropertyDescriptor}.
  * @param <S> See {@link com.vaadin.flow.component.PropertyDescriptor}.
+ *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 public interface Descriptor<G, S> extends com.vaadin.flow.component.PropertyDescriptor<S, G> {
 

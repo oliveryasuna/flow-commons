@@ -25,6 +25,7 @@ import com.vaadin.flow.component.InputEvent;
  * Ease-of-use {@link InputEvent} listener interface.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface InputListener extends ComponentEventListener<InputEvent> {

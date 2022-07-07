@@ -36,6 +36,7 @@ import java.util.stream.Collectors;
  * Arguably better usage of {@link com.vaadin.flow.component.PropertyDescriptor}.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @Utility
 public final class Descriptors {

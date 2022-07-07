@@ -27,6 +27,7 @@ import com.vaadin.flow.component.Component;
  * @param <C> The type of component.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 public interface DelegatoryClickListener<C extends Component> extends ClickListener<C> {
 

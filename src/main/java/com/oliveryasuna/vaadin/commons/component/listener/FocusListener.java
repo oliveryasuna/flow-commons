@@ -26,6 +26,7 @@ import com.vaadin.flow.component.FocusNotifier.FocusEvent;
  * Ease-of-use {@link FocusEvent} listener interface.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface FocusListener<C extends Component> extends ComponentEventListener<FocusEvent<C>> {

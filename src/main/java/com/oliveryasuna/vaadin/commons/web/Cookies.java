@@ -36,6 +36,7 @@ import java.util.concurrent.CompletableFuture;
  * For manipulating browser cookies.
  *
  * @author Oliver Yasuna
+ * @since 2.0.0
  */
 @Utility
 public final class Cookies {

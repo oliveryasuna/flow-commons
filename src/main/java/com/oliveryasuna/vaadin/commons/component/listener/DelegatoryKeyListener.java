@@ -26,7 +26,9 @@ import com.vaadin.flow.component.internal.KeyboardEvent;
  * A key listener that delegates the responsibility of handling different modifiers to separate methods.
  *
  * @param <E> The type of component.
+ *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 public interface DelegatoryKeyListener<E extends KeyboardEvent> extends ComponentEventListener<E> {
 

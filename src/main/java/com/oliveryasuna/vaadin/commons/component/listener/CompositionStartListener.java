@@ -25,6 +25,7 @@ import com.vaadin.flow.component.CompositionStartEvent;
  * Ease-of-use {@link CompositionStartEvent} listener interface.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface CompositionStartListener extends ComponentEventListener<CompositionStartEvent> {
