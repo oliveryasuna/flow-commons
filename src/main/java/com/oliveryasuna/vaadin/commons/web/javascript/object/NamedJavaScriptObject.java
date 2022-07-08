@@ -16,23 +16,54 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.component.checkbox;
+package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
-import com.vaadin.flow.component.checkbox.CheckboxGroup;
+import com.oliveryasuna.commons.language.condition.Arguments;
+import com.oliveryasuna.commons.language.marker.Immutable;
 
 /**
- * A {@link CheckboxGroup} with extended functionality.
+ * Basic implementation of {@link JavaScriptObject}.
  *
  * @author Oliver Yasuna
- * @since 3.0.0
+ * @since 4.0.0
  */
-public class VCheckboxGroup<T> extends CheckboxGroup<T> implements HasCheckboxGroupVariants {
+@Immutable
+public class NamedJavaScriptObject extends AbstractJavaScriptObject {
 
   // Constructors
   //--------------------------------------------------
 
-  public VCheckboxGroup() {
+  public NamedJavaScriptObject(final String name) {
     super();
+
+    Arguments.requireNotNull(name, "Must specify a name.");
+
+    this.name = name;
+  }
+
+  // Fields
+  //--------------------------------------------------
+
+  private final String name;
+
+  // Methods
+  //--------------------------------------------------
+
+  // Overrides
+  //--------------------------------------------------
+
+  // AbstractJavaScriptObject
+
+  @Override
+  protected String buildPath(final String name) {
+    return (getName() + "." + name);
+  }
+
+  // Getters
+  //--------------------------------------------------
+
+  public String getName() {
+    return name;
   }
 
 }

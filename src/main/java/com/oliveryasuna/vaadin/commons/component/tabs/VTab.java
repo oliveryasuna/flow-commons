@@ -18,7 +18,6 @@
 
 package com.oliveryasuna.vaadin.commons.component.tabs;
 
-import com.oliveryasuna.vaadin.commons.component.ComponentExtension;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.tabs.Tab;
 
@@ -28,7 +27,7 @@ import com.vaadin.flow.component.tabs.Tab;
  * @author Oliver Yasuna
  * @since 3.0.0
  */
-public class VTab extends Tab implements ComponentExtension, HasTabVariants {
+public class VTab extends Tab implements HasTabVariants {
 
   // Constructors
   //--------------------------------------------------

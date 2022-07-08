@@ -16,7 +16,7 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.web;
+package com.oliveryasuna.vaadin.commons.web.browser;
 
 import com.oliveryasuna.commons.language.StreamUtils;
 import com.oliveryasuna.commons.language.condition.Arguments;
@@ -39,7 +39,7 @@ import java.util.concurrent.CompletableFuture;
  * @since 2.0.0
  */
 @Utility
-public final class Cookies {
+public final class CookieUtils {
 
   // Static utility methods
   //--------------------------------------------------
@@ -249,7 +249,7 @@ public final class Cookies {
   // Constructors
   //--------------------------------------------------
 
-  private Cookies() {
+  private CookieUtils() {
     super();
 
     throw new UnsupportedInstantiationException();

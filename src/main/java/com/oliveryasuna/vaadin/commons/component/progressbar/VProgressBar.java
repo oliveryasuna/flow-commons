@@ -18,7 +18,6 @@
 
 package com.oliveryasuna.vaadin.commons.component.progressbar;
 
-import com.oliveryasuna.vaadin.commons.component.ComponentExtension;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 
 /**
@@ -27,7 +26,7 @@ import com.vaadin.flow.component.progressbar.ProgressBar;
  * @author Oliver Yasuna
  * @since 3.0.0
  */
-public class VProgressBar extends ProgressBar implements ComponentExtension, HasProgressBarVariants {
+public class VProgressBar extends ProgressBar implements HasProgressBarVariants {
 
   // Constructors
   //--------------------------------------------------

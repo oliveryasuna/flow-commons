@@ -18,7 +18,6 @@
 
 package com.oliveryasuna.vaadin.commons.component.button;
 
-import com.oliveryasuna.vaadin.commons.component.ComponentExtension;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -30,7 +29,7 @@ import com.vaadin.flow.component.button.Button;
  * @author Oliver Yasuna
  * @since 3.0.0
  */
-public class VButton extends Button implements ComponentExtension, HasButtonVariants {
+public class VButton extends Button implements HasButtonVariants {
 
   // Constructors
   //--------------------------------------------------

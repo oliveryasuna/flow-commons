@@ -18,7 +18,6 @@
 
 package com.oliveryasuna.vaadin.commons.component.radiobutton;
 
-import com.oliveryasuna.vaadin.commons.component.ComponentExtension;
 import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
 
 /**
@@ -27,7 +26,7 @@ import com.vaadin.flow.component.radiobutton.RadioButtonGroup;
  * @author Oliver Yasuna
  * @since 3.0.0
  */
-public class VRadioButtonGroup<T> extends RadioButtonGroup<T> implements ComponentExtension, HasRadioGroupVariants {
+public class VRadioButtonGroup<T> extends RadioButtonGroup<T> implements HasRadioGroupVariants {
 
   // Constructors
   //--------------------------------------------------

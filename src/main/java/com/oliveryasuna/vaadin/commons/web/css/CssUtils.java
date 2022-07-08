@@ -16,7 +16,7 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.web;
+package com.oliveryasuna.vaadin.commons.web.css;
 
 import com.oliveryasuna.commons.language.condition.Arguments;
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;

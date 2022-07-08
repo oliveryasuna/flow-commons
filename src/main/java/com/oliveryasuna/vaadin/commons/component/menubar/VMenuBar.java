@@ -18,7 +18,6 @@
 
 package com.oliveryasuna.vaadin.commons.component.menubar;
 
-import com.oliveryasuna.vaadin.commons.component.ComponentExtension;
 import com.vaadin.flow.component.menubar.MenuBar;
 
 /**
@@ -27,7 +26,7 @@ import com.vaadin.flow.component.menubar.MenuBar;
  * @author Oliver Yasuna
  * @since 3.0.0
  */
-public class VMenuBar extends MenuBar implements ComponentExtension, HasMenuBarVariants {
+public class VMenuBar extends MenuBar implements HasMenuBarVariants {
 
   // Constructors
   //--------------------------------------------------

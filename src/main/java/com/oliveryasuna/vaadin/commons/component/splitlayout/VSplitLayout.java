@@ -18,7 +18,6 @@
 
 package com.oliveryasuna.vaadin.commons.component.splitlayout;
 
-import com.oliveryasuna.vaadin.commons.component.ComponentExtension;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.splitlayout.SplitLayout;
 
@@ -28,7 +27,7 @@ import com.vaadin.flow.component.splitlayout.SplitLayout;
  * @author Oliver Yasuna
  * @since 3.0.0
  */
-public class VSplitLayout extends SplitLayout implements ComponentExtension, HasSplitLayoutVariants {
+public class VSplitLayout extends SplitLayout implements HasSplitLayoutVariants {
 
   // Constructors
   //--------------------------------------------------

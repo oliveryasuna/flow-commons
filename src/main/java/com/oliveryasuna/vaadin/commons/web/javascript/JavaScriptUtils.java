@@ -16,7 +16,7 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.web;
+package com.oliveryasuna.vaadin.commons.web.javascript;
 
 import com.oliveryasuna.commons.language.condition.Arguments;
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
@@ -31,7 +31,7 @@ import com.vaadin.flow.component.page.PendingJavaScriptResult;
  * @since 2.0.0
  */
 @Utility
-public final class JavaScript {
+public final class JavaScriptUtils {
 
   // Static utility methods
   //--------------------------------------------------
@@ -78,7 +78,7 @@ public final class JavaScript {
   // Constructors
   //--------------------------------------------------
 
-  private JavaScript() {
+  private JavaScriptUtils() {
     super();
 
     throw new UnsupportedInstantiationException();

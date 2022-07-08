@@ -18,7 +18,6 @@
 
 package com.oliveryasuna.vaadin.commons.component.badge;
 
-import com.oliveryasuna.vaadin.commons.component.ComponentExtension;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 
@@ -28,7 +27,7 @@ import com.vaadin.flow.component.icon.Icon;
  * @author Oliver Yasuna
  * @since 3.0.0
  */
-public class Badge extends Span implements ComponentExtension, HasBadgeVariants {
+public class Badge extends Span implements HasBadgeVariants {
 
   // Constructors
   //--------------------------------------------------
