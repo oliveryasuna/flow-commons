@@ -23,6 +23,12 @@ import com.vaadin.flow.data.binder.ValueContext;
 import com.vaadin.flow.data.converter.Converter;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Converter that trims strings.
+ *
+ * @author Oliver Yasuna
+ * @since 1.0.0
+ */
 public class TrimConverter implements Converter<String, String> {
 
   // Constructors

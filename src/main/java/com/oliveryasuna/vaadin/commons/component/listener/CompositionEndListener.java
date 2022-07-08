@@ -25,6 +25,7 @@ import com.vaadin.flow.component.CompositionEndEvent;
  * Ease-of-use {@link CompositionEndEvent} listener interface.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface CompositionEndListener extends ComponentEventListener<CompositionEndEvent> {

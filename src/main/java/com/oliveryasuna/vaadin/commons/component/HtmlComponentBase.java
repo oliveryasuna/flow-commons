@@ -24,6 +24,7 @@ import com.vaadin.flow.component.HtmlComponent;
  * Base class for classes that would extend {@link HtmlComponent}, enforcing an {@link com.vaadin.flow.component.Tag} annotation.
  *
  * @author Oliver Yasuna
+ * @since 2.0.0
  */
 public class HtmlComponentBase extends HtmlComponent {
 

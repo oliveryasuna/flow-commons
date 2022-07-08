@@ -25,6 +25,7 @@ import com.vaadin.flow.component.CompositionUpdateEvent;
  * Ease-of-use {@link CompositionUpdateEvent} listener interface.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface CompositionUpdateListener extends ComponentEventListener<CompositionUpdateEvent> {

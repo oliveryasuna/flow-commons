@@ -23,6 +23,12 @@ import com.vaadin.flow.data.binder.ValueContext;
 import com.vaadin.flow.data.converter.Converter;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * Converter that trims strings to {@code null}.
+ *
+ * @author Oliver Yasuna
+ * @since 1.0.0
+ */
 public class TrimToNullConverter implements Converter<String, String> {
 
   // Constructors

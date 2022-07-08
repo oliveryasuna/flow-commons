@@ -33,6 +33,7 @@ import java.util.stream.Stream;
  * Various utilities for working with {@link Element}s.
  *
  * @author Oliver Yasuna
+ * @since 2.0.0
  */
 @Utility
 public final class ElementUtils {

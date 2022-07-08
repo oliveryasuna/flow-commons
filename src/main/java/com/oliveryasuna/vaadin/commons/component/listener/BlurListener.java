@@ -26,6 +26,7 @@ import com.vaadin.flow.component.ComponentEventListener;
  * Ease-of-use {@link BlurEvent} listener interface.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface BlurListener<C extends Component> extends ComponentEventListener<BlurEvent<C>> {

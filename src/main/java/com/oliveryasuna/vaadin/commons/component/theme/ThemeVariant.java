@@ -24,6 +24,7 @@ package com.oliveryasuna.vaadin.commons.component.theme;
  * Mocks what various Vaadin theme variant {@code enum}s do, e.g., {@link com.vaadin.flow.component.button.ButtonVariant}.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 public interface ThemeVariant {
 

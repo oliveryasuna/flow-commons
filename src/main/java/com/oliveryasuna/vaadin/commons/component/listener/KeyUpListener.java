@@ -25,6 +25,7 @@ import com.vaadin.flow.component.KeyUpEvent;
  * Ease-of-use {@link KeyUpEvent} listener interface.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface KeyUpListener extends ComponentEventListener<KeyUpEvent> {

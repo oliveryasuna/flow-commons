@@ -32,6 +32,7 @@ import java.util.concurrent.CompletableFuture;
  * Inspired by code from <a href="https://github.com/viritin/flow-viritin">flow-viritin</a>.
  *
  * @author Oliver Yasuna
+ * @since 2.0.0
  */
 @Utility
 public final class BrowserStorage {

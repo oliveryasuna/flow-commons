@@ -25,6 +25,7 @@ import com.vaadin.flow.component.DetachEvent;
  * Ease-of-use {@link DetachEvent} listener interface.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @FunctionalInterface
 public interface DetachListener extends ComponentEventListener<DetachEvent> {

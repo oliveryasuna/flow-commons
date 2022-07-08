@@ -27,6 +27,7 @@ import com.vaadin.flow.component.Unit;
  * Various CSS utilities.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @Utility
 public final class CssUtils {

@@ -27,6 +27,7 @@ import com.vaadin.flow.component.Composite;
  * @param <T> The type of component.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 public abstract class AbstractComposite<T extends Component> extends Composite<T> {
 

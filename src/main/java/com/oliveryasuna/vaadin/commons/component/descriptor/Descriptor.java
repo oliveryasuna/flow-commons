@@ -18,6 +18,10 @@
 
 package com.oliveryasuna.vaadin.commons.component.descriptor;
 
+import com.oliveryasuna.commons.language.condition.Arguments;
+import com.vaadin.flow.component.HasElement;
+import com.vaadin.flow.dom.Element;
+
 /**
  * Basically an alias for {@link com.vaadin.flow.component.PropertyDescriptor}, but with the order of the parameterized types reversed.
  * <p>
@@ -25,8 +29,31 @@ package com.oliveryasuna.vaadin.commons.component.descriptor;
  *
  * @param <G> See {@link com.vaadin.flow.component.PropertyDescriptor}.
  * @param <S> See {@link com.vaadin.flow.component.PropertyDescriptor}.
+ *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 public interface Descriptor<G, S> extends com.vaadin.flow.component.PropertyDescriptor<S, G> {
+
+  // Methods
+  //--------------------------------------------------
+
+  /**
+   * Removes the property for the given component.
+   *
+   * @param hasElement The component.
+   */
+  default void remove(final HasElement hasElement) {
+    Arguments.requireNotNull(hasElement, "Must specify an argument.");
+
+    remove(hasElement.getElement());
+  }
+
+  /**
+   * Removes the property for the given element.
+   *
+   * @param element The element.
+   */
+  void remove(Element element);
 
 }

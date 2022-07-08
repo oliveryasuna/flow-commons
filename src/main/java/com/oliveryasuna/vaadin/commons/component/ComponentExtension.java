@@ -19,6 +19,8 @@
 package com.oliveryasuna.vaadin.commons.component;
 
 import com.oliveryasuna.commons.language.condition.Arguments;
+import com.oliveryasuna.vaadin.commons.component.descriptor.Descriptor;
+import com.oliveryasuna.vaadin.commons.component.descriptor.Descriptors;
 import com.vaadin.flow.component.*;
 
 import java.util.Optional;
@@ -27,15 +29,24 @@ import java.util.Optional;
  * An interface to add functionality to {@link Component}s.
  *
  * @author Oliver Yasuna
+ * @since 2.0.0
  */
-public interface ComponentExtension {
+public interface ComponentExtension extends HasElement {
+
+  // Static fields
+  //--------------------------------------------------
+
+  Descriptor<String, String> TITLE_DESCRIPTOR = Descriptors.stringProperty("title");
+
+  // Methods
+  //--------------------------------------------------
 
   /**
    * Fires an event.
    *
    * @param event The event.
    */
-  default void fireEvent(final ComponentEvent<?> event) {
+  default void fireEvent0(final ComponentEvent<?> event) {
     Arguments.requireNotNull(event);
 
     ComponentUtil.fireEvent((Component)this, event);
@@ -99,6 +110,10 @@ public interface ComponentExtension {
     parent.addComponentAtIndex(parent.indexOf((Component)this) + 1, newSibling);
 
     return true;
+  }
+
+  default void setTooltip(final String text) {
+    TITLE_DESCRIPTOR.set(this, text);
   }
 
 }

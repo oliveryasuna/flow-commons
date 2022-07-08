@@ -30,6 +30,7 @@ import java.nio.charset.Charset;
  * Various {@link StreamResource} utilities.
  *
  * @author Oliver Yasuna
+ * @since 1.0.0
  */
 @Utility
 public final class StreamResourceUtils {
