@@ -60,6 +60,8 @@ public class Navigator extends NamedJavaScriptObject {
   // JavaScript properties
   //
 
+  // TODO: clipboard?
+
   public CompletableFuture<Boolean> isCookieEnabled(final UI ui) {
     return getProperty(ui, Boolean.class, "cookieEnabled");
   }
