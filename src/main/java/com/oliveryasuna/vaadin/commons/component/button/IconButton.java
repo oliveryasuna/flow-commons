@@ -59,7 +59,7 @@ public class IconButton extends VButton {
       setText(label);
       setIcon(icon);
 
-      if(type == IconButtonType.CAPTION_LEFT) {
+      if(type == IconButtonType.LABEL_LEFT) {
         setIconAfterText(true);
       }
     }
@@ -111,14 +111,14 @@ public class IconButton extends VButton {
     ICON_ONLY,
 
     /**
-     * A button with an icon then caption.
+     * A button with an icon then label.
      */
-    CAPTION_LEFT,
+    LABEL_LEFT,
 
     /**
-     * A button with a caption then icon.
+     * A button with a label then icon.
      */
-    CAPTION_RIGHT
+    LABEL_RIGHT
 
   }
 
