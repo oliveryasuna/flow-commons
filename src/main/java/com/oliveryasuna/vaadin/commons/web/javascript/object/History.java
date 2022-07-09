@@ -18,11 +18,7 @@
 
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
-import com.oliveryasuna.commons.language.marker.Immutable;
 import com.oliveryasuna.commons.language.marker.Singleton;
-import com.vaadin.flow.component.UI;
-
-import java.util.concurrent.CompletableFuture;
 
 /**
  * Represents a {@code History} object.
@@ -31,7 +27,7 @@ import java.util.concurrent.CompletableFuture;
  * @since 4.0.0
  */
 @Singleton
-public class History extends NamedJavaScriptObject {
+public class History extends NamedJavaScriptObject implements IHistory {
 
   // Static fields
   //--------------------------------------------------
@@ -56,125 +52,6 @@ public class History extends NamedJavaScriptObject {
 
   History(final NamedJavaScriptObject parent, final String name) {
     super(parent.getObjectName() + "." + name);
-  }
-
-  // Methods
-  //--------------------------------------------------
-
-  // JavaScript properties
-
-  public CompletableFuture<Integer> getLength(final UI ui) {
-    return getProperty(ui, Integer.class, "length");
-  }
-
-  public CompletableFuture<Integer> getLength() {
-    return getLength(UI.getCurrent());
-  }
-
-  public CompletableFuture<String> getScrollRestoration(final UI ui) {
-    return getProperty(ui, String.class, "scrollRestoration");
-  }
-
-  public CompletableFuture<String> getScrollRestoration() {
-    return getScrollRestoration(UI.getCurrent());
-  }
-
-  public CompletableFuture<Void> setScrollRestoration(final UI ui, final String scrollRestoration) {
-    return setProperty(ui, "scrollRestoration", scrollRestoration);
-  }
-
-  public CompletableFuture<Void> setScrollRestoration(final String scrollRestoration) {
-    return setScrollRestoration(UI.getCurrent(), scrollRestoration);
-  }
-
-  // TODO: state?
-
-  // JavaScript methods
-  //
-
-  public CompletableFuture<Void> back(final UI ui) {
-    return callMethod(ui, Void.class, "back");
-  }
-
-  public CompletableFuture<Void> back() {
-    return back(UI.getCurrent());
-  }
-
-  public CompletableFuture<Void> forward(final UI ui) {
-    return callMethod(ui, Void.class, "forward");
-  }
-
-  public CompletableFuture<Void> forward() {
-    return forward(UI.getCurrent());
-  }
-
-  protected CompletableFuture<Void> go(final UI ui, final Integer delta) {
-    if(delta != null) {
-      return callMethod(ui, Void.class, "go", delta);
-    } else {
-      return callMethod(ui, Void.class, "go");
-    }
-  }
-
-  public CompletableFuture<Void> go(final UI ui) {
-    return go(ui, null);
-  }
-
-  public CompletableFuture<Void> go() {
-    return go(UI.getCurrent());
-  }
-
-  public CompletableFuture<Void> go(final UI ui, final int delta) {
-    return go(ui, (Integer)delta);
-  }
-
-  public CompletableFuture<Void> go(final int delta) {
-    return go(UI.getCurrent(), delta);
-  }
-
-  // TODO: pushState()?
-
-  // TODO: replaceState()?
-
-  // Nested
-  //--------------------------------------------------
-
-  /**
-   * The options for the {@code scrollRestoration} property.
-   *
-   * @author Oliver Yasuna
-   * @since 4.0.0
-   */
-  @Immutable
-  public enum ScrollRestoration implements JavaScriptPart {
-
-    // Values
-    //--------------------------------------------------
-
-    AUTO("auto"),
-
-    MANUAL("manual");
-
-    // Constructors
-    //--------------------------------------------------
-
-    ScrollRestoration(final String javaScriptName) {
-      this.javaScriptName = javaScriptName;
-    }
-
-    // Fields
-    //--------------------------------------------------
-
-    private final String javaScriptName;
-
-    // Getters
-    //--------------------------------------------------
-
-    @Override
-    public final String getJavaScriptName() {
-      return javaScriptName;
-    }
-
   }
 
 }

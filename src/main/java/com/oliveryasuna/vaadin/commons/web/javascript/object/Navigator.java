@@ -19,19 +19,15 @@
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
 import com.oliveryasuna.commons.language.marker.Singleton;
-import com.vaadin.flow.component.UI;
-
-import java.io.Serializable;
-import java.util.concurrent.CompletableFuture;
 
 /**
- * Utilities for working with the {@code Navigator} API.
+ * Represents a {@code navigator} object.
  *
  * @author Oliver Yasuna
  * @since 3.1.0
  */
 @Singleton
-public class Navigator extends NamedJavaScriptObject {
+public class Navigator extends NamedJavaScriptObject implements INavigator {
 
   // Static fields
   //--------------------------------------------------
@@ -57,140 +53,5 @@ public class Navigator extends NamedJavaScriptObject {
   Navigator(final NamedJavaScriptObject parent, final String name) {
     super(parent.getObjectName() + "." + name);
   }
-
-  // Methods
-  //--------------------------------------------------
-
-  // JavaScript properties
-  //
-
-  // TODO: clipboard?
-
-  public CompletableFuture<Boolean> isCookieEnabled(final UI ui) {
-    return getProperty(ui, Boolean.class, "cookieEnabled");
-  }
-
-  public CompletableFuture<Boolean> isCookieEnabled() {
-    return isCookieEnabled(UI.getCurrent());
-  }
-
-  // TODO: credentials?
-
-  // TODO: geolocation?
-
-  // TODO: hid?
-
-  public CompletableFuture<Integer> getHardwareConcurrency(final UI ui) {
-    return getProperty(ui, Integer.class, "hardwareConcurrency");
-  }
-
-  public CompletableFuture<Integer> getHardwareConcurrency() {
-    return getHardwareConcurrency(UI.getCurrent());
-  }
-
-  public CompletableFuture<String> getLanguage(final UI ui) {
-    return getProperty(ui, String.class, "language");
-  }
-
-  public CompletableFuture<String> getLanguage() {
-    return getLanguage(UI.getCurrent());
-  }
-
-  public CompletableFuture<String> getMaxTouchPoints(final UI ui) {
-    return getProperty(ui, String.class, "maxTouchPoints");
-  }
-
-  public CompletableFuture<String> getMaxTouchPoints() {
-    return getMaxTouchPoints(UI.getCurrent());
-  }
-
-  // TODO: mediaDevices?
-
-  public CompletableFuture<String> getOnLine(final UI ui) {
-    return getProperty(ui, String.class, "onLine");
-  }
-
-  public CompletableFuture<String> getOnLine() {
-    return getOnLine(UI.getCurrent());
-  }
-
-  public CompletableFuture<String> getPdfViewerEnabled(final UI ui) {
-    return getProperty(ui, String.class, "pdfViewerEnabled");
-  }
-
-  public CompletableFuture<String> getPdfViewerEnabled() {
-    return getPdfViewerEnabled(UI.getCurrent());
-  }
-
-  // TODO: storage?
-
-  public CompletableFuture<String> getUserAgent(final UI ui) {
-    return getProperty(ui, String.class, "userAgent");
-  }
-
-  public CompletableFuture<String> getUserAgent() {
-    return getUserAgent(UI.getCurrent());
-  }
-
-  // TODO: userAgentData?
-
-  // TODO: windowControlsOverlay?
-
-  // JavaScript methods
-  //
-
-  protected CompletableFuture<Boolean> canShare(final UI ui, final Serializable... arguments) {
-    return callMethod(ui, Boolean.class, "canShare", arguments);
-  }
-
-  public CompletableFuture<Boolean> canShare(final UI ui) {
-    return canShare(ui, (Serializable[])null);
-  }
-
-  public CompletableFuture<Boolean> canShare() {
-    return canShare(UI.getCurrent());
-  }
-
-  public CompletableFuture<Boolean> canShare(final UI ui, final String urlOrTextOrTitle) {
-    return canShare(ui, (Serializable)urlOrTextOrTitle);
-  }
-
-  public CompletableFuture<Boolean> canShare(final String urlOrTextOrTitle) {
-    return canShare(UI.getCurrent(), urlOrTextOrTitle);
-  }
-
-  // TODO: canShare(File[])?
-
-  // TODO: clearAppBadge()?
-
-  // TODO: getBattery()?
-
-  public CompletableFuture<Void> registerProtocolHandler(final UI ui, final String scheme, final String url) {
-    return callMethod(ui, Void.class, "registerProtocolHandler", scheme, url);
-  }
-
-  public CompletableFuture<Void> registerProtocolHandler(final String scheme, final String url) {
-    return registerProtocolHandler(UI.getCurrent(), scheme, url);
-  }
-
-  // TODO: requestMediaKeySystemAccess()?
-
-  // TODO: requestMIDIAccess()?
-
-  public CompletableFuture<Boolean> sendBeacon(final UI ui, final String url) {
-    return callMethod(ui, Boolean.class, "sendBeacon", url);
-  }
-
-  public CompletableFuture<Boolean> sendBeacon(final String url) {
-    return sendBeacon(UI.getCurrent(), url);
-  }
-
-  // TODO: sendBeacon(url, data)?
-
-  // TODO: setAppBadge()?
-
-  // TODO: share()?
-
-  // TODO: vibrate()?
 
 }

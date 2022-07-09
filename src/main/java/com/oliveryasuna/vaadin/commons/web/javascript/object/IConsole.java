@@ -18,48 +18,66 @@
 
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
-import com.oliveryasuna.commons.language.marker.Singleton;
+import com.vaadin.flow.component.UI;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
- * Represents a {@code Storage} object.
+ * Represents the {@code Console} interface.
  *
  * @author Oliver Yasuna
  * @since 4.0.0
  */
-@Singleton
-public class Storage extends NamedJavaScriptObject implements IStorage {
+public interface IConsole extends JavaScriptObject {
 
-  // Static fields
+  // Methods
   //--------------------------------------------------
 
-  static final String LOCAL_STORAGE_NAME = "localStorage";
+  // JavaScript methods
+  //
 
-  static final String SESSION_STORAGE_NAME = "sessionStorage";
+  // TODO: assert()?
 
-  // Singleton
-  //--------------------------------------------------
-
-  private static final Storage LOCAL_STORAGE_INSTANCE = new Storage(LOCAL_STORAGE_NAME);
-
-  public static Storage getLocalStorageInstance() {
-    return LOCAL_STORAGE_INSTANCE;
+  default CompletableFuture<Void> clear(final UI ui) {
+    return callMethod(ui, Void.class, "clear");
   }
 
-  private static final Storage SESSION_STORAGE_INSTANCE = new Storage(SESSION_STORAGE_NAME);
-
-  public static Storage getSessionStorageInstance() {
-    return SESSION_STORAGE_INSTANCE;
+  default CompletableFuture<Void> clear() {
+    return clear(UI.getCurrent());
   }
 
-  // Constructors
-  //--------------------------------------------------
+  // TODO: count()?
 
-  protected Storage(final String name) {
-    super(name);
-  }
+  // TODO: countReset()?
 
-  Storage(final NamedJavaScriptObject parent, final String name) {
-    super(parent.getObjectName() + "." + name);
-  }
+  // TODO: debug()?
+
+  // TODO: dir()?
+
+  // TODO: dirxml().
+
+  // TODO: error().
+
+  // TODO: group().
+
+  // TODO: groupCollapsed().
+
+  // TODO: groupEnd()?
+
+  // TODO: info()?
+
+  // TODO: log()?
+
+  // TODO: table()?
+
+  // TODO: time()?
+
+  // TODO: timeEnd()?
+
+  // TODO: timeLog()?
+
+  // TODO: trace()?
+
+  // TODO: warn()?
 
 }

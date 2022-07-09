@@ -18,48 +18,19 @@
 
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
-import com.oliveryasuna.commons.language.marker.Singleton;
-
 /**
- * Represents a {@code Storage} object.
+ * Represents the {@code WindowSessionStorage} interface.
  *
  * @author Oliver Yasuna
  * @since 4.0.0
  */
-@Singleton
-public class Storage extends NamedJavaScriptObject implements IStorage {
+public interface WindowSessionStorage extends JavaScriptObject {
 
-  // Static fields
+  // Methods
   //--------------------------------------------------
 
-  static final String LOCAL_STORAGE_NAME = "localStorage";
+  // JavaScript properties
 
-  static final String SESSION_STORAGE_NAME = "sessionStorage";
-
-  // Singleton
-  //--------------------------------------------------
-
-  private static final Storage LOCAL_STORAGE_INSTANCE = new Storage(LOCAL_STORAGE_NAME);
-
-  public static Storage getLocalStorageInstance() {
-    return LOCAL_STORAGE_INSTANCE;
-  }
-
-  private static final Storage SESSION_STORAGE_INSTANCE = new Storage(SESSION_STORAGE_NAME);
-
-  public static Storage getSessionStorageInstance() {
-    return SESSION_STORAGE_INSTANCE;
-  }
-
-  // Constructors
-  //--------------------------------------------------
-
-  protected Storage(final String name) {
-    super(name);
-  }
-
-  Storage(final NamedJavaScriptObject parent, final String name) {
-    super(parent.getObjectName() + "." + name);
-  }
+  Storage getSessionStorage();
 
 }

@@ -19,38 +19,63 @@
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
 import com.oliveryasuna.commons.language.marker.Singleton;
-import com.vaadin.flow.component.UI;
-
-import java.util.concurrent.CompletableFuture;
 
 /**
- * Represents the {@code Window} object.
+ * Represents a {@code Window} object.
  *
  * @author Oliver Yasuna
  * @since 4.0.0
  */
 @Singleton
-public class Window extends NamedJavaScriptObject {
+public class Window extends NamedJavaScriptObject implements IWindow {
 
   // Static fields
   //--------------------------------------------------
 
-  private static final String NAME = "window";
+  static final String NAME = "window";
+
+  static final String SELF_NAME = "self";
+
+  static final String TOP_NAME = "top";
+
+  static final String WINDOW_NAME = "window";
 
   // Singleton
   //--------------------------------------------------
 
-  private static final Window INSTANCE = new Window();
+  private static Window instance;
 
   public static Window getInstance() {
-    return INSTANCE;
+    return (instance != null ? instance : (instance = new Window(NAME)));
+  }
+
+  private static Window selfInstance;
+
+  public static Window getSelfInstance() {
+    return (selfInstance != null ? selfInstance : (selfInstance = new Window(SELF_NAME)));
+  }
+
+  private static Window topInstance;
+
+  public static Window getTopInstance() {
+    return (topInstance != null ? topInstance : (topInstance = new Window(TOP_NAME)));
+  }
+
+  private static Window windowInstance;
+
+  public static Window getWindowInstance() {
+    return (windowInstance != null ? windowInstance : (windowInstance = new Window(WINDOW_NAME)));
   }
 
   // Constructors
   //--------------------------------------------------
 
-  public Window() {
-    super(NAME);
+  protected Window(final String name) {
+    super(name);
+  }
+
+  Window(final NamedJavaScriptObject parent, final String name) {
+    super(parent.getObjectName() + "." + name);
   }
 
   // Fields
@@ -62,54 +87,66 @@ public class Window extends NamedJavaScriptObject {
 
   protected History history;
 
-  // Methods
+  protected Storage localStorage;
+
+  protected Window self;
+
+  protected Storage sessionStorage;
+
+  protected Window top;
+
+  protected Window window;
+
+  // Overrides
   //--------------------------------------------------
 
-  // JavaScript properties
+  // IWindow
   //
 
-  public Navigator getClientInformation() {
-    return navigator;
-  }
-
-  public CompletableFuture<Boolean> isClosed(final UI ui) {
-    return getProperty(ui, Boolean.class, "closed");
-  }
-
-  public CompletableFuture<Boolean> isClosed() {
-    return isClosed(UI.getCurrent());
-  }
-
+  @Override
   public Console getConsole() {
-    return (console != null ? console : (console = new Console(this)));
+    return (console != null ? console : (console = new Console(this, Console.NAME)));
   }
 
-  // TODO: customElements?
-
-  // TODO: crypto?
-
-  public CompletableFuture<Double> getDevicePixelRatio(final UI ui) {
-    return getProperty(ui, Double.class, "devicePixelRatio");
-  }
-
-  public CompletableFuture<Double> getDevicePixelRatio() {
-    return getDevicePixelRatio(UI.getCurrent());
-  }
-
-  // TODO: document?
-
-  // TODO: frameElement?
-
-  // TODO: frames?
-
+  @Override
   public History getHistory() {
-    return (history != null ? history : (history = new History(this)));
+    return (history != null ? history : (history = new History(this, History.NAME)));
   }
 
-  // TODO: SO MUCH MORE!!!!!!!!!
-
+  @Override
   public Navigator getNavigator() {
-    return (navigator != null ? navigator : (navigator = new Navigator(this)));
+    return (navigator != null ? navigator : (navigator = new Navigator(this, Navigator.NAME)));
+  }
+
+  @Override
+  public Window getSelf() {
+    return (self != null ? self : (self = new Window(this, SELF_NAME)));
+  }
+
+  @Override
+  public Window getTop() {
+    return (top != null ? top : (top = new Window(this, TOP_NAME)));
+  }
+
+  @Override
+  public Window getWindow() {
+    return (window != null ? window : (window = new Window(this, WINDOW_NAME)));
+  }
+
+  // WindowLocalStorage
+  //
+
+  @Override
+  public Storage getLocalStorage() {
+    return (localStorage != null ? localStorage : (localStorage = new Storage(this, Storage.LOCAL_STORAGE_NAME)));
+  }
+
+  // WindowSessionStorage
+  //
+
+  @Override
+  public Storage getSessionStorage() {
+    return (sessionStorage != null ? sessionStorage : (sessionStorage = new Storage(this, Storage.SESSION_STORAGE_NAME)));
   }
 
 }

@@ -95,7 +95,7 @@ public interface JavaScriptObject {
   /**
    * Calls {@link #callMethod(UI, Class, String, Serializable...)} with {@code UI.getCurrent()}.
    */
-  default <T> CompletableFuture<T> callMethod(final String methodName, final Class<T> returnType, final Serializable... arguments) {
+  default <T> CompletableFuture<T> callMethod(final Class<T> returnType, final String methodName, final Serializable... arguments) {
     return callMethod(UI.getCurrent(), returnType, methodName, arguments);
   }
 

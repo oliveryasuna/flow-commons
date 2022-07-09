@@ -19,18 +19,15 @@
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
 import com.oliveryasuna.commons.language.marker.Singleton;
-import com.vaadin.flow.component.UI;
-
-import java.util.concurrent.CompletableFuture;
 
 /**
- * Represents a {@code console} object.
+ * Represents a {@code Console} object.
  *
  * @author Oliver Yasuna
  * @since 4.0.0
  */
 @Singleton
-public class Console extends NamedJavaScriptObject {
+public class Console extends NamedJavaScriptObject implements IConsole {
 
   // Static fields
   //--------------------------------------------------
@@ -56,55 +53,5 @@ public class Console extends NamedJavaScriptObject {
   Console(final NamedJavaScriptObject parent, final String name) {
     super(parent.getObjectName() + "." + name);
   }
-
-  // Methods
-  //--------------------------------------------------
-
-  // JavaScript methods
-  //
-
-  // TODO: assert()?
-
-  public CompletableFuture<Void> clear(final UI ui) {
-    return callMethod(ui, Void.class, "clear");
-  }
-
-  public CompletableFuture<Void> clear() {
-    return clear(UI.getCurrent());
-  }
-
-  // TODO: count()?
-
-  // TODO: countReset()?
-
-  // TODO: debug()?
-
-  // TODO: dir()?
-
-  // TODO: dirxml().
-
-  // TODO: error().
-
-  // TODO: group().
-
-  // TODO: groupCollapsed().
-
-  // TODO: groupEnd()?
-
-  // TODO: info()?
-
-  // TODO: log()?
-
-  // TODO: table()?
-
-  // TODO: time()?
-
-  // TODO: timeEnd()?
-
-  // TODO: timeLog()?
-
-  // TODO: trace()?
-
-  // TODO: warn()?
 
 }
