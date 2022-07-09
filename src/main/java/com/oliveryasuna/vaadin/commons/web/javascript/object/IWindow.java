@@ -29,8 +29,8 @@ import java.util.concurrent.CompletableFuture;
  * @author Oliver Yasuna
  * @since 4.0.0
  */
-public interface IWindow extends JavaScriptObject, EventTarget, AnimationFrameProvider, GlobalEventHandlers, WindowEventHandlers, WindowLocalStorage,
-    WindowOrWorkerGlobalScope, WindowSessionStorage {
+public interface IWindow extends JavaScriptObject, IEventTarget, IAnimationFrameProvider, IGlobalEventHandlers, IWindowEventHandlers, IWindowLocalStorage,
+    IWindowOrWorkerGlobalScope, IWindowSessionStorage {
 
   // Methods
   //--------------------------------------------------

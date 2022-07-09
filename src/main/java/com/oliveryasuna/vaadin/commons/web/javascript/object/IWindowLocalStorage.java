@@ -19,21 +19,18 @@
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
 /**
- * Represents the {@code AnimationFrameProvider} interface.
+ * Represents the {@code WindowLocalStorage} interface.
  *
  * @author Oliver Yasuna
  * @since 4.0.0
  */
-public interface AnimationFrameProvider extends JavaScriptObject {
+public interface IWindowLocalStorage extends JavaScriptObject {
 
   // Methods
   //--------------------------------------------------
 
-  // JavaScript methods
-  //
+  // JavaScript properties
 
-  // TODO: cancelAnimationFrame()?
-
-  // TODO: requestAnimationFrame()?
+  Storage getLocalStorage();
 
 }

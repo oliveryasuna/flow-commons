@@ -19,18 +19,23 @@
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
 /**
- * Represents the {@code WindowLocalStorage} interface.
+ * Represents the {@code EventTarget} interface.
  *
  * @author Oliver Yasuna
  * @since 4.0.0
  */
-public interface WindowLocalStorage extends JavaScriptObject {
+public interface IEventTarget extends JavaScriptObject {
 
   // Methods
   //--------------------------------------------------
 
-  // JavaScript properties
+  // JavaScript methods
+  //
 
-  Storage getLocalStorage();
+  // TODO: addEventListener()?
+
+  // TODO: removeEventListener()?
+
+  // TODO: dispatchEvent()?
 
 }

@@ -24,7 +24,7 @@ package com.oliveryasuna.vaadin.commons.web.javascript.object;
  * @author Oliver Yasuna
  * @since 4.0.0
  */
-public interface WindowEventHandlers extends JavaScriptObject {
+public interface IWindowEventHandlers extends JavaScriptObject {
 
   // Methods
   //--------------------------------------------------

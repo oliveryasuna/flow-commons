@@ -19,18 +19,21 @@
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
 /**
- * Represents the {@code WindowSessionStorage} interface.
+ * Represents the {@code AnimationFrameProvider} interface.
  *
  * @author Oliver Yasuna
  * @since 4.0.0
  */
-public interface WindowSessionStorage extends JavaScriptObject {
+public interface IAnimationFrameProvider extends JavaScriptObject {
 
   // Methods
   //--------------------------------------------------
 
-  // JavaScript properties
+  // JavaScript methods
+  //
 
-  Storage getSessionStorage();
+  // TODO: cancelAnimationFrame()?
+
+  // TODO: requestAnimationFrame()?
 
 }

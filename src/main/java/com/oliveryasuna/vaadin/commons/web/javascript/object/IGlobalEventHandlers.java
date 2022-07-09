@@ -19,23 +19,16 @@
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
 /**
- * Represents the {@code EventTarget} interface.
+ * Represents the {@code GlobalEventHandlers} interface.
  *
  * @author Oliver Yasuna
  * @since 4.0.0
  */
-public interface EventTarget extends JavaScriptObject {
+public interface IGlobalEventHandlers extends JavaScriptObject {
 
   // Methods
   //--------------------------------------------------
 
-  // JavaScript methods
-  //
-
-  // TODO: addEventListener()?
-
-  // TODO: removeEventListener()?
-
-  // TODO: dispatchEvent()?
+  // TODO: Lots of stuff that probably won't work.
 
 }

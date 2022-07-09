@@ -28,7 +28,7 @@ import java.util.concurrent.CompletableFuture;
  * @author Oliver Yasuna
  * @since 4.0.0
  */
-public interface WindowOrWorkerGlobalScope extends JavaScriptObject {
+public interface IWindowOrWorkerGlobalScope extends JavaScriptObject {
 
   // Methods
   //--------------------------------------------------

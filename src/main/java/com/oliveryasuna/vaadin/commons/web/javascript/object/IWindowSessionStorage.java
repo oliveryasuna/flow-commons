@@ -19,16 +19,18 @@
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
 /**
- * Represents the {@code GlobalEventHandlers} interface.
+ * Represents the {@code WindowSessionStorage} interface.
  *
  * @author Oliver Yasuna
  * @since 4.0.0
  */
-public interface GlobalEventHandlers extends JavaScriptObject {
+public interface IWindowSessionStorage extends JavaScriptObject {
 
   // Methods
   //--------------------------------------------------
 
-  // TODO: Lots of stuff that probably won't work.
+  // JavaScript properties
+
+  Storage getSessionStorage();
 
 }
