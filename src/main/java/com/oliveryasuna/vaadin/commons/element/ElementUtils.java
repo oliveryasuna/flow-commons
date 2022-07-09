@@ -264,6 +264,25 @@ public final class ElementUtils {
     return setPropertyMap(element, name, value);
   }
 
+
+  /**
+   * Calls {@code Element.scrollIntoView()}.
+   *
+   * @param element The element.
+   */
+  public static void scrollIntoView(final Element element) {
+    element.callJsFunction("scrollIntoView");
+  }
+
+  /**
+   * Calls {@code Element.scrollIntoView(alignToTop)}.
+   *
+   * @param element The element.
+   */
+  public static void scrollIntoView(final Element element, final boolean alignToTop) {
+    element.callJsFunction("scrollIntoView", alignToTop);
+  }
+
   // Constructors
   //--------------------------------------------------
 
