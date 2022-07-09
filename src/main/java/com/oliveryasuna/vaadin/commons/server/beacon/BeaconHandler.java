@@ -30,7 +30,6 @@ import com.vaadin.flow.shared.Registration;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
-import java.util.UUID;
 
 /**
  * Handles beacon requests.
@@ -85,6 +84,8 @@ public class BeaconHandler extends SynchronizedRequestHandler {
     Arguments.requireNotNull(ui, "Must specify a UI.");
 
     this.ui = ui;
+
+    this.path = "/beacon/" + ui.getSession().getSession().getId();
   }
 
   // Fields
@@ -92,7 +93,7 @@ public class BeaconHandler extends SynchronizedRequestHandler {
 
   private final UI ui;
 
-  private final String path = "/beacon/" + UUID.randomUUID();
+  private final String path;
 
   // Overrides
   //--------------------------------------------------
