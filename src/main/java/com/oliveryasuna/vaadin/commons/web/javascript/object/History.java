@@ -41,21 +41,21 @@ public class History extends NamedJavaScriptObject {
   // Singleton
   //--------------------------------------------------
 
-  private static final History INSTANCE = new History();
+  private static History instance;
 
   public static History getInstance() {
-    return INSTANCE;
+    return (instance != null ? instance : (instance = new History(NAME)));
   }
 
   // Constructors
   //--------------------------------------------------
 
-  protected History() {
-    super(NAME);
+  protected History(final String name) {
+    super(name);
   }
 
-  History(final NamedJavaScriptObject parent) {
-    super(parent.getObjectName() + "." + NAME);
+  History(final NamedJavaScriptObject parent, final String name) {
+    super(parent.getObjectName() + "." + name);
   }
 
   // Methods

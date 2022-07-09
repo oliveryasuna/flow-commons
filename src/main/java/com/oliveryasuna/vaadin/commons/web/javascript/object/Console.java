@@ -40,21 +40,21 @@ public class Console extends NamedJavaScriptObject {
   // Singleton
   //--------------------------------------------------
 
-  private static final Console INSTANCE = new Console();
+  private static Console instance;
 
   public static Console getInstance() {
-    return INSTANCE;
+    return (instance != null ? instance : (instance = new Console(NAME)));
   }
 
   // Constructors
   //--------------------------------------------------
 
-  protected Console() {
-    super(NAME);
+  protected Console(final String name) {
+    super(name);
   }
 
-  Console(final NamedJavaScriptObject parent) {
-    super(parent.getObjectName() + "." + NAME);
+  Console(final NamedJavaScriptObject parent, final String name) {
+    super(parent.getObjectName() + "." + name);
   }
 
   // Methods

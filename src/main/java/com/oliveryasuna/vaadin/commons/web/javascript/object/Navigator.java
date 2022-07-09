@@ -41,21 +41,21 @@ public class Navigator extends NamedJavaScriptObject {
   // Singleton
   //--------------------------------------------------
 
-  private static final Navigator INSTANCE = new Navigator();
+  private static Navigator instance;
 
   public static Navigator getInstance() {
-    return INSTANCE;
+    return (instance != null ? instance : (instance = new Navigator(NAME)));
   }
 
   // Constructors
   //--------------------------------------------------
 
-  protected Navigator() {
-    super(NAME);
+  protected Navigator(final String name) {
+    super(name);
   }
 
-  Navigator(final NamedJavaScriptObject parent) {
-    super(parent.getObjectName() + "." + NAME);
+  Navigator(final NamedJavaScriptObject parent, final String name) {
+    super(parent.getObjectName() + "." + name);
   }
 
   // Methods
