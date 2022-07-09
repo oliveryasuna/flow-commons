@@ -55,7 +55,7 @@ public class Navigator extends NamedJavaScriptObject {
   }
 
   Navigator(final NamedJavaScriptObject parent) {
-    super(parent.getName() + "." + NAME);
+    super(parent.getObjectName() + "." + NAME);
   }
 
   // Methods

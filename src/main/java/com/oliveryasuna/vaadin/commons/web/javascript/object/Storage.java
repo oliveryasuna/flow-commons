@@ -63,7 +63,7 @@ public class Storage extends NamedJavaScriptObject {
   }
 
   Storage(final NamedJavaScriptObject parent, final String name) {
-    super(parent.getName() + "." + name);
+    super(parent.getObjectName() + "." + name);
   }
 
   // Methods

@@ -33,18 +33,18 @@ public class NamedJavaScriptObject extends AbstractJavaScriptObject {
   // Constructors
   //--------------------------------------------------
 
-  public NamedJavaScriptObject(final String name) {
+  public NamedJavaScriptObject(final String objectName) {
     super();
 
-    Arguments.requireNotNull(name, "Must specify a name.");
+    Arguments.requireNotNull(objectName, "Must specify an object name.");
 
-    this.name = name;
+    this.objectName = objectName;
   }
 
   // Fields
   //--------------------------------------------------
 
-  private final String name;
+  private final String objectName;
 
   // Methods
   //--------------------------------------------------
@@ -56,14 +56,14 @@ public class NamedJavaScriptObject extends AbstractJavaScriptObject {
 
   @Override
   protected String buildPath(final String name) {
-    return (getName() + "." + name);
+    return (getObjectName() + "." + name);
   }
 
   // Getters
   //--------------------------------------------------
 
-  public String getName() {
-    return name;
+  public String getObjectName() {
+    return objectName;
   }
 
 }

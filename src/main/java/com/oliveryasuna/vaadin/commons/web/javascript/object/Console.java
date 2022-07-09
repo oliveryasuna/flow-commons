@@ -54,7 +54,7 @@ public class Console extends NamedJavaScriptObject {
   }
 
   Console(final NamedJavaScriptObject parent) {
-    super(parent.getName() + "." + NAME);
+    super(parent.getObjectName() + "." + NAME);
   }
 
   // Methods

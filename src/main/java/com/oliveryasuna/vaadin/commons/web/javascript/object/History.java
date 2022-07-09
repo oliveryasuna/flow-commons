@@ -55,7 +55,7 @@ public class History extends NamedJavaScriptObject {
   }
 
   History(final NamedJavaScriptObject parent) {
-    super(parent.getName() + "." + NAME);
+    super(parent.getObjectName() + "." + NAME);
   }
 
   // Methods

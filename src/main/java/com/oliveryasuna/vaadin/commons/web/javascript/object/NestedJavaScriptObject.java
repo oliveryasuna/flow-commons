@@ -32,7 +32,7 @@ public class NestedJavaScriptObject extends NamedJavaScriptObject {
   //--------------------------------------------------
 
   public NestedJavaScriptObject(final NamedJavaScriptObject parent, final String name) {
-    super(Arguments.requireNotNull(parent, "Must specify a parent.").getName() + "." + name);
+    super(Arguments.requireNotNull(parent, "Must specify a parent.").getObjectName() + "." + name);
   }
 
 }
