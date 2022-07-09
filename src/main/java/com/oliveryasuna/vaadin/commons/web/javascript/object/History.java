@@ -36,7 +36,7 @@ public class History extends NamedJavaScriptObject {
   // Static fields
   //--------------------------------------------------
 
-  private static final String NAME = "history";
+  static final String NAME = "history";
 
   // Singleton
   //--------------------------------------------------

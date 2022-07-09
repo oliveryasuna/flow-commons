@@ -36,7 +36,7 @@ public class Navigator extends NamedJavaScriptObject {
   // Static fields
   //--------------------------------------------------
 
-  private static final String NAME = "navigator";
+  static final String NAME = "navigator";
 
   // Singleton
   //--------------------------------------------------

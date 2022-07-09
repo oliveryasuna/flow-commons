@@ -35,7 +35,7 @@ public class Console extends NamedJavaScriptObject {
   // Static fields
   //--------------------------------------------------
 
-  private static final String NAME = "console";
+  static final String NAME = "console";
 
   // Singleton
   //--------------------------------------------------

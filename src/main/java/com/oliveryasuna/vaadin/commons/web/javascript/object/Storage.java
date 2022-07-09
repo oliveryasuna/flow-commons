@@ -25,37 +25,45 @@ import com.vaadin.flow.component.UI;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Represents a {@code SessionStorage} object.
+ * Represents a {@code Storage} object.
  *
  * @author Oliver Yasuna
  * @since 4.0.0
  */
 @Singleton
-public class SessionStorage extends NamedJavaScriptObject {
+public class Storage extends NamedJavaScriptObject {
 
   // Static fields
   //--------------------------------------------------
 
-  private static final String NAME = "sessionStorage";
+  static final String LOCAL_STORAGE_NAME = "localStorage";
+
+  static final String SESSION_STORAGE_NAME = "sessionStorage";
 
   // Singleton
   //--------------------------------------------------
 
-  private static final SessionStorage INSTANCE = new SessionStorage();
+  private static final Storage LOCAL_STORAGE_INSTANCE = new Storage(LOCAL_STORAGE_NAME);
 
-  public static SessionStorage getInstance() {
-    return INSTANCE;
+  public static Storage getLocalStorageInstance() {
+    return LOCAL_STORAGE_INSTANCE;
+  }
+
+  private static final Storage SESSION_STORAGE_INSTANCE = new Storage(SESSION_STORAGE_NAME);
+
+  public static Storage getSessionStorageInstance() {
+    return SESSION_STORAGE_INSTANCE;
   }
 
   // Constructors
   //--------------------------------------------------
 
-  protected SessionStorage() {
-    super(NAME);
+  protected Storage(final String name) {
+    super(name);
   }
 
-  SessionStorage(final NamedJavaScriptObject parent) {
-    super(parent.getName() + "." + NAME);
+  Storage(final NamedJavaScriptObject parent, final String name) {
+    super(parent.getName() + "." + name);
   }
 
   // Methods
