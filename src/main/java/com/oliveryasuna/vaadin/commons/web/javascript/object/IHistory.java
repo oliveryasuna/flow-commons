@@ -18,7 +18,6 @@
 
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
-import com.oliveryasuna.commons.language.marker.Immutable;
 import com.vaadin.flow.component.UI;
 
 import java.util.concurrent.CompletableFuture;
@@ -101,46 +100,5 @@ public interface IHistory extends JavaScriptObject {
   // TODO: pushState()?
 
   // TODO: replaceState()?
-
-  // Nested
-  //--------------------------------------------------
-
-  /**
-   * The options for the {@code scrollRestoration} property.
-   *
-   * @author Oliver Yasuna
-   * @since 4.0.0
-   */
-  @Immutable
-  enum ScrollRestoration implements JavaScriptPart {
-
-    // Values
-    //--------------------------------------------------
-
-    AUTO("auto"),
-
-    MANUAL("manual");
-
-    // Constructors
-    //--------------------------------------------------
-
-    ScrollRestoration(final String javaScriptName) {
-      this.javaScriptName = javaScriptName;
-    }
-
-    // Fields
-    //--------------------------------------------------
-
-    private final String javaScriptName;
-
-    // Getters
-    //--------------------------------------------------
-
-    @Override
-    public final String getJavaScriptName() {
-      return javaScriptName;
-    }
-
-  }
 
 }
