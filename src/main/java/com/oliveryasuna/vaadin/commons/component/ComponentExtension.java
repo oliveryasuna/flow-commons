@@ -112,8 +112,27 @@ public interface ComponentExtension extends HasElement {
     return true;
   }
 
+  /**
+   * Sets the tooltip ({@code title} property).
+   *
+   * @param text The text.
+   */
   default void setTooltip(final String text) {
     TITLE_DESCRIPTOR.set(this, text);
+  }
+
+  /**
+   * Calls {@code Element.scrollIntoView()}.
+   */
+  default void scrollIntoView() {
+    getElement().callJsFunction("scrollIntoView");
+  }
+
+  /**
+   * Calls {@code Element.scrollIntoView(alignToTop)}.
+   */
+  default void scrollIntoView(final boolean alignToTop) {
+    getElement().callJsFunction("scrollIntoView", alignToTop);
   }
 
 }
