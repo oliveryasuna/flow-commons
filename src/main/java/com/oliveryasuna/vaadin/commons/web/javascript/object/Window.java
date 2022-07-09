@@ -81,21 +81,23 @@ public class Window extends NamedJavaScriptObject implements IWindow {
   // Fields
   //--------------------------------------------------
 
-  protected Navigator navigator;
-
   protected Console console;
+
+  protected Document document;
 
   protected History history;
 
-  protected Storage localStorage;
+  protected Navigator navigator;
 
   protected Window self;
-
-  protected Storage sessionStorage;
 
   protected Window top;
 
   protected Window window;
+
+  protected Storage localStorage;
+
+  protected Storage sessionStorage;
 
   // Overrides
   //--------------------------------------------------
@@ -106,6 +108,11 @@ public class Window extends NamedJavaScriptObject implements IWindow {
   @Override
   public Console getConsole() {
     return (console != null ? console : (console = new Console(this, Console.NAME)));
+  }
+
+  @Override
+  public Document getDocument() {
+    return (document != null ? document : (document = new Document(this, Document.NAME)));
   }
 
   @Override

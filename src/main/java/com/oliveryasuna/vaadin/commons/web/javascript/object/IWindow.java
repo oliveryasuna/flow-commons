@@ -58,7 +58,7 @@ public interface IWindow extends JavaScriptObject, IEventTarget, IAnimationFrame
     return getDevicePixelRatio(UI.getCurrent());
   }
 
-  // TODO: document?
+  IDocument getDocument();
 
   // TODO: frameElement?
 
