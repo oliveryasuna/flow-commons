@@ -19,6 +19,7 @@
 package com.oliveryasuna.vaadin.commons.web.javascript.object;
 
 import com.oliveryasuna.commons.language.condition.Arguments;
+import com.oliveryasuna.commons.language.marker.Immutable;
 import com.oliveryasuna.commons.language.marker.Singleton;
 import com.vaadin.flow.component.UI;
 
@@ -206,7 +207,8 @@ public class Storage extends DirectJavaScriptObject {
    *
    * @author Oliver Yasuna
    */
-  public enum WebStorageObject {
+  @Immutable
+  public enum WebStorageObject implements JavaScriptPart {
 
     // Values
     //--------------------------------------------------
@@ -230,6 +232,7 @@ public class Storage extends DirectJavaScriptObject {
     // Getters
     //--------------------------------------------------
 
+    @Override
     public final String getJavaScriptName() {
       return javaScriptName;
     }
