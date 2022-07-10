@@ -31,6 +31,12 @@ public class NestedJavaScriptObject extends NamedJavaScriptObject {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates a new instance.
+   *
+   * @param parent The parent object.
+   * @param name   The name of this object.
+   */
   public NestedJavaScriptObject(final NamedJavaScriptObject parent, final String name) {
     super(Arguments.requireNotNull(parent, "Must specify a parent.").getObjectName() + "." + name);
   }

@@ -35,6 +35,12 @@ public class Clipboard extends Span {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance.
+   *
+   * @param getCallback Called when the clipboard is read.
+   * @param setCallback Called when the clipboard is set.
+   */
   public Clipboard(final Consumer<String> getCallback, final Action setCallback) {
     super();
 
@@ -47,26 +53,54 @@ public class Clipboard extends Span {
   // Fields
   //--------------------------------------------------
 
+  /**
+   * The callback for when the clipboard is read.
+   */
   protected final Consumer<String> getCallback;
 
+  /**
+   * The callback for when the clipboard is set.
+   */
   protected final Action setCallback;
 
   // Methods
   //--------------------------------------------------
 
+  /**
+   * Gets the text value of the clipboard.
+   * <p>
+   * Executes JavaScript which will call {@link #getCallback(String)}.
+   */
   public void get() {
     getUI().ifPresent(ui -> ui.getPage().executeJs("navigator.clipboard.readText().then(text => $0.$server.getCallback(text));", getElement()));
   }
 
+  /**
+   * Called by the client when the clipboard is read.
+   * Then calls {@link #getCallback}.
+   *
+   * @param text The clipboard text.
+   */
   @ClientCallable
   public void getCallback(final String text) {
     if(getCallback != null) getCallback.accept(text);
   }
 
+  /**
+   * Sets the text value of the clipboard.
+   * <p>
+   * Executes JavaScript which will call {@link #setCallback()}.
+   *
+   * @param text The clipboard text.
+   */
   public void set(final String text) {
     getUI().ifPresent(ui -> ui.getPage().executeJs("navigator.clipboard.writeText($0).then(() => $0.$server.setCallback());", getElement()));
   }
 
+  /**
+   * Called by the client when the clipboard is set.
+   * Then calls {@link #setCallback}.
+   */
   @ClientCallable
   public void setCallback() {
     if(setCallback != null) setCallback.perform();

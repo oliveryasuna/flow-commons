@@ -36,6 +36,9 @@ public interface ComponentExtension extends HasElement {
   // Static fields
   //--------------------------------------------------
 
+  /**
+   * The property descriptor for {@code title}.
+   */
   Descriptor<String, String> TITLE_DESCRIPTOR = Descriptors.stringProperty("title");
 
   // Methods
@@ -130,6 +133,8 @@ public interface ComponentExtension extends HasElement {
 
   /**
    * Calls {@code Element.scrollIntoView(alignToTop)}.
+   *
+   * @param alignToTop Per JavaScript.
    */
   default void scrollIntoView(final boolean alignToTop) {
     getElement().callJsFunction("scrollIntoView", alignToTop);

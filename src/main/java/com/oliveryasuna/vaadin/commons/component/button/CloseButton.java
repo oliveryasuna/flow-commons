@@ -34,18 +34,42 @@ public class CloseButton extends IconButton {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance specifying a label and the type of icon button.
+   *
+   * @param label The label.
+   * @param type  The type of icon button.
+   */
   public CloseButton(final String label, final IconButtonType type) {
     super(label, VaadinIcon.CLOSE.create(), type);
   }
 
+  /**
+   * Creates an instance specifying a label, the type of icon button, and a click listener.
+   *
+   * @param label         The label.
+   * @param type          The type of icon button.
+   * @param clickListener The click listener.
+   */
   public CloseButton(final String label, final IconButtonType type, final ComponentEventListener<ClickEvent<Button>> clickListener) {
     super(label, VaadinIcon.CLOSE.create(), type, clickListener);
   }
 
+  /**
+   * Creates an instance specifying a label.
+   *
+   * @param label The label.
+   */
   public CloseButton(final String label) {
     super(label, VaadinIcon.CLOSE.create());
   }
 
+  /**
+   * Creates an instance specifying a label and click listener.
+   *
+   * @param label         The label.
+   * @param clickListener The click listener.
+   */
   public CloseButton(final String label, final ComponentEventListener<ClickEvent<Button>> clickListener) {
     super(label, VaadinIcon.CLOSE.create(), clickListener);
   }

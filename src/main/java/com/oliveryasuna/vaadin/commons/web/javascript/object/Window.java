@@ -32,35 +32,59 @@ public class Window extends NamedJavaScriptObject implements IWindow {
   // Static fields
   //--------------------------------------------------
 
+  /**
+   * The name of the global object.
+   */
   static final String NAME = "window";
 
+  /**
+   * The name of the global self object.
+   */
   static final String SELF_NAME = "self";
 
+  /**
+   * The name of the global top object.
+   */
   static final String TOP_NAME = "top";
 
+  /**
+   * The name of the global window object.
+   */
   static final String WINDOW_NAME = "window";
 
   // Singleton
   //--------------------------------------------------
 
+  /**
+   * The instance associated with the global object.
+   */
   private static Window instance;
 
   public static Window getInstance() {
     return (instance != null ? instance : (instance = new Window(NAME)));
   }
 
+  /**
+   * The instance associated with the global self object.
+   */
   private static Window selfInstance;
 
   public static Window getSelfInstance() {
     return (selfInstance != null ? selfInstance : (selfInstance = new Window(SELF_NAME)));
   }
 
+  /**
+   * The instance associated with the global top object.
+   */
   private static Window topInstance;
 
   public static Window getTopInstance() {
     return (topInstance != null ? topInstance : (topInstance = new Window(TOP_NAME)));
   }
 
+  /**
+   * The instance associated with the global window object.
+   */
   private static Window windowInstance;
 
   public static Window getWindowInstance() {
@@ -70,10 +94,21 @@ public class Window extends NamedJavaScriptObject implements IWindow {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance specifying the name of the object.
+   *
+   * @param name The name of the object.
+   */
   protected Window(final String name) {
     super(name);
   }
 
+  /**
+   * Creates an instance specifying the parent object and the name of this object.
+   *
+   * @param parent The parent object.
+   * @param name   The name of this object.
+   */
   Window(final NamedJavaScriptObject parent, final String name) {
     super(parent.getObjectName() + "." + name);
   }
@@ -81,22 +116,49 @@ public class Window extends NamedJavaScriptObject implements IWindow {
   // Fields
   //--------------------------------------------------
 
+  /**
+   * The stored instance of the object representing the {@code console} property.
+   */
   protected Console console;
 
+  /**
+   * The stored instance of the object representing the {@code document} property.
+   */
   protected Document document;
 
+  /**
+   * The stored instance of the object representing the {@code history} property.
+   */
   protected History history;
 
+  /**
+   * The stored instance of the object representing the {@code navigator} property.
+   */
   protected Navigator navigator;
 
+  /**
+   * The stored instance of the object representing the {@code self} property.
+   */
   protected Window self;
 
+  /**
+   * The stored instance of the object representing the {@code top} property.
+   */
   protected Window top;
 
+  /**
+   * The stored instance of the object representing the {@code window} property.
+   */
   protected Window window;
 
+  /**
+   * The stored instance of the object representing the {@code localStorage} property.
+   */
   protected Storage localStorage;
 
+  /**
+   * The stored instance of the object representing the {@code sessionStorage} property.
+   */
   protected Storage sessionStorage;
 
   // Overrides

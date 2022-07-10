@@ -46,18 +46,48 @@ public abstract class AbstractJavaScriptObject implements JavaScriptObject {
   // Methods
   //--------------------------------------------------
 
+  /**
+   * Builds and returns a string of the JavaScript statement to return a property.
+   *
+   * @param propertyName The name of the property.
+   *
+   * @return A JavaScript statement to return a property.
+   */
   protected String buildPropertyReturnStatement(final String propertyName) {
     return ("return " + buildPath(propertyName) + ";");
   }
 
+  /**
+   * Builds and returns a string of the JavaScript statement to assign a property.
+   *
+   * @param propertyName The name of the property.
+   *
+   * @return A JavaScript statement to assign a property.
+   */
   protected String buildPropertyAssignStatement(final String propertyName) {
     return (buildPath(propertyName) + " = $0;");
   }
 
+  /**
+   * Builds and returns a string of the JavaScript statement to call a method.
+   *
+   * @param returnType The type returned by the method.
+   * @param methodName The name of the method.
+   * @param arguments  The arguments of the method.
+   *
+   * @return A JavaScript statement to call a method.
+   */
   protected String buildMethodCallStatement(final Class<?> returnType, final String methodName, final Serializable... arguments) {
     return ((Void.class.equals(returnType) ? "" : "return ") + buildPath(methodName) + "(" + buildMethodArguments(arguments) + ");");
   }
 
+  /**
+   * Builds and returns a string of the JavaScript method arguments.
+   *
+   * @param arguments The arguments of the method.
+   *
+   * @return Method arguments (Vaadin stuff).
+   */
   protected String buildMethodArguments(final Serializable... arguments) {
     if(arguments == null) return "";
 
@@ -66,6 +96,13 @@ public abstract class AbstractJavaScriptObject implements JavaScriptObject {
         .collect(Collectors.joining(", "));
   }
 
+  /**
+   * Builds and returns the fully qualified path of a JavaScript property or method.
+   *
+   * @param name The name of the property or method.
+   *
+   * @return The fully qualified path of the JavaScript property or method.
+   */
   protected abstract String buildPath(final String name);
 
   // Overrides

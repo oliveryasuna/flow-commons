@@ -35,6 +35,14 @@ public final class CssUtils {
   // Static utility methods
   //--------------------------------------------------
 
+  /**
+   * Builds a string of a CSS dimension.
+   *
+   * @param number The number.
+   * @param unit   The unit.
+   *
+   * @return A string of a CSS dimension.
+   */
   public static String toDimension(final float number, final Unit unit) {
     Arguments.requireNotNull(unit);
 

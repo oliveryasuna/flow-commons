@@ -34,18 +34,42 @@ public class CreateButton extends IconButton {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance specifying a label and the type of icon button.
+   *
+   * @param label The label.
+   * @param type  The type of icon button.
+   */
   public CreateButton(final String label, final IconButtonType type) {
     super(label, VaadinIcon.PLUS.create(), type);
   }
 
+  /**
+   * Creates an instance specifying a label, the type of icon button, and a click listener.
+   *
+   * @param label         The label.
+   * @param type          The type of icon button.
+   * @param clickListener The click listener.
+   */
   public CreateButton(final String label, final IconButtonType type, final ComponentEventListener<ClickEvent<Button>> clickListener) {
     super(label, VaadinIcon.PLUS.create(), type, clickListener);
   }
 
+  /**
+   * Creates an instance specifying a label.
+   *
+   * @param label The label.
+   */
   public CreateButton(final String label) {
     super(label, VaadinIcon.PLUS.create());
   }
 
+  /**
+   * Creates an instance specifying a label and click listener.
+   *
+   * @param label         The label.
+   * @param clickListener The click listener.
+   */
   public CreateButton(final String label, final ComponentEventListener<ClickEvent<Button>> clickListener) {
     super(label, VaadinIcon.PLUS.create(), clickListener);
   }

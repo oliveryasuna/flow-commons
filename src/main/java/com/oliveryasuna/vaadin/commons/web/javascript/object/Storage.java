@@ -32,19 +32,31 @@ public class Storage extends NamedJavaScriptObject implements IStorage {
   // Static fields
   //--------------------------------------------------
 
+  /**
+   * The name of the global local storage object.
+   */
   static final String LOCAL_STORAGE_NAME = "localStorage";
 
+  /**
+   * The name of the global session storage object.
+   */
   static final String SESSION_STORAGE_NAME = "sessionStorage";
 
   // Singleton
   //--------------------------------------------------
 
+  /**
+   * The instance associated with the global local storage object.
+   */
   private static final Storage LOCAL_STORAGE_INSTANCE = new Storage(LOCAL_STORAGE_NAME);
 
   public static Storage getLocalStorageInstance() {
     return LOCAL_STORAGE_INSTANCE;
   }
 
+  /**
+   * The instance associated with the global session storage object.
+   */
   private static final Storage SESSION_STORAGE_INSTANCE = new Storage(SESSION_STORAGE_NAME);
 
   public static Storage getSessionStorageInstance() {
@@ -54,10 +66,21 @@ public class Storage extends NamedJavaScriptObject implements IStorage {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance specifying the name of the object.
+   *
+   * @param name The name of the object.
+   */
   protected Storage(final String name) {
     super(name);
   }
 
+  /**
+   * Creates an instance specifying the parent object and the name of this object.
+   *
+   * @param parent The parent object.
+   * @param name   The name of this object.
+   */
   Storage(final NamedJavaScriptObject parent, final String name) {
     super(parent.getObjectName() + "." + name);
   }

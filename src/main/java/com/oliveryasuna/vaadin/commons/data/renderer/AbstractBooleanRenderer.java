@@ -28,6 +28,10 @@ import java.util.function.Function;
 
 /**
  * A {@link ComponentRenderer} to represent {@code boolean}s.
+ * <p>
+ * Uses a {@link ValueProvider} that uses the input model object to determine if {@link #trueComponent()} or {@link #falseComponent()} should be rendered.
+ *
+ * @param <SOURCE> The type of input model object.
  *
  * @author Oliver Yasuna
  * @since 3.0.0
@@ -38,6 +42,11 @@ public abstract class AbstractBooleanRenderer<SOURCE> extends ComponentRenderer<
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance with a value provider.
+   *
+   * @param valueProvider The value provider.
+   */
   public AbstractBooleanRenderer(final ValueProvider<SOURCE, Boolean> valueProvider) {
     super();
 
@@ -50,13 +59,26 @@ public abstract class AbstractBooleanRenderer<SOURCE> extends ComponentRenderer<
   // Fields
   //--------------------------------------------------
 
+  /**
+   * The value provider.
+   */
   private final Function<SOURCE, Boolean> valueProvider;
 
   // Methods
   //--------------------------------------------------
 
+  /**
+   * Gets the component which is rendered if {@link #valueProvider} returns {@code true}.
+   *
+   * @return A component.
+   */
   protected abstract Component trueComponent();
 
+  /**
+   * Gets the component which is rendered if {@link #valueProvider} returns {@code null} or {@code false}.
+   *
+   * @return A component.
+   */
   protected abstract Component falseComponent();
 
   // Overrides

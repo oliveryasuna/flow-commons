@@ -34,6 +34,9 @@ public final class SessionUITracker implements VaadinSessionLifecycleListener, U
   // Static fields
   //--------------------------------------------------
 
+  /**
+   * A map of sessions and their associated {@link UI}s.
+   */
   private static final Map<VaadinSession, List<UI>> SESSION_UI_MAP = Collections.synchronizedMap(new LinkedHashMap<>());
 
   // Static methods

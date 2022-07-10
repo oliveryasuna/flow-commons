@@ -32,11 +32,17 @@ public class History extends NamedJavaScriptObject implements IHistory {
   // Static fields
   //--------------------------------------------------
 
+  /**
+   * The name of the global object.
+   */
   static final String NAME = "history";
 
   // Singleton
   //--------------------------------------------------
 
+  /**
+   * The instance associated with the global object.
+   */
   private static History instance;
 
   public static History getInstance() {
@@ -46,10 +52,21 @@ public class History extends NamedJavaScriptObject implements IHistory {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance specifying the name of the object.
+   *
+   * @param name The name of the object.
+   */
   protected History(final String name) {
     super(name);
   }
 
+  /**
+   * Creates an instance specifying the parent object and the name of this object.
+   *
+   * @param parent The parent object.
+   * @param name   The name of this object.
+   */
   History(final NamedJavaScriptObject parent, final String name) {
     super(parent.getObjectName() + "." + name);
   }

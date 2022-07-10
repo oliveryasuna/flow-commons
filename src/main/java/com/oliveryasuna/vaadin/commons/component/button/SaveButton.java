@@ -34,18 +34,42 @@ public class SaveButton extends IconButton {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance specifying a label and the type of icon button.
+   *
+   * @param label The label.
+   * @param type  The type of icon button.
+   */
   public SaveButton(final String label, final IconButtonType type) {
     super(label, VaadinIcon.CHECK.create(), type);
   }
 
+  /**
+   * Creates an instance specifying a label, the type of icon button, and a click listener.
+   *
+   * @param label         The label.
+   * @param type          The type of icon button.
+   * @param clickListener The click listener.
+   */
   public SaveButton(final String label, final IconButtonType type, final ComponentEventListener<ClickEvent<Button>> clickListener) {
     super(label, VaadinIcon.CHECK.create(), type, clickListener);
   }
 
+  /**
+   * Creates an instance specifying a label.
+   *
+   * @param label The label.
+   */
   public SaveButton(final String label) {
     super(label, VaadinIcon.CHECK.create());
   }
 
+  /**
+   * Creates an instance specifying a label and click listener.
+   *
+   * @param label         The label.
+   * @param clickListener The click listener.
+   */
   public SaveButton(final String label, final ComponentEventListener<ClickEvent<Button>> clickListener) {
     super(label, VaadinIcon.CHECK.create(), clickListener);
   }

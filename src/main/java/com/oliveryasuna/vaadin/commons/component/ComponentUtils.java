@@ -196,6 +196,15 @@ public final class ComponentUtils {
     return true;
   }
 
+  /**
+   * Inserts a component before an existing child.
+   *
+   * @param component  The existing child to insert the new component before.
+   * @param newSibling The new child.
+   *
+   * @return {@code true}, if the new component was inserted.
+   *     {@code false}, otherwise.
+   */
   public static boolean insertBefore(final Component component, final Component newSibling) {
     Arguments.requireNotNull(component);
     Arguments.requireNotNull(newSibling);
@@ -211,6 +220,15 @@ public final class ComponentUtils {
     return true;
   }
 
+  /**
+   * Inserts a component after an existing child.
+   *
+   * @param component  The existing child to insert the new component after.
+   * @param newSibling The new child.
+   *
+   * @return {@code true}, if the new component was inserted.
+   *     {@code false}, otherwise.
+   */
   public static boolean insertAfter(final Component component, final Component newSibling) {
     Arguments.requireNotNull(component);
     Arguments.requireNotNull(newSibling);

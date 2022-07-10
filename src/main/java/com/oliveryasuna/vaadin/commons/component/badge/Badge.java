@@ -80,17 +80,31 @@ public class Badge extends Span implements HasBadgeVariants {
   // Fields
   //--------------------------------------------------
 
+  /**
+   * The label.
+   */
   private Span label;
 
+  /**
+   * The icon.
+   */
   private Icon icon;
 
+  /**
+   * Whether the icon is left of the label or right.
+   */
   private boolean iconFirst;
 
   // Methods
   //--------------------------------------------------
 
+  /**
+   * Sets the text of the existing {@link #label} component.
+   *
+   * @param label The text.
+   */
   public void setLabel(final String label) {
-    this.label.setText(label);
+    getLabel().setText(label);
   }
 
   // Getters/setters

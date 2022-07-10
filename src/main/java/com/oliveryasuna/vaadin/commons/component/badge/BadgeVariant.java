@@ -36,27 +36,50 @@ public enum BadgeVariant implements ThemeVariant {
   // Sizes
   //
 
+  /**
+   * The {@code small} variant.
+   */
   SMALL("small"),
 
   // Colors
   //
 
+  /**
+   * The {@code primary} variant.
+   */
   PRIMARY("primary"),
 
+  /**
+   * The {@code success} variant.
+   */
   SUCCESS("success"),
 
+  /**
+   * The {@code error} variant.
+   */
   ERROR("error"),
 
+  /**
+   * The {@code contrast} variant.
+   */
   CONTRAST("contrast"),
 
   // Shapes
   //
 
+  /**
+   * The {@code pill} variant.
+   */
   PILL("pill");
 
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates a value specifying the variant name.
+   *
+   * @param variantName The variant name.
+   */
   BadgeVariant(final String variantName) {
     this.variantName = variantName;
   }
@@ -64,6 +87,9 @@ public enum BadgeVariant implements ThemeVariant {
   // Fields
   //--------------------------------------------------
 
+  /**
+   * The variant name.
+   */
   private final String variantName;
 
   // Methods

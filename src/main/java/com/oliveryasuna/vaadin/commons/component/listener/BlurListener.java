@@ -25,6 +25,8 @@ import com.vaadin.flow.component.ComponentEventListener;
 /**
  * Ease-of-use {@link BlurEvent} listener interface.
  *
+ * @param <C> The type of component.
+ *
  * @author Oliver Yasuna
  * @since 1.0.0
  */

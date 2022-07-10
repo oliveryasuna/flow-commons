@@ -34,6 +34,13 @@ public class BeaconEvent extends ComponentEvent<UI> {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance specifying the source {@link UI}, whether the event was triggered by the client or not, and the data of the beacon.
+   *
+   * @param source     The source {@link UI}.
+   * @param fromClient Whether triggered by the client.
+   * @param data       The data of the beacon.
+   */
   public BeaconEvent(final UI source, final boolean fromClient, final String data) {
     super(source, fromClient);
 
@@ -43,6 +50,9 @@ public class BeaconEvent extends ComponentEvent<UI> {
   // Fields
   //--------------------------------------------------
 
+  /**
+   * The data of the beacon.
+   */
   private final String data;
 
   // Getters

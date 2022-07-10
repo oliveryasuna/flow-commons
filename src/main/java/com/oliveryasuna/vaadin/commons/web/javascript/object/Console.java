@@ -32,11 +32,17 @@ public class Console extends NamedJavaScriptObject implements IConsole {
   // Static fields
   //--------------------------------------------------
 
+  /**
+   * The name of the global object.
+   */
   static final String NAME = "console";
 
   // Singleton
   //--------------------------------------------------
 
+  /**
+   * The instance associated with the global object.
+   */
   private static Console instance;
 
   public static Console getInstance() {
@@ -46,10 +52,21 @@ public class Console extends NamedJavaScriptObject implements IConsole {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance specifying the name of the object.
+   *
+   * @param name The name of the object.
+   */
   protected Console(final String name) {
     super(name);
   }
 
+  /**
+   * Creates an instance specifying the parent object and the name of this object.
+   *
+   * @param parent The parent object.
+   * @param name   The name of this object.
+   */
   Console(final NamedJavaScriptObject parent, final String name) {
     super(parent.getObjectName() + "." + name);
   }

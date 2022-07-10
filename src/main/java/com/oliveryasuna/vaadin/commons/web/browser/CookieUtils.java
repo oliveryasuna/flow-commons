@@ -122,6 +122,10 @@ public final class CookieUtils {
 
   /**
    * Calls {@link #get(UI, String)} with the specific first argument, {@code UI.getCurrent()}.
+   *
+   * @param name The name.
+   *
+   * @return A {@link CompletableFuture} containing the value.
    */
   public static CompletableFuture<String> get(final String name) {
     return get(UI.getCurrent(), name);

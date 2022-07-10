@@ -32,11 +32,17 @@ public class Navigator extends NamedJavaScriptObject implements INavigator {
   // Static fields
   //--------------------------------------------------
 
+  /**
+   * The name of the global object.
+   */
   static final String NAME = "navigator";
 
   // Singleton
   //--------------------------------------------------
 
+  /**
+   * The instance associated with the global object.
+   */
   private static Navigator instance;
 
   public static Navigator getInstance() {
@@ -46,10 +52,21 @@ public class Navigator extends NamedJavaScriptObject implements INavigator {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance specifying the name of the object.
+   *
+   * @param name The name of the object.
+   */
   protected Navigator(final String name) {
     super(name);
   }
 
+  /**
+   * Creates an instance specifying the parent object and the name of this object.
+   *
+   * @param parent The parent object.
+   * @param name   The name of this object.
+   */
   Navigator(final NamedJavaScriptObject parent, final String name) {
     super(parent.getObjectName() + "." + name);
   }

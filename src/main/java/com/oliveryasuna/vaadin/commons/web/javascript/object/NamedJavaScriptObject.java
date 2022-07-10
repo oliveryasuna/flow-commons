@@ -33,6 +33,11 @@ public class NamedJavaScriptObject extends AbstractJavaScriptObject {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates a new instance.
+   *
+   * @param objectName The name of this object.
+   */
   public NamedJavaScriptObject(final String objectName) {
     super();
 
@@ -44,10 +49,10 @@ public class NamedJavaScriptObject extends AbstractJavaScriptObject {
   // Fields
   //--------------------------------------------------
 
+  /**
+   * The name of this object.
+   */
   private final String objectName;
-
-  // Methods
-  //--------------------------------------------------
 
   // Overrides
   //--------------------------------------------------

@@ -64,6 +64,11 @@ public class BeaconHandler extends SynchronizedRequestHandler {
     return ComponentUtil.addListener(ui, BeaconEvent.class, listener);
   }
 
+  /**
+   * Creates a {@link BeaconHandler} for a {@link UI} if the {@link UI} does not already have one.
+   *
+   * @param ui The {@link UI} instance.
+   */
   private static void registerHandlerForUi(final UI ui) {
     if(ComponentUtil.getData(ui, BeaconHandler.class) != null) return;
 
@@ -81,6 +86,11 @@ public class BeaconHandler extends SynchronizedRequestHandler {
   // Constructors
   //--------------------------------------------------
 
+  /**
+   * Creates an instance for a specific {@link UI}.
+   *
+   * @param ui The {@link UI} instance.
+   */
   public BeaconHandler(final UI ui) {
     super();
 
@@ -94,8 +104,14 @@ public class BeaconHandler extends SynchronizedRequestHandler {
   // Fields
   //--------------------------------------------------
 
+  /**
+   * The {@link UI} instance.
+   */
   private final UI ui;
 
+  /**
+   * The path that this handler handles.
+   */
   private final String path;
 
   // Overrides
@@ -104,6 +120,17 @@ public class BeaconHandler extends SynchronizedRequestHandler {
   // SynchronizedRequestHandler
   //
 
+  /**
+   * Gets the data of the beacon request and fires a {@link BeaconEvent} on {@link #ui}.
+   *
+   * @param session  The session.
+   * @param request  The request.
+   * @param response The response.
+   *
+   * @return {@code true}, always.
+   *
+   * @throws IOException If an IO exception occurred.
+   */
   @Override
   public boolean synchronizedHandleRequest(final VaadinSession session, final VaadinRequest request, final VaadinResponse response) throws IOException {
     final String data = IOUtils.toString(request.getReader());
@@ -113,6 +140,16 @@ public class BeaconHandler extends SynchronizedRequestHandler {
     return true;
   }
 
+  /**
+   * Determines if this handler should handle a request.
+   * <p>
+   * This handler will handle the request if the request's path is equal to {@link #path}.
+   *
+   * @param request The request.
+   *
+   * @return {@code true}, if this handler should handle the request.
+   *     {@code false}, otherwise.
+   */
   @Override
   protected boolean canHandleRequest(final VaadinRequest request) {
     return path.equals(request.getPathInfo());
