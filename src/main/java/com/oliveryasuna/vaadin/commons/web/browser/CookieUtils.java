@@ -62,8 +62,7 @@ public final class CookieUtils {
 
               return Map.entry(parts[0], parts[1]);
             })
-            .collect(StreamUtils.Collectors.toUnmodifiableMap()))
-        .thenAccept();
+            .collect(StreamUtils.Collectors.toUnmodifiableMap()));
   }
 
   /**
