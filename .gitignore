@@ -37,3 +37,8 @@ webpack.generated.js
 
 tsconfig.json
 types.d.ts
+
+# JRebel
+#--------------------------------------------------
+
+rebel.xml

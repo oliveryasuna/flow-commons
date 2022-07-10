@@ -16,18 +16,29 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.demo.view.variant;
+package com.oliveryasuna.vaadin.commons.demo.view.beacon;
 
+import com.oliveryasuna.vaadin.commons.server.beacon.BeaconEvent;
+import com.oliveryasuna.vaadin.commons.server.beacon.BeaconHandler;
+import com.oliveryasuna.vaadin.commons.web.javascript.object.Navigator;
+import com.oliveryasuna.vaadin.fluent.component.orderedlayout.HorizontalLayoutFactory;
+import com.vaadin.flow.component.ComponentEventListener;
+import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.demo.DemoView;
 import com.vaadin.flow.router.Route;
 
-@Route("/variant")
-public final class VariantView extends DemoView {
+@Route("/beacon_")
+public final class BeaconView extends DemoView {
 
   // Constructors
   //--------------------------------------------------
 
-  public VariantView() {
+  public BeaconView() {
     super();
   }
 
@@ -39,7 +50,25 @@ public final class VariantView extends DemoView {
 
   @Override
   protected final void initView() {
-    addCard("test", );
+    // begin-source-example
+    // source-example-heading: Example
+    ComponentEventListener<BeaconEvent> beaconListener = event -> event.getSource().access(() ->
+        Notification.show("Received beacon from client with data: " + event.getData() + "."));
+
+    BeaconHandler.addBeaconListener(UI.getCurrent(), beaconListener);
+
+    TextField beaconDataField = new TextField("Data");
+    // "Navigator.getInstance().sendBeacon(...)" executes "navigator.sendBeacon(...)" on the client.
+    Button sendBeaconButton = new Button("Send Beacon", event -> Navigator.getInstance().sendBeacon(UI.getCurrent(), "/beacon/" + UI.getCurrent().getSession().getSession().getId(), beaconDataField.getValue()));
+    // end-source-example
+
+    final HorizontalLayout layout = new HorizontalLayoutFactory()
+        .setAlignItems(FlexComponent.Alignment.END)
+        .add(beaconDataField)
+        .add(sendBeaconButton)
+        .get();
+
+    addCard("Example", layout);
   }
 
 }
