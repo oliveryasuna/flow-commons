@@ -62,7 +62,8 @@ public final class CookieUtils {
 
               return Map.entry(parts[0], parts[1]);
             })
-            .collect(StreamUtils.Collectors.toUnmodifiableMap()));
+            .collect(StreamUtils.Collectors.toUnmodifiableMap()))
+        .thenAccept();
   }
 
   /**
@@ -104,10 +105,9 @@ public final class CookieUtils {
     Arguments.requireNotNull(ui);
     Arguments.requireNotNull(name);
 
-    return ui.getPage().executeJs("return document.cookie;")
-        .toCompletableFuture(String.class)
-        .thenApply(result -> {
-          final String[] cookies = result.split(";\\s*");
+    return Document.getInstance().getCookie(ui)
+        .thenApply(raw -> {
+          final String[] cookies = raw.split(";\\s*");
 
           for(final String cookie : cookies) {
             final int indexOfEquals = cookie.indexOf('=');
@@ -170,8 +170,7 @@ public final class CookieUtils {
     Arguments.requireNotNull(ui);
     Arguments.requireNotNull(cookie);
 
-    return ui.getPage().executeJs("document.cookie = $0;", cookie)
-        .toCompletableFuture(Void.class);
+    return Document.getInstance().setCookie(ui, cookie);
   }
 
   /**
