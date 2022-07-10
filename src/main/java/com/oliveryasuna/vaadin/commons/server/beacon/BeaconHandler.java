@@ -35,6 +35,9 @@ import java.io.IOException;
  * Handles beacon requests.
  * <p>
  * Inspired by <a href="https://cookbook.vaadin.com/notice-closed">https://cookbook.vaadin.com/notice-closed</a>.
+ * <p>
+ * This handles requests sent to {@code /beacon/&lt;session_id&gt;}.
+ * Text data is supported and is passed down to listeners in {@link BeaconEvent}.
  *
  * @author Oliver Yasuna
  * @since 4.0.0
