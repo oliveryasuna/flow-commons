@@ -23,7 +23,7 @@ import com.oliveryasuna.vaadin.commons.component.theme.ThemeVariant;
 import com.vaadin.flow.component.HasElement;
 
 /**
- * Badge sizes.
+ * Badge theme variants.
  *
  * @author Oliver Yasuna
  * @since 3.0.0

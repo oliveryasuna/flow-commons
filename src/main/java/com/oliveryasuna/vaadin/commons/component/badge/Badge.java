@@ -23,6 +23,8 @@ import com.vaadin.flow.component.icon.Icon;
 
 /**
  * A badge component.
+ * <p>
+ * Demonstrated in the <a href="https://vaadin.com/docs/latest/components/badge">Vaadin docs</a>.
  *
  * @author Oliver Yasuna
  * @since 3.0.0
