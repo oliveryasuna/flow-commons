@@ -153,6 +153,14 @@ public interface INavigator extends JavaScriptObject {
     return sendBeacon(UI.getCurrent(), url);
   }
 
+  default CompletableFuture<Boolean> sendBeacon(final UI ui, final String url, final String data) {
+    return callMethod(ui, Boolean.class, "sendBeacon", url, data);
+  }
+
+  default CompletableFuture<Boolean> sendBeacon(final String url, final String data) {
+    return sendBeacon(UI.getCurrent(), url, data);
+  }
+
   // TODO: sendBeacon(url, data)?
 
   // TODO: setAppBadge()?
