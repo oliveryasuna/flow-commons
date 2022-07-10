@@ -22,6 +22,7 @@ import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationExcep
 import com.oliveryasuna.commons.language.marker.Utility;
 import com.oliveryasuna.vaadin.commons.server.SessionUITracker;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.server.Command;
 import com.vaadin.flow.server.VaadinSession;
 
 import java.util.List;
@@ -49,6 +50,15 @@ public final class UIUtils {
     final Map<VaadinSession, List<UI>> sessionUiMap = SessionUITracker.getSessionUiMap();
 
     sessionUiMap.forEach((session, uis) -> uis.forEach(action));
+  }
+
+  /**
+   * Performs an action on each {@link UI} instance with the {@link UI#access(Command)} method.
+   *
+   * @param action The action.
+   */
+  public static void forEachAccess(final Consumer<UI> action) {
+    forEach(ui -> ui.access(() -> action.accept(ui)));
   }
 
   // Constructors
