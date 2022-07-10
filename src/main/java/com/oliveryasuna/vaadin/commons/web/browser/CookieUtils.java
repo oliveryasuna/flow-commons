@@ -22,6 +22,7 @@ import com.oliveryasuna.commons.language.StreamUtils;
 import com.oliveryasuna.commons.language.condition.Arguments;
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 import com.oliveryasuna.commons.language.marker.Utility;
+import com.oliveryasuna.vaadin.commons.web.javascript.object.Document;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.server.VaadinRequest;
 import com.vaadin.flow.server.VaadinResponse;
@@ -54,9 +55,8 @@ public final class CookieUtils {
   public static CompletableFuture<Map<String, String>> getAll(final UI ui) {
     Arguments.requireNotNull(ui);
 
-    return ui.getPage().executeJs("return document.cookie;")
-        .toCompletableFuture(String.class)
-        .thenApply(result -> Arrays.stream(result.split(";\\s*"))
+    return Document.getInstance().getCookie(ui)
+        .thenApply(raw -> Arrays.stream(raw.split(";\\s*"))
             .map(cookie -> {
               final String[] parts = cookie.split("=");
 
