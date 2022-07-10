@@ -28,94 +28,46 @@
   ==================================================-->
 
   <parent>
-    <groupId>com.oliveryasuna.vaadin</groupId>
-    <artifactId>vaadin-collection-parent</artifactId>
-    <version>2.0.0</version>
+    <groupId>org.vaadin.addons.oliveryasuna</groupId>
+    <artifactId>flow-commons-parent</artifactId>
+    <version>1</version>
   </parent>
 
-  <groupId>org.vaadin.addons.oliveryasuna</groupId>
-  <artifactId>flow-commons-parent</artifactId>
-  <version>1</version>
-  <packaging>pom</packaging>
+  <artifactId>flow-commons-demo</artifactId>
+  <version>4.0.0-1.0.0</version>
+  <packaging>war</packaging>
 
-  <modules>
-    <module>addon</module>
-    <module>demo</module>
-  </modules>
+  <properties/>
 
-  <properties>
-    <!--=========================
-    ==== Java version
-    =========================-->
-
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-
-    <!--=========================
-    ==== Versions
-    =========================-->
-
-    <vaadin.version>17.0.11</vaadin.version>
-  </properties>
-
-  <dependencyManagement>
-    <dependencies>
-      <!--=========================
-      ==== Vaadin
-      =========================-->
-
-      <dependency>
-        <groupId>com.vaadin</groupId>
-        <artifactId>vaadin-bom</artifactId>
-        <version>${vaadin.version}</version>
-
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <!--=========================
-      ==== Web
-      =========================-->
-
-      <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>4.0.1</version>
-
-        <scope>provided</scope>
-      </dependency>
-
-      <!--=========================
-      ==== Miscellaneous
-      =========================-->
-
-      <dependency>
-        <groupId>com.oliveryasuna</groupId>
-        <artifactId>commons-language</artifactId>
-        <version>5.4.0</version>
-      </dependency>
-
-      <!--=========================
-      ==== Testing
-      =========================-->
-
-      <dependency>
-        <groupId>com.vaadin</groupId>
-        <artifactId>flow-component-demo-helpers</artifactId>
-        <version>9.0.14</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+  <dependencyManagement/>
 
   <dependencies>
+    <!--=========================
+    ==== Project
+    =========================-->
+
+    <dependency>
+      <groupId>org.vaadin.addons.oliveryasuna</groupId>
+      <artifactId>flow-commons</artifactId>
+      <version>4.0.0</version>
+    </dependency>
+
     <!--=========================
     ==== Vaadin
     =========================-->
 
-    <!-- TODO: Split into necessary dependencies. -->
     <dependency>
       <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-core</artifactId>
+      <artifactId>flow-component-demo-helpers</artifactId>
+    </dependency>
+
+    <!--=========================
+    ==== Logging
+    =========================-->
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
     </dependency>
   </dependencies>
 
@@ -124,29 +76,38 @@
   ==================================================-->
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>com.vaadin</groupId>
-          <artifactId>vaadin-maven-plugin</artifactId>
-          <version>${vaadin.version}</version>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
 
-          <executions>
-            <execution>
-              <goals>
-                <goal>prepare-frontend</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
+        <filtering>false</filtering>
+      </resource>
 
-        <plugin>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-maven-plugin</artifactId>
-          <version>9.4.46.v20220331</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
+      <resource>
+        <directory>src/main/resources</directory>
+
+        <filtering>false</filtering>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>com.vaadin</groupId>
+        <artifactId>vaadin-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+
+        <configuration>
+          <scanIntervalSeconds>1</scanIntervalSeconds>
+
+          <stopKey>${project.artifactId}</stopKey>
+          <stopPort>8081</stopPort>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 
   <reporting/>
@@ -155,7 +116,7 @@
   ==== Details
   ==================================================-->
 
-  <name>Flow Commons Parent</name>
+  <name>Flow Commons Demo</name>
   <description/>
   <url>https://github.com/oliveryasuna/flow-commons</url>
   <inceptionYear>2022</inceptionYear>
@@ -206,6 +167,41 @@
 
   <distributionManagement/>
 
-  <profiles/>
+  <profiles>
+    <profile>
+      <id>production</id>
+
+      <properties>
+        <vaadin.productionMode>true</vaadin.productionMode>
+      </properties>
+
+      <dependencies>
+        <dependency>
+          <groupId>com.vaadin</groupId>
+          <artifactId>flow-server-production-mode</artifactId>
+        </dependency>
+      </dependencies>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-maven-plugin</artifactId>
+            <version>${vaadin.version}</version>
+
+            <executions>
+              <execution>
+                <phase>compile</phase>
+
+                <goals>
+                  <goal>build-frontend</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>

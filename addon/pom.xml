@@ -28,94 +28,36 @@
   ==================================================-->
 
   <parent>
-    <groupId>com.oliveryasuna.vaadin</groupId>
-    <artifactId>vaadin-collection-parent</artifactId>
-    <version>2.0.0</version>
+    <groupId>org.vaadin.addons.oliveryasuna</groupId>
+    <artifactId>flow-commons-parent</artifactId>
+    <version>1</version>
   </parent>
 
-  <groupId>org.vaadin.addons.oliveryasuna</groupId>
-  <artifactId>flow-commons-parent</artifactId>
-  <version>1</version>
-  <packaging>pom</packaging>
+  <artifactId>flow-commons</artifactId>
+  <version>4.0.0</version>
+  <packaging>jar</packaging>
 
-  <modules>
-    <module>addon</module>
-    <module>demo</module>
-  </modules>
+  <properties/>
 
-  <properties>
-    <!--=========================
-    ==== Java version
-    =========================-->
-
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-
-    <!--=========================
-    ==== Versions
-    =========================-->
-
-    <vaadin.version>17.0.11</vaadin.version>
-  </properties>
-
-  <dependencyManagement>
-    <dependencies>
-      <!--=========================
-      ==== Vaadin
-      =========================-->
-
-      <dependency>
-        <groupId>com.vaadin</groupId>
-        <artifactId>vaadin-bom</artifactId>
-        <version>${vaadin.version}</version>
-
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-
-      <!--=========================
-      ==== Web
-      =========================-->
-
-      <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>4.0.1</version>
-
-        <scope>provided</scope>
-      </dependency>
-
-      <!--=========================
-      ==== Miscellaneous
-      =========================-->
-
-      <dependency>
-        <groupId>com.oliveryasuna</groupId>
-        <artifactId>commons-language</artifactId>
-        <version>5.4.0</version>
-      </dependency>
-
-      <!--=========================
-      ==== Testing
-      =========================-->
-
-      <dependency>
-        <groupId>com.vaadin</groupId>
-        <artifactId>flow-component-demo-helpers</artifactId>
-        <version>9.0.14</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+  <dependencyManagement/>
 
   <dependencies>
     <!--=========================
-    ==== Vaadin
+    ==== Web
     =========================-->
 
-    <!-- TODO: Split into necessary dependencies. -->
     <dependency>
-      <groupId>com.vaadin</groupId>
-      <artifactId>vaadin-core</artifactId>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+    </dependency>
+
+    <!--=========================
+    ==== Miscellaneous
+    =========================-->
+
+    <dependency>
+      <groupId>com.oliveryasuna</groupId>
+      <artifactId>commons-language</artifactId>
     </dependency>
   </dependencies>
 
@@ -124,29 +66,21 @@
   ==================================================-->
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>com.vaadin</groupId>
-          <artifactId>vaadin-maven-plugin</artifactId>
-          <version>${vaadin.version}</version>
+    <plugins>
+      <plugin>
+        <groupId>com.vaadin</groupId>
+        <artifactId>vaadin-maven-plugin</artifactId>
+        <version>${vaadin.version}</version>
 
-          <executions>
-            <execution>
-              <goals>
-                <goal>prepare-frontend</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-
-        <plugin>
-          <groupId>org.eclipse.jetty</groupId>
-          <artifactId>jetty-maven-plugin</artifactId>
-          <version>9.4.46.v20220331</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-frontend</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
   </build>
 
   <reporting/>
@@ -155,7 +89,7 @@
   ==== Details
   ==================================================-->
 
-  <name>Flow Commons Parent</name>
+  <name>Flow Commons</name>
   <description/>
   <url>https://github.com/oliveryasuna/flow-commons</url>
   <inceptionYear>2022</inceptionYear>
@@ -206,6 +140,97 @@
 
   <distributionManagement/>
 
-  <profiles/>
+  <profiles>
+    <profile>
+      <id>vaadin-directory</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.2.0</version>
+
+            <configuration>
+              <archive>
+                <index>true</index>
+
+                <manifest>
+                  <addClasspath>false</addClasspath>
+                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                </manifest>
+                <manifestEntries>
+                  <Vaadin-Package-Version>1</Vaadin-Package-Version>
+                </manifestEntries>
+              </archive>
+
+              <excludes>
+                <exclude>META-INF/VAADIN/config/flow-build.info.json</exclude>
+              </excludes>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>3.2.1</version>
+
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+
+                <phase>verify</phase>
+
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.3.0</version>
+
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+
+                <phase>verify</phase>
+
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.3.0</version>
+
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>${project.basedir}/src/assembly/assembly.xml</descriptor>
+              </descriptors>
+            </configuration>
+
+            <executions>
+              <execution>
+                <phase>install</phase>
+
+                <goals>
+                  <goal>single</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
