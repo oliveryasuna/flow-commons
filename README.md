@@ -1,4 +1,7 @@
 # Flow Commons.
+
+[![Vaadin Directory status](http://img.shields.io/vaadin-directory/status/flow-commons.svg)](https://vaadin.com/directory/component/flow-commons)
+[![Vaadin Directory star](http://img.shields.io/vaadin-directory/star/flow-commons.svg)](https://vaadin.com/directory/component/flow-commons)
  
 A commons library for Vaadin Flow.
 
