@@ -16,21 +16,47 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.demo.view;
+package com.oliveryasuna.vaadin.commons.demo.ui.theme;
 
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.demo.DemoView;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.theme.AbstractTheme;
 
-public abstract class AbstractView extends DemoView {
+import java.util.Collections;
+import java.util.List;
+
+@JsModule("@vaadin/vaadin-lumo-styles/all-imports.js")
+public final class DemoTheme implements AbstractTheme {
 
   // Constructors
   //--------------------------------------------------
 
-  protected AbstractView(final String header) {
+  public DemoTheme() {
     super();
-
-    addComponentAsFirst(new H1(header));
   }
 
+  // Overrides
+  //--------------------------------------------------
+
+  // AbstractTheme
+  //
+
+  @Override
+  public final String getBaseUrl() {
+    return "src/";
+  }
+
+  @Override
+  public final String getThemeUrl() {
+    return "theme/lumo/";
+  }
+
+  @Override
+  public final List<String> getHeaderInlineContents() {
+    return Collections.singletonList("" +
+        "<custom-style>\n" +
+        "  <style include=\"lumo-badge lumo-color lumo-typography\"></style>\n" +
+        "</custom-style>"
+    );
+  }
 
 }

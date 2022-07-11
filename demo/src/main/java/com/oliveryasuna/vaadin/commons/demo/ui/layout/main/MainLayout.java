@@ -16,17 +16,19 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.demo.layout.main;
+package com.oliveryasuna.vaadin.commons.demo.ui.layout.main;
 
-import com.oliveryasuna.vaadin.commons.demo.view.beacon.BeaconView;
-import com.oliveryasuna.vaadin.commons.demo.view.variants.VariantsView;
+import com.oliveryasuna.vaadin.commons.demo.ui.theme.DemoTheme;
+import com.oliveryasuna.vaadin.commons.demo.ui.view.badge.BadgeView;
+import com.oliveryasuna.vaadin.commons.demo.ui.view.beacon.BeaconView;
+import com.oliveryasuna.vaadin.commons.demo.ui.view.variants.VariantsView;
 import com.oliveryasuna.vaadin.fluent.component.orderedlayout.VerticalLayoutFactory;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
-import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.theme.Theme;
 
-@CssImport("./styles/styles.css")
+@Theme(DemoTheme.class)
 public final class MainLayout extends AppLayout {
 
   // Constructors
@@ -37,6 +39,7 @@ public final class MainLayout extends AppLayout {
 
     addToNavbar(new DrawerToggle());
     addToDrawer(new VerticalLayoutFactory()
+        .add(new RouterLink("Badge", BadgeView.class))
         .add(new RouterLink("Beacon", BeaconView.class))
         .add(new RouterLink("Variants", VariantsView.class))
         .get());

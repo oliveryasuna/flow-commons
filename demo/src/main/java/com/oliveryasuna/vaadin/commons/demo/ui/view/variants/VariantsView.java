@@ -16,7 +16,7 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.demo.view.variants;
+package com.oliveryasuna.vaadin.commons.demo.ui.view.variants;
 
 import com.oliveryasuna.vaadin.commons.component.button.VButton;
 import com.oliveryasuna.vaadin.commons.component.checkbox.VCheckboxGroup;
@@ -26,8 +26,8 @@ import com.oliveryasuna.vaadin.commons.component.radiobutton.VRadioButtonGroup;
 import com.oliveryasuna.vaadin.commons.component.splitlayout.VSplitLayout;
 import com.oliveryasuna.vaadin.commons.component.tabs.VTab;
 import com.oliveryasuna.vaadin.commons.component.tabs.VTabs;
-import com.oliveryasuna.vaadin.commons.demo.layout.main.MainLayout;
-import com.oliveryasuna.vaadin.commons.demo.view.AbstractView;
+import com.oliveryasuna.vaadin.commons.demo.ui.layout.main.MainLayout;
+import com.oliveryasuna.vaadin.commons.demo.ui.view.AbstractView;
 import com.oliveryasuna.vaadin.fluent.component.menubar.MenuBarFactory;
 import com.oliveryasuna.vaadin.fluent.component.orderedlayout.HorizontalLayoutFactory;
 import com.oliveryasuna.vaadin.fluent.component.orderedlayout.VerticalLayoutFactory;

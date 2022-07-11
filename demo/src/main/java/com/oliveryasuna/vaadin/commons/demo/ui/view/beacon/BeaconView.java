@@ -16,10 +16,10 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.demo.view.beacon;
+package com.oliveryasuna.vaadin.commons.demo.ui.view.beacon;
 
-import com.oliveryasuna.vaadin.commons.demo.layout.main.MainLayout;
-import com.oliveryasuna.vaadin.commons.demo.view.AbstractView;
+import com.oliveryasuna.vaadin.commons.demo.ui.layout.main.MainLayout;
+import com.oliveryasuna.vaadin.commons.demo.ui.view.AbstractView;
 import com.oliveryasuna.vaadin.commons.server.beacon.BeaconEvent;
 import com.oliveryasuna.vaadin.commons.server.beacon.BeaconHandler;
 import com.oliveryasuna.vaadin.commons.web.javascript.object.Navigator;
