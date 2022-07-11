@@ -19,7 +19,7 @@
 package com.oliveryasuna.vaadin.commons.demo.ui.view.beacon;
 
 import com.oliveryasuna.vaadin.commons.demo.ui.layout.main.MainLayout;
-import com.oliveryasuna.vaadin.commons.demo.ui.view.AbstractView;
+import com.oliveryasuna.vaadin.commons.demo.ui.view.DemoView;
 import com.oliveryasuna.vaadin.commons.server.beacon.BeaconEvent;
 import com.oliveryasuna.vaadin.commons.server.beacon.BeaconHandler;
 import com.oliveryasuna.vaadin.commons.web.javascript.object.Navigator;
@@ -34,7 +34,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "/beacon_", layout = MainLayout.class)
-public final class BeaconView extends AbstractView {
+public final class BeaconView extends DemoView {
 
   // Constructors
   //--------------------------------------------------

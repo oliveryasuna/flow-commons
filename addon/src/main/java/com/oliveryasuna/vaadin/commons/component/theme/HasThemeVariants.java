@@ -36,7 +36,6 @@ public interface HasThemeVariants<V extends Enum<V> & ThemeVariant> extends HasT
    */
   default void addThemeVariants(final V... variants) {
     Arguments.requireNotNull(variants);
-    Arguments.requireNotContainsSame(variants, null);
 
     for(final V variant : variants) getThemeNames().add(variant.getVariantName());
   }
@@ -48,7 +47,6 @@ public interface HasThemeVariants<V extends Enum<V> & ThemeVariant> extends HasT
    */
   default void removeThemeVariants(final V... variants) {
     Arguments.requireNotNull(variants);
-    Arguments.requireNotContainsSame(variants, null);
 
     for(final V variant : variants) getThemeNames().remove(variant.getVariantName());
   }

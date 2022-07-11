@@ -27,7 +27,7 @@ import com.oliveryasuna.vaadin.commons.component.splitlayout.VSplitLayout;
 import com.oliveryasuna.vaadin.commons.component.tabs.VTab;
 import com.oliveryasuna.vaadin.commons.component.tabs.VTabs;
 import com.oliveryasuna.vaadin.commons.demo.ui.layout.main.MainLayout;
-import com.oliveryasuna.vaadin.commons.demo.ui.view.AbstractView;
+import com.oliveryasuna.vaadin.commons.demo.ui.view.DemoView;
 import com.oliveryasuna.vaadin.fluent.component.menubar.MenuBarFactory;
 import com.oliveryasuna.vaadin.fluent.component.orderedlayout.HorizontalLayoutFactory;
 import com.oliveryasuna.vaadin.fluent.component.orderedlayout.VerticalLayoutFactory;
@@ -44,7 +44,7 @@ import com.vaadin.flow.router.Route;
 import java.util.function.Consumer;
 
 @Route(value = "/variants", layout = MainLayout.class)
-public final class VariantsView extends AbstractView {
+public final class VariantsView extends DemoView {
 
   // Constructors
   //--------------------------------------------------
@@ -65,6 +65,7 @@ public final class VariantsView extends AbstractView {
     VButton button = new VButton(text, VaadinIcon.HEART.create());
 
     VerticalLayout layout = new VerticalLayoutFactory()
+        .setPadding(false)
         .add(button)
         .add(new HorizontalLayoutFactory()
             .getStyle().handle(style -> style.set("flex-wrap", "wrap")).back()
@@ -101,6 +102,7 @@ public final class VariantsView extends AbstractView {
     checkboxGroup.setItems("Ohhhh", "Say", "Can", "You", "See", "Every", "Other", "Country", "Hates", "We");
 
     VerticalLayout layout = new VerticalLayoutFactory()
+        .setPadding(false)
         .add(checkboxGroup)
         .add(new HorizontalLayoutFactory()
             .getStyle().handle(style -> style.set("flex-wrap", "wrap")).back()
@@ -137,6 +139,7 @@ public final class VariantsView extends AbstractView {
         .get());
 
     VerticalLayout layout = new VerticalLayoutFactory()
+        .setPadding(false)
         .add(menuBar)
         .add(new HorizontalLayoutFactory()
             .getStyle().handle(style -> style.set("flex-wrap", "wrap")).back()
@@ -173,6 +176,7 @@ public final class VariantsView extends AbstractView {
         .get());
 
     VerticalLayout layout = new VerticalLayoutFactory()
+        .setPadding(false)
         .add(progressBar)
         .add(new HorizontalLayoutFactory()
             .getStyle().handle(style -> style.set("flex-wrap", "wrap")).back()
@@ -195,6 +199,7 @@ public final class VariantsView extends AbstractView {
     radioButtonGroup.setItems("I", "Hate", "You");
 
     VerticalLayout layout = new VerticalLayoutFactory()
+        .setPadding(false)
         .add(radioButtonGroup)
         .add(new HorizontalLayoutFactory()
             .getStyle().handle(style -> style.set("flex-wrap", "wrap")).back()
@@ -215,6 +220,7 @@ public final class VariantsView extends AbstractView {
     splitLayout.setWidthFull();
 
     VerticalLayout layout = new VerticalLayoutFactory()
+        .setPadding(false)
         .add(splitLayout)
         .add(new HorizontalLayoutFactory()
             .getStyle().handle(style -> style.set("flex-wrap", "wrap")).back()
@@ -234,6 +240,7 @@ public final class VariantsView extends AbstractView {
     VTab tab = new VTab(VaadinIcon.BUG.create(), new Span("Bug"));
 
     VerticalLayout layout = new VerticalLayoutFactory()
+        .setPadding(false)
         .add(tab)
         .add(new HorizontalLayoutFactory()
             .getStyle().handle(style -> style.set("flex-wrap", "wrap")).back()
@@ -260,6 +267,7 @@ public final class VariantsView extends AbstractView {
         .get());
 
     VerticalLayout layout = new VerticalLayoutFactory()
+        .setPadding(false)
         .add(tabs)
         .add(new HorizontalLayoutFactory()
             .getStyle().handle(style -> style.set("flex-wrap", "wrap")).back()
