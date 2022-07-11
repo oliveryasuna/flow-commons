@@ -21,6 +21,7 @@ package com.oliveryasuna.vaadin.commons.demo.ui.layout.main;
 import com.oliveryasuna.vaadin.commons.demo.ui.theme.DemoTheme;
 import com.oliveryasuna.vaadin.commons.demo.ui.view.badge.BadgeView;
 import com.oliveryasuna.vaadin.commons.demo.ui.view.beacon.BeaconView;
+import com.oliveryasuna.vaadin.commons.demo.ui.view.buttons.ButtonsView;
 import com.oliveryasuna.vaadin.commons.demo.ui.view.variants.VariantsView;
 import com.oliveryasuna.vaadin.fluent.component.orderedlayout.VerticalLayoutFactory;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -41,6 +42,7 @@ public final class MainLayout extends AppLayout {
     addToDrawer(new VerticalLayoutFactory()
         .add(new RouterLink("Badge", BadgeView.class))
         .add(new RouterLink("Beacon", BeaconView.class))
+        .add(new RouterLink("Buttons", ButtonsView.class))
         .add(new RouterLink("Variants", VariantsView.class))
         .get());
   }
