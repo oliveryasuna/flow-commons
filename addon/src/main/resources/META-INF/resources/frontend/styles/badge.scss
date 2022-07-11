@@ -16,20 +16,40 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-[theme~='badge'] {
-  iron-icon,
-  vaadin-icon {
-    padding: var(--lumo-space-xs);
-
-    width: 13px;
-    height: 13px;
-  }
-
-  &[theme~='small'] {
+span[theme~='badge'] {
+  &:not([theme~='icon-only']) {
     iron-icon,
     vaadin-icon {
-      width: 10px;
-      height: 10px;
+      padding: var(--lumo-space-xs);
+
+      width: 13px;
+      height: 13px;
+    }
+
+    &[theme~='small'] {
+      iron-icon,
+      vaadin-icon {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+
+  &[theme~='icon-only'] {
+    padding: var(--lumo-space-xs);
+    
+    iron-icon,
+    vaadin-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    &[theme~='small'] {
+      iron-icon,
+      vaadin-icon {
+        width: 12px;
+        height: 12px;
+      }
     }
   }
 }

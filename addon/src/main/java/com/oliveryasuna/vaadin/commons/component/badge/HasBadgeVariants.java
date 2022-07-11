@@ -18,7 +18,7 @@
 
 package com.oliveryasuna.vaadin.commons.component.badge;
 
-import com.vaadin.flow.component.HasTheme;
+import com.oliveryasuna.vaadin.commons.component.theme.HasThemeVariants;
 
 /**
  * Ease-of-use for components with {@link BadgeVariant}s.
@@ -26,7 +26,7 @@ import com.vaadin.flow.component.HasTheme;
  * @author Oliver Yasuna
  * @since 3.0.0
  */
-public interface HasBadgeVariants extends HasTheme {
+public interface HasBadgeVariants extends HasThemeVariants<BadgeVariant> {
 
   // Methods
   //--------------------------------------------------

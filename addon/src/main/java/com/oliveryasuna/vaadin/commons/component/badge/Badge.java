@@ -131,6 +131,10 @@ public class Badge extends Span implements HasBadgeVariants {
     }
   }
 
+  protected void setIconOnly(final boolean iconOnly) {
+    getElement().getThemeList().set("icon-only", iconOnly);
+  }
+
   // Getters/setters
   //--------------------------------------------------
 
@@ -151,6 +155,8 @@ public class Badge extends Span implements HasBadgeVariants {
       } else {
         addComponentAsFirst(this.label);
       }
+    } else if(getIcon() != null) {
+      setIconOnly(true);
     }
   }
 
@@ -171,6 +177,10 @@ public class Badge extends Span implements HasBadgeVariants {
       } else {
         addComponentAtIndex(getElement().getChildCount(), this.icon);
       }
+
+      setIconOnly(getLabel() == null);
+    } else {
+      setIconOnly(false);
     }
   }
 
