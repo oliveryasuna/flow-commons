@@ -34,7 +34,7 @@
   </parent>
 
   <artifactId>flow-commons-demo</artifactId>
-  <version>4.0.0-1.0.0</version>
+  <version>4.0.0-beta--1.0.0</version>
   <packaging>war</packaging>
 
   <properties/>
