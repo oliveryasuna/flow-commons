@@ -28,11 +28,12 @@
   ==================================================-->
 
   <parent>
-    <groupId>org.vaadin.addons.oliveryasuna</groupId>
+    <groupId>com.oliveryasuna.vaadin</groupId>
     <artifactId>flow-commons-parent</artifactId>
     <version>1</version>
   </parent>
 
+  <groupId>org.vaadin.addons.oliveryasuna</groupId>
   <artifactId>flow-commons</artifactId>
   <version>4.0.0-beta</version>
   <packaging>jar</packaging>

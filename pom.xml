@@ -33,7 +33,6 @@
     <version>2.0.0</version>
   </parent>
 
-  <groupId>org.vaadin.addons.oliveryasuna</groupId>
   <artifactId>flow-commons-parent</artifactId>
   <version>1</version>
   <packaging>pom</packaging>
