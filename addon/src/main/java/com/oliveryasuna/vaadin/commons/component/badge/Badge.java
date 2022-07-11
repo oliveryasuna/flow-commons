@@ -18,6 +18,7 @@
 
 package com.oliveryasuna.vaadin.commons.component.badge;
 
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.Icon;
 
@@ -29,6 +30,7 @@ import com.vaadin.flow.component.icon.Icon;
  * @author Oliver Yasuna
  * @since 3.0.0
  */
+@CssImport("./styles/badge.css")
 public class Badge extends Span implements HasBadgeVariants {
 
   // Constructors
@@ -66,14 +68,12 @@ public class Badge extends Span implements HasBadgeVariants {
   public Badge(final String label, final Icon icon, final boolean iconFirst) {
     this();
 
-    icon.getStyle().set("padding", "var(--lumo-space-xs)");
-
     if(iconFirst) {
-      add(this.label = new Span(label));
       add(this.icon = icon);
+      add(this.label = new Span(label));
     } else {
-      add(this.icon = icon);
       add(this.label = new Span(label));
+      add(this.icon = icon);
     }
   }
 

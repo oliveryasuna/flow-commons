@@ -15,5 +15,16 @@
  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+[theme~=badge] iron-icon,
+[theme~=badge] vaadin-icon {
+  padding: var(--lumo-space-xs);
+  width: 13px;
+  height: 13px;
+}
+[theme~=badge][theme~=small] iron-icon,
+[theme~=badge][theme~=small] vaadin-icon {
+  width: 10px;
+  height: 10px;
+}
 
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=badge.css.map */
