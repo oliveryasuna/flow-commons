@@ -36,15 +36,19 @@ public class Badge extends Span implements HasBadgeVariants {
   // Constructors
   //--------------------------------------------------
 
-  /**
-   * Creates a badge without content.
-   */
-  public Badge() {
+  protected Badge(final boolean iconFirst) {
     super();
 
     getElement().getThemeList().add("badge");
 
-    this.iconFirst = true;
+    this.iconFirst = iconFirst;
+  }
+
+  /**
+   * Creates a badge without content.
+   */
+  public Badge() {
+    this(true);
   }
 
   /**
@@ -55,7 +59,18 @@ public class Badge extends Span implements HasBadgeVariants {
   public Badge(final String label) {
     this();
 
-    add(this.label = new Span(label));
+    setLabel(label);
+  }
+
+  /**
+   * Creates a badge with an icon.
+   *
+   * @param icon The icon.
+   */
+  public Badge(final Icon icon) {
+    this();
+
+    setIcon(icon);
   }
 
   /**
@@ -66,15 +81,10 @@ public class Badge extends Span implements HasBadgeVariants {
    * @param iconFirst If {@code true}, the icon is the left-most component.
    */
   public Badge(final String label, final Icon icon, final boolean iconFirst) {
-    this();
+    this(iconFirst);
 
-    if(iconFirst) {
-      add(this.icon = icon);
-      add(this.label = new Span(label));
-    } else {
-      add(this.label = new Span(label));
-      add(this.icon = icon);
-    }
+    setLabel(label);
+    setIcon(icon);
   }
 
   // Fields
@@ -104,7 +114,21 @@ public class Badge extends Span implements HasBadgeVariants {
    * @param label The text.
    */
   public void setLabel(final String label) {
-    getLabel().setText(label);
+    final Span labelSpan = getLabel();
+
+    if(labelSpan != null) {
+      if(label != null) {
+        labelSpan.setText(label);
+      } else {
+        setLabel((Span)null);
+      }
+    } else {
+      if(label != null) {
+        setLabel(new Span(label));
+      } else {
+        setLabel((Span)null);
+      }
+    }
   }
 
   // Getters/setters
@@ -115,14 +139,18 @@ public class Badge extends Span implements HasBadgeVariants {
   }
 
   public void setLabel(final Span label) {
-    getLabel().getElement().removeFromParent();
+    final Span oldLabel = getLabel();
+
+    if(oldLabel != null) oldLabel.getElement().removeFromParent();
 
     this.label = label;
 
-    if(isIconFirst()) {
-      addComponentAtIndex(getElement().getChildCount(), this.label);
-    } else {
-      addComponentAsFirst(this.label);
+    if(this.label != null) {
+      if(isIconFirst()) {
+        addComponentAtIndex(getElement().getChildCount(), this.label);
+      } else {
+        addComponentAsFirst(this.label);
+      }
     }
   }
 
@@ -131,14 +159,18 @@ public class Badge extends Span implements HasBadgeVariants {
   }
 
   public void setIcon(final Icon icon) {
-    if(getIcon() != null) getIcon().getElement().removeFromParent();
+    final Icon oldIcon = getIcon();
+
+    if(oldIcon != null) oldIcon.getElement().removeFromParent();
 
     this.icon = icon;
 
-    if(isIconFirst()) {
-      addComponentAsFirst(this.icon);
-    } else {
-      addComponentAtIndex(getElement().getChildCount(), this.icon);
+    if(this.icon != null) {
+      if(isIconFirst()) {
+        addComponentAsFirst(this.icon);
+      } else {
+        addComponentAtIndex(getElement().getChildCount(), this.icon);
+      }
     }
   }
 
@@ -151,16 +183,22 @@ public class Badge extends Span implements HasBadgeVariants {
 
     this.iconFirst = iconFirst;
 
-    if(this.iconFirst != previous && getIcon() != null) {
-      getLabel().getElement().removeFromParent();
-      getIcon().getElement().removeFromParent();
+    if(this.iconFirst != previous) {
+      final Icon icon = getIcon();
 
-      if(this.iconFirst) {
-        add(getIcon());
-        add(getLabel());
-      } else {
-        add(getLabel());
-        add(getIcon());
+      if(icon != null) {
+        final Span label = getLabel();
+
+        label.getElement().removeFromParent();
+        icon.getElement().removeFromParent();
+
+        if(this.iconFirst) {
+          add(icon);
+          add(label);
+        } else {
+          add(label);
+          add(icon);
+        }
       }
     }
   }
