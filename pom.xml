@@ -168,7 +168,7 @@
   ==================================================-->
 
   <name>Flow Commons Parent</name>
-  <description/>
+  <description>Parent for all Flow Commons projects.</description>
   <url>https://github.com/oliveryasuna/flow-commons</url>
   <inceptionYear>2022</inceptionYear>
   <licenses>
