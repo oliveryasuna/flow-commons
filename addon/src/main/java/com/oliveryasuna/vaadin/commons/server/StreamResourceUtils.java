@@ -19,7 +19,10 @@
 package com.oliveryasuna.vaadin.commons.server;
 
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
+import com.vaadin.flow.server.StreamRegistration;
 import com.vaadin.flow.server.StreamResource;
+import com.vaadin.flow.server.StreamResourceRegistry;
+import com.vaadin.flow.server.VaadinSession;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -71,6 +74,22 @@ public final class StreamResourceUtils {
    */
   public static StreamResource fromString(final String filename, final String string, final Charset charset) {
     return fromBytes(filename, string.getBytes(charset));
+  }
+
+  public static String getUri(final StreamRegistration registration) {
+    return registration.getResourceUri().toString();
+  }
+
+  public static String getUri(final StreamResource resource, final StreamResourceRegistry resourceRegistry) {
+    return getUri(resourceRegistry.registerResource(resource));
+  }
+
+  public static String getUri(final StreamResource resource, final VaadinSession session) {
+    return getUri(resource, session.getResourceRegistry());
+  }
+
+  public static String getUri(final StreamResource resource) {
+    return getUri(resource, VaadinSession.getCurrent());
   }
 
   // Constructors

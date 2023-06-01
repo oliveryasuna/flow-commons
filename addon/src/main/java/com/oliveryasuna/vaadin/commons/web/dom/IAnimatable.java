@@ -25,14 +25,4 @@ package com.oliveryasuna.vaadin.commons.web.dom;
  */
 public interface IAnimatable extends DomObject {
 
-  // Methods
-  //--------------------------------------------------
-
-  // JavaScript functions
-  //
-
-  // TODO: animate()?
-
-  // TODO: getAnimations()?
-
 }

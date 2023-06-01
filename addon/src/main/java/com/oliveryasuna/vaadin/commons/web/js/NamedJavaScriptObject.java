@@ -31,7 +31,7 @@ public class NamedJavaScriptObject extends JavaScriptObject {
   protected NamedJavaScriptObject(final String name, final JavaScriptExecutor executor) {
     super(executor);
 
-    this.name = getName();
+    this.name = getObjectName();
   }
 
   // Fields
@@ -44,13 +44,13 @@ public class NamedJavaScriptObject extends JavaScriptObject {
 
   @Override
   protected String buildPath(final String name) {
-    return (getName() + "." + name);
+    return (getObjectName() + "." + name);
   }
 
   // Getters/setters
   //--------------------------------------------------
 
-  public String getName() {
+  public String getObjectName() {
     return name;
   }
 

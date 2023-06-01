@@ -25,10 +25,10 @@ import com.vaadin.flow.server.SynchronizedRequestHandler;
 import com.vaadin.flow.server.VaadinRequest;
 import com.vaadin.flow.server.VaadinResponse;
 import com.vaadin.flow.server.VaadinSession;
-import com.vaadin.flow.shared.Registration;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
+import java.util.UUID;
 
 /**
  * Handles beacon requests.
@@ -49,33 +49,50 @@ public class BeaconHandler extends SynchronizedRequestHandler {
    * Adds a beacon listener to a {@link UI}.
    *
    * @param ui       The {@link UI} instance.
+   * @param path     The path that this handler handles.
    * @param listener The listener.
    *
-   * @return A new {@link Registration} object.
+   * @return A new {@link BeaconRegistration} object.
    */
-  public static Registration addBeaconListener(final UI ui, final ComponentEventListener<BeaconEvent> listener) {
-    registerHandlerForUi(ui);
-
-    return ComponentUtil.addListener(ui, BeaconEvent.class, listener);
+  public static BeaconRegistration addBeaconListener(final UI ui, final String path, final ComponentEventListener<BeaconEvent> listener) {
+    return new BeaconRegistration(ComponentUtil.addListener(ui, BeaconEvent.class, listener), registerHandlerForUi(ui, path));
   }
 
   /**
    * Creates a {@link BeaconHandler} for a {@link UI} if the {@link UI} does not already have one.
    *
-   * @param ui The {@link UI} instance.
+   * @param ui   The {@link UI} instance.
+   * @param path The path that this handler handles.
+   *
+   * @return The {@link BeaconHandler} instance.
    */
-  private static void registerHandlerForUi(final UI ui) {
-    if(ComponentUtil.getData(ui, BeaconHandler.class) != null) return;
+  private static BeaconHandler registerHandlerForUi(final UI ui, final String path) {
+    final BeaconHandler existingBeaconHandler = ComponentUtil.getData(ui, BeaconHandler.class);
 
-    final BeaconHandler beaconHandler = new BeaconHandler(ui);
+    if(existingBeaconHandler != null) {
+      return existingBeaconHandler;
+    }
+
+    final BeaconHandler beaconHandler = new BeaconHandler(ui, path);
 
     final VaadinSession session = ui.getSession();
 
     session.addRequestHandler(beaconHandler);
 
-    ui.addDetachListener(event -> session.removeRequestHandler(beaconHandler));
+    ui.addDetachListener(event -> {
+      event.getSession().removeRequestHandler(beaconHandler);
+    });
 
     ComponentUtil.setData(ui, BeaconHandler.class, beaconHandler);
+
+    return beaconHandler;
+  }
+
+  private static String normalizePath(String path) {
+    if(!path.startsWith("/")) path = "/" + path;
+    if(!path.endsWith("/")) path = path + "/";
+
+    return path;
   }
 
   // Constructors
@@ -84,14 +101,15 @@ public class BeaconHandler extends SynchronizedRequestHandler {
   /**
    * Creates an instance for a specific {@link UI}.
    *
-   * @param ui The {@link UI} instance.
+   * @param ui   The {@link UI} instance.
+   * @param path The path that this handler handles.
    */
-  public BeaconHandler(final UI ui) {
+  public BeaconHandler(final UI ui, final String path) {
     super();
 
     this.ui = ui;
 
-    this.path = "/beacon/" + ui.getSession().getSession().getId();
+    this.path = normalizePath(path) + UUID.randomUUID();
   }
 
   // Fields
@@ -126,7 +144,7 @@ public class BeaconHandler extends SynchronizedRequestHandler {
     final String data = IOUtils.toString(request.getReader());
     final UI ui = getUi();
 
-    ComponentUtil.fireEvent(ui, new BeaconEvent(ui, true, data));
+    ComponentUtil.fireEvent(ui, new BeaconEvent(ui, true, this, data));
 
     return true;
   }

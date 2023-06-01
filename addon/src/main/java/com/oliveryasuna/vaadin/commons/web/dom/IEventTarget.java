@@ -25,16 +25,4 @@ package com.oliveryasuna.vaadin.commons.web.dom;
  */
 public interface IEventTarget extends DomObject {
 
-  // Methods
-  //--------------------------------------------------
-
-  // JavaScript functions
-  //
-
-  // TODO: addEventListener()
-
-  // TODO: removeEventListener()
-
-  // TODO: dispatchEvent()
-
 }

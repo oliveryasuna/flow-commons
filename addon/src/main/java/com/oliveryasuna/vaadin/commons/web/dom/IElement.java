@@ -33,10 +33,6 @@ public interface IElement extends INode, IAriaMixin, IAnimatable, IChildNode, II
   // JavaScript properties
   //
 
-  // TODO: attributes?
-
-  // TODO: classList?
-
   default CompletableFuture<String> getClassName() {
     return getProperty("className", String.class);
   }
@@ -77,10 +73,6 @@ public interface IElement extends INode, IAriaMixin, IAnimatable, IChildNode, II
     return getProperty("namespaceURI", String.class);
   }
 
-  // TODO: onfullscreenchange?
-
-  // TODO: onfullscreenerror?
-
   default CompletableFuture<String> getOuterHTML() {
     return getProperty("outerHTML", String.class);
   }
@@ -89,9 +81,7 @@ public interface IElement extends INode, IAriaMixin, IAnimatable, IChildNode, II
     return setProperty("outerHTML", outerHTML);
   }
 
-  // TODO: ownerDocument?
-
-  // TODO: part?
+  IDocument getOwnerDocument();
 
   default CompletableFuture<String> getPrefix() {
     return getProperty("prefix", String.class);
@@ -121,8 +111,6 @@ public interface IElement extends INode, IAriaMixin, IAnimatable, IChildNode, II
     return getProperty("scrollWidth", Double.class);
   }
 
-  // TODO: shadowRoot?
-
   default CompletableFuture<String> getSlot() {
     return getProperty("slot", String.class);
   }
@@ -138,93 +126,33 @@ public interface IElement extends INode, IAriaMixin, IAnimatable, IChildNode, II
   // JavaScript functions
   //
 
-  // TODO: attachShadow?
-
-  // TODO: closest?
-
   default CompletableFuture<String> getAttribute(final String name) {
     return callFunction("getAttribute", String.class, name);
   }
 
-  default CompletableFuture<String> getAttributeNs(final String namespace, final String localName) {
-    return callFunction("getAttributeNS", String.class, namespace, localName);
-  }
-
-  // TODO: getAttributeNames()?
-
-  // TODO: getAttributeNode()?
-
-  // TODO: getAttributeNodeNS()?
-
-  // TODO: getBoundingClientRect()?
-
-  // TODO: getClientRects()?
-
-  // TODO: getElementsByClassName()?
-
-  // TODO: getElementsByTagName()?
-
-  // TODO: getElementsByTagNameNS()?
-
   default CompletableFuture<Boolean> hasAttribute(final String name) {
     return callFunction("hasAttribute", Boolean.class, name);
-  }
-
-  default CompletableFuture<Boolean> hasAttributeNs(final String namespace, final String localName) {
-    return callFunction("hasAttributeNS", Boolean.class, namespace, localName);
   }
 
   default CompletableFuture<Boolean> hasAttributes() {
     return callFunction("hasAttributes", Boolean.class);
   }
 
-  default CompletableFuture<Boolean> hasPointerCapture(final int pointerId) {
-    return callFunction("hasPointerCapture", Boolean.class, pointerId);
-  }
-
-  // TODO: insertAdjacentElement()?
-
-  // TODO: insertAdjacentHTML()?
-
-  // TODO: insertAdjacentText()?
-
   default CompletableFuture<Boolean> matches(final String selectors) {
     return callFunction("matches", Boolean.class, selectors);
-  }
-
-  default CompletableFuture<Void> releasePointerCapture(final int pointerId) {
-    return callFunction("releasePointerCapture", Void.class, pointerId);
   }
 
   default CompletableFuture<Void> removeAttribute(final String name) {
     return callFunction("removeAttribute", Void.class, name);
   }
 
-  default CompletableFuture<Void> removeAttributeNs(final String namespace, final String localName) {
-    return callFunction("removeAttributeNS", Void.class, namespace, localName);
-  }
-
-  // TODO: removeAttributeNode()?
-
-  default CompletableFuture<Void> releasePointerLock() {
-    return callFunction("releasePointerLock", Void.class);
-  }
-
-  // TODO: scroll(ScrollToOptions?)?
-
   default CompletableFuture<Void> scroll(final double x, final double y) {
     return callFunction("scroll", Void.class, y);
   }
 
-  // TODO: scrollBy(ScrollToOptions?)?
-
   default CompletableFuture<Void> scrollBy(final double x, final double y) {
     return callFunction("scrollBy", Void.class, y);
   }
-
-  // TODO: scrollIntoView()?
-
-  // TODO: scrollTo(ScrollToOptions?)?
 
   default CompletableFuture<Void> scrollTo(final double x, final double y) {
     return callFunction("scrollTo", Void.class, y);
@@ -238,14 +166,6 @@ public interface IElement extends INode, IAriaMixin, IAnimatable, IChildNode, II
     return callFunction("setAttributeNS", Void.class, namespace, localName, value);
   }
 
-  // TODO: setAttributeNode()?
-
-  // TODO: setAttributeNodeNS()?
-
-  default CompletableFuture<Void> setPointerCapture(final int pointerId) {
-    return callFunction("setPointerCapture", Void.class, pointerId);
-  }
-
   default CompletableFuture<Boolean> toggleAttribute(final String name, final boolean force) {
     return callFunction("toggleAttribute", Boolean.class, name, force);
   }
@@ -253,9 +173,5 @@ public interface IElement extends INode, IAriaMixin, IAnimatable, IChildNode, II
   default CompletableFuture<Boolean> toggleAttribute(final String name) {
     return callFunction("toggleAttribute", Boolean.class, name);
   }
-
-  // TODO: addEventListener()?
-
-  // TODO: removeEventListener()?
 
 }

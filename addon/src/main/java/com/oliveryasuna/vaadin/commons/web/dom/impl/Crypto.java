@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2023 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,29 +16,56 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.web.dom;
+package com.oliveryasuna.vaadin.commons.web.dom.impl;
 
-import java.util.concurrent.CompletableFuture;
+import com.oliveryasuna.vaadin.commons.web.dom.ICrypto;
+import com.oliveryasuna.vaadin.commons.web.dom.ISubtleCrypto;
+import com.oliveryasuna.vaadin.commons.web.js.JavaScriptExecutor;
+import com.oliveryasuna.vaadin.commons.web.js.NamedJavaScriptObject;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Represents {@code Crypto}.
+ * Represents a {@code Crypto} object.
  *
  * @author Oliver Yasuna
  */
-public interface ICrypto extends DomObject {
+public class Crypto extends NamedJavaScriptObject implements ICrypto {
+
+  // Singleton
+  //--------------------------------------------------
+
+  private static final Map<JavaScriptExecutor, Crypto> INSTANCES = new ConcurrentHashMap<>(4);
+
+  public static Crypto getInstance(final JavaScriptExecutor javaScriptExecutor) {
+    synchronized(INSTANCES) {
+      return INSTANCES.computeIfAbsent(javaScriptExecutor, executor -> new Crypto("caches", executor));
+    }
+  }
+
+  // Constructors
+  //--------------------------------------------------
+
+  protected Crypto(final String name, final JavaScriptExecutor executor) {
+    super(name, executor);
+  }
+
+  protected Crypto(final NamedJavaScriptObject parent, final String name, final JavaScriptExecutor executor) {
+    this(parent.getObjectName() + "." + name, executor);
+  }
+
+  // Fields
+  //--------------------------------------------------
+
+  protected final SubtleCrypto subtle = new SubtleCrypto(this, "subtle", getExecutor());
 
   // Methods
   //--------------------------------------------------
 
-  // JavaScript properties
-  //
-  ISubtleCrypto getSubtle();
-
-  // JavaScript functions
-  //
-
-  default CompletableFuture<String> randomUUID() {
-    return callFunction("randomUUID", String.class);
+  @Override
+  public ISubtleCrypto getSubtle() {
+    return subtle;
   }
 
 }

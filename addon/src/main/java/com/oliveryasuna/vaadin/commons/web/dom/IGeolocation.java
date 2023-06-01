@@ -18,23 +18,11 @@
 
 package com.oliveryasuna.vaadin.commons.web.dom;
 
-import java.util.concurrent.CompletableFuture;
-
 /**
  * Represents {@code Geolocation}.
  *
  * @author Oliver Yasuna
  */
 public interface IGeolocation extends DomObject {
-
-  // Methods
-  //--------------------------------------------------
-
-  // JavaScript functions
-  //
-
-  default CompletableFuture<Void> clearWatch(final int watchId) {
-    return callFunction("clearWatch", Void.class, watchId);
-  }
 
 }

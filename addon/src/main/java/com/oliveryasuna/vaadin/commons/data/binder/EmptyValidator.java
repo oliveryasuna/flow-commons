@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2023 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,13 +16,35 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.web.dom;
+package com.oliveryasuna.vaadin.commons.data.binder;
+
+import com.vaadin.flow.data.binder.ValidationResult;
+import com.vaadin.flow.data.binder.Validator;
+import com.vaadin.flow.data.binder.ValueContext;
 
 /**
- * Represents {@code GlobalEventHandlers}.
+ * A validator that always returns {@link ValidationResult#ok()}.
+ *
+ * @param <T> The type of the value to validate.
  *
  * @author Oliver Yasuna
+ * @since 5.5.0
  */
-public interface IGlobalEventHandlers extends DomObject {
+public class EmptyValidator<T> implements Validator<T> {
+
+  // Constructors
+  //--------------------------------------------------
+
+  public EmptyValidator() {
+    super();
+  }
+
+  // Methods
+  //--------------------------------------------------
+
+  @Override
+  public ValidationResult apply(final T value, final ValueContext context) {
+    return ValidationResult.ok();
+  }
 
 }

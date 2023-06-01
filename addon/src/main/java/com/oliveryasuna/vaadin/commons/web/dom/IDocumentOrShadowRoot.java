@@ -25,9 +25,4 @@ package com.oliveryasuna.vaadin.commons.web.dom;
  */
 public interface IDocumentOrShadowRoot extends DomObject {
 
-  // Methods
-  //--------------------------------------------------
-
-  // TODO: Lots of stuff that probably won't work.
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2023 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,13 +16,25 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.web.dom;
+package com.oliveryasuna.vaadin.commons.web.dom.impl;
+
+import com.oliveryasuna.vaadin.commons.web.dom.IClipboard;
+import com.oliveryasuna.vaadin.commons.web.js.JavaScriptExecutor;
+import com.oliveryasuna.vaadin.commons.web.js.NamedJavaScriptObject;
+import com.oliveryasuna.vaadin.commons.web.js.NestedJavaScriptObject;
 
 /**
- * Represents {@code GlobalEventHandlers}.
+ * Represents a {@code Clipboard} object.
  *
  * @author Oliver Yasuna
  */
-public interface IGlobalEventHandlers extends DomObject {
+public class Clipboard extends NestedJavaScriptObject implements IClipboard {
+
+  // Constructors
+  //--------------------------------------------------
+
+  protected Clipboard(final NamedJavaScriptObject parent, final String name, final JavaScriptExecutor executor) {
+    super(parent, name, executor);
+  }
 
 }

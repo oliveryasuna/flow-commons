@@ -16,55 +16,57 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.server.beacon;
+package com.oliveryasuna.vaadin.commons.web.dom.impl;
 
-import com.vaadin.flow.component.ComponentEvent;
-import com.vaadin.flow.component.UI;
+import com.oliveryasuna.vaadin.commons.web.dom.IStorage;
+import com.oliveryasuna.vaadin.commons.web.js.JavaScriptExecutor;
+import com.oliveryasuna.vaadin.commons.web.js.NamedJavaScriptObject;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * An event invoked by a {@link BeaconHandler}.
+ * Represents a {@code Storage} object.
  *
  * @author Oliver Yasuna
  */
-public class BeaconEvent extends ComponentEvent<UI> {
+public class Storage extends NamedJavaScriptObject implements IStorage {
+
+  // Static fields
+  //--------------------------------------------------
+
+  protected static final String LOCAL_STORAGE_NAME = "localStorage";
+
+  protected static final String SESSION_STORAGE_NAME = "sessionStorage";
+
+  // Singleton
+  //--------------------------------------------------
+
+  private static final Map<JavaScriptExecutor, Storage> LOCAL_STORAGE_INSTANCES = new ConcurrentHashMap<>(4);
+
+  public static Storage getLocalStorageInstance(final JavaScriptExecutor javaScriptExecutor) {
+    synchronized(LOCAL_STORAGE_INSTANCES) {
+      return LOCAL_STORAGE_INSTANCES.computeIfAbsent(javaScriptExecutor, executor -> new Storage(LOCAL_STORAGE_NAME, executor));
+    }
+  }
+
+  private static final Map<JavaScriptExecutor, Storage> SESSION_STORAGE_INSTANCES = new ConcurrentHashMap<>(4);
+
+  public static Storage getSessionStorageInstance(final JavaScriptExecutor javaScriptExecutor) {
+    synchronized(SESSION_STORAGE_INSTANCES) {
+      return SESSION_STORAGE_INSTANCES.computeIfAbsent(javaScriptExecutor, executor -> new Storage(SESSION_STORAGE_NAME, executor));
+    }
+  }
 
   // Constructors
   //--------------------------------------------------
 
-  /**
-   * Creates an instance specifying the source {@link UI}, whether the event was triggered by the client or not, and the data of the beacon.
-   *
-   * @param source     The source {@link UI}.
-   * @param fromClient Whether triggered by the client.
-   * @param handler    The {@link BeaconHandler} instance.
-   * @param data       The data of the beacon.
-   */
-  public BeaconEvent(final UI source, final boolean fromClient, final BeaconHandler handler, final String data) {
-    super(source, fromClient);
-
-    this.handler = handler;
-    this.data = data;
+  protected Storage(final String name, final JavaScriptExecutor executor) {
+    super(name, executor);
   }
 
-  // Fields
-  //--------------------------------------------------
-
-  private final BeaconHandler handler;
-
-  /**
-   * The data of the beacon.
-   */
-  private final String data;
-
-  // Getters/setters
-  //--------------------------------------------------
-
-  public BeaconHandler getHandler() {
-    return handler;
-  }
-
-  public String getData() {
-    return data;
+  protected Storage(final NamedJavaScriptObject parent, final String name, final JavaScriptExecutor executor) {
+    this(parent.getObjectName() + "." + name, executor);
   }
 
 }

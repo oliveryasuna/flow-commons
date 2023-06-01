@@ -23,7 +23,6 @@ import com.vaadin.flow.component.page.PendingJavaScriptResult;
 
 import java.io.Serializable;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -132,7 +131,7 @@ public abstract class JavaScriptObject implements DomObject {
   // Getters/setters
   //--------------------------------------------------
 
-  protected BiFunction<String, Serializable[], PendingJavaScriptResult> getExecutor() {
+  protected JavaScriptExecutor getExecutor() {
     return executor;
   }
 

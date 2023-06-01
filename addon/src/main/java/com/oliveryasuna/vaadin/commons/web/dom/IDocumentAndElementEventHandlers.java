@@ -25,23 +25,4 @@ package com.oliveryasuna.vaadin.commons.web.dom;
  */
 public interface IDocumentAndElementEventHandlers extends DomObject {
 
-  // Methods
-  //--------------------------------------------------
-
-  // JavaScript properties
-  //
-
-  // TODO: oncopy.
-
-  // TODO: oncut.
-
-  // TODO: onpaste.
-
-  // JavaScript methods
-  //
-
-  // TODO: addEventListener()?
-
-  // TODO: removeEventListener()?
-
 }

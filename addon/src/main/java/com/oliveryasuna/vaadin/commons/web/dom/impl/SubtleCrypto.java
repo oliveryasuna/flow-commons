@@ -16,56 +16,25 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.web.dom;
+package com.oliveryasuna.vaadin.commons.web.dom.impl;
 
+import com.oliveryasuna.vaadin.commons.web.dom.ISubtleCrypto;
 import com.oliveryasuna.vaadin.commons.web.js.JavaScriptExecutor;
 import com.oliveryasuna.vaadin.commons.web.js.NamedJavaScriptObject;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import com.oliveryasuna.vaadin.commons.web.js.NestedJavaScriptObject;
 
 /**
- * Represents a {@code Storage} object.
+ * Represents a {@code SubtleCrypto} object.
  *
  * @author Oliver Yasuna
  */
-public class Storage extends NamedJavaScriptObject implements IStorage {
-
-  // Static fields
-  //--------------------------------------------------
-
-  static final String LOCAL_STORAGE_NAME = "localStorage";
-
-  static final String SESSION_STORAGE_NAME = "sessionStorage";
-
-  // Singleton
-  //--------------------------------------------------
-
-  private static final Map<JavaScriptExecutor, Storage> LOCAL_STORAGE_INSTANCES = new ConcurrentHashMap<>(4);
-
-  public static Storage getLocalStorageInstance(final JavaScriptExecutor javaScriptExecutor) {
-    synchronized(LOCAL_STORAGE_INSTANCES) {
-      return LOCAL_STORAGE_INSTANCES.computeIfAbsent(javaScriptExecutor, executor -> new Storage(LOCAL_STORAGE_NAME, executor));
-    }
-  }
-
-  private static final Map<JavaScriptExecutor, Storage> SESSION_STORAGE_INSTANCES = new ConcurrentHashMap<>(4);
-
-  public static Storage getSessionStorageInstance(final JavaScriptExecutor javaScriptExecutor) {
-    synchronized(SESSION_STORAGE_INSTANCES) {
-      return SESSION_STORAGE_INSTANCES.computeIfAbsent(javaScriptExecutor, executor -> new Storage(SESSION_STORAGE_NAME, executor));
-    }
-  }
+public class SubtleCrypto extends NestedJavaScriptObject implements ISubtleCrypto {
 
   // Constructors
   //--------------------------------------------------
 
-  protected Storage(final String name, final JavaScriptExecutor executor) {
-    super(name, executor);
-  }
-
-  Storage(final NamedJavaScriptObject parent, final String name, final JavaScriptExecutor executor) {
-    this(parent.getName() + "." + name, executor);
+  protected SubtleCrypto(final NamedJavaScriptObject parent, final String name, final JavaScriptExecutor executor) {
+    super(parent, name, executor);
   }
 
 }

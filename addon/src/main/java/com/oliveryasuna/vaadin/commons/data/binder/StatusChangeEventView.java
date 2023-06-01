@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2023 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,13 +16,55 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.web.dom;
+package com.oliveryasuna.vaadin.commons.data.binder;
+
+import com.vaadin.flow.data.binder.StatusChangeEvent;
+
+import java.util.EventObject;
 
 /**
- * Represents {@code GlobalEventHandlers}.
+ * This class is a view of {@link StatusChangeEvent}.
  *
  * @author Oliver Yasuna
+ * @since 5.5.0
  */
-public interface IGlobalEventHandlers extends DomObject {
+public class StatusChangeEventView extends EventObject {
+
+  // Constructors
+  //--------------------------------------------------
+
+  public StatusChangeEventView(final StatusChangeEvent statusChangeEvent) {
+    super(new BinderView<>(statusChangeEvent.getBinder()));
+
+    this.statusChangeEvent = statusChangeEvent;
+  }
+
+  // Fields
+  //--------------------------------------------------
+
+  private final StatusChangeEvent statusChangeEvent;
+
+  // Methods
+  //--------------------------------------------------
+
+  public boolean hasValidationErrors() {
+    return getStatusChangeEvent().hasValidationErrors();
+  }
+
+  @Override
+  public BinderView<?> getSource() {
+    return (BinderView<?>)super.getSource();
+  }
+
+  public BinderView<?> getBinder() {
+    return getSource();
+  }
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  protected StatusChangeEvent getStatusChangeEvent() {
+    return statusChangeEvent;
+  }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2023 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,13 +16,32 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.web.dom;
+package com.oliveryasuna.vaadin.commons.server.beacon;
 
-/**
- * Represents {@code GlobalEventHandlers}.
- *
- * @author Oliver Yasuna
- */
-public interface IGlobalEventHandlers extends DomObject {
+import com.oliveryasuna.vaadin.commons.RegistrationWrapper;
+import com.vaadin.flow.shared.Registration;
+
+public class BeaconRegistration extends RegistrationWrapper {
+
+  // Constructors
+  //--------------------------------------------------
+
+  public BeaconRegistration(final Registration listenerRegistration, final BeaconHandler beaconHandler) {
+    super(listenerRegistration);
+
+    this.beaconHandler = beaconHandler;
+  }
+
+  // Fields
+  //--------------------------------------------------
+
+  private final BeaconHandler beaconHandler;
+
+  // Getters/setters
+  //--------------------------------------------------
+
+  public BeaconHandler getBeaconHandler() {
+    return beaconHandler;
+  }
 
 }

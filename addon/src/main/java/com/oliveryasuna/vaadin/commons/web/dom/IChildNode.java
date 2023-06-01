@@ -33,14 +33,8 @@ public interface IChildNode extends DomObject {
   // JavaScript functions
   //
 
-  // TODO: after()?
-
-  // TODO: before()?
-
   default CompletableFuture<Void> remove() {
     return callFunction("remove", Void.class);
   }
-
-  // TODO: replaceWith()?
 
 }

@@ -44,14 +44,6 @@ public interface IDocument extends INode, IDocumentAndElementEventHandlers, IDoc
     return getProperty("characterSet", String.class);
   }
 
-  default CompletableFuture<String> getCharset() {
-    return getProperty("charset", String.class);
-  }
-
-  default CompletableFuture<String> getCompatMode() {
-    return getProperty("compatMode", String.class);
-  }
-
   default CompletableFuture<String> getContentType() {
     return getProperty("contentType", String.class);
   }
@@ -64,18 +56,6 @@ public interface IDocument extends INode, IDocumentAndElementEventHandlers, IDoc
     return setProperty("cookie", cookie);
   }
 
-  // TODO: currentScript?
-
-  // TODO: defaultView?
-
-  default CompletableFuture<String> getDesignMode() {
-    return getProperty("designMode", String.class);
-  }
-
-  default CompletableFuture<Void> setDesignMode(final String designMode) {
-    return setProperty("designMode", designMode);
-  }
-
   default CompletableFuture<String> getDir() {
     return getProperty("dir", String.class);
   }
@@ -84,11 +64,9 @@ public interface IDocument extends INode, IDocumentAndElementEventHandlers, IDoc
     return setProperty("dir", dir);
   }
 
-  // TODO: doctype?
+  IHTMLElement getDocumentElement();
 
-  // TODO: documentElement?
-
-  default CompletableFuture<String> getDocumentUri() {
+  default CompletableFuture<String> getDocumentURI() {
     return getProperty("documentURI", String.class);
   }
 
@@ -100,10 +78,6 @@ public interface IDocument extends INode, IDocumentAndElementEventHandlers, IDoc
     return setProperty("domain", domain);
   }
 
-  // TODO: embeds?
-
-  // TODO: forms?
-
   default CompletableFuture<Boolean> isFullscreenEnabled() {
     return getProperty("fullscreenEnabled", Boolean.class);
   }
@@ -114,10 +88,6 @@ public interface IDocument extends INode, IDocumentAndElementEventHandlers, IDoc
     return getProperty("hidden", String.class);
   }
 
-  // TODO: images?
-
-  // TODO: implementation?
-
   default CompletableFuture<String> getInputEncoding() {
     return getProperty("inputEncoding", String.class);
   }
@@ -126,41 +96,17 @@ public interface IDocument extends INode, IDocumentAndElementEventHandlers, IDoc
     return getProperty("lastModified", String.class);
   }
 
-  // TODO: links?
-
-  // TODO: location?
-
-  // TODO: onfullscreenchange?
-
-  // TODO: onfullscreenerror?
-
-  // TODO: onpointerlockchange?
-
-  // TODO: onpointerlockerror?
-
-  // TODO: onreadystatechange?
-
-  // TODO: onvisibilitychange?
-
-  // TODO: ownerDocument?
-
   default CompletableFuture<Boolean> getPictureInPictureEnabled() {
     return getProperty("pictureInPictureEnabled", Boolean.class);
   }
 
-  // TODO: plugins?
-
-  // TODO: readyState?
+  default CompletableFuture<String> getReadyState() {
+    return getProperty("readyState", String.class);
+  }
 
   default CompletableFuture<String> getReferrer() {
     return getProperty("referrer", String.class);
   }
-
-  // TODO: scripts?
-
-  // TODO: scrollingElement?
-
-  // TODO: timeline?
 
   default CompletableFuture<String> getTitle() {
     return getProperty("title", String.class);
@@ -170,11 +116,19 @@ public interface IDocument extends INode, IDocumentAndElementEventHandlers, IDoc
     return setProperty("title", title);
   }
 
-  // TODO: visibilityState?
+  default CompletableFuture<String> getVisibilityState() {
+    return getProperty("visibilityState", String.class);
+  }
 
   // JavaScript functions
   //
 
-  // TODO: Tons of functions.
+  default CompletableFuture<Void> close() {
+    return callFunction("close", Void.class);
+  }
+
+  default CompletableFuture<Boolean> hasFocus() {
+    return callFunction("hasFocus", Boolean.class);
+  }
 
 }

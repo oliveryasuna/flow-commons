@@ -31,7 +31,7 @@ public class NestedJavaScriptObject extends NamedJavaScriptObject {
   //--------------------------------------------------
 
   protected NestedJavaScriptObject(final NamedJavaScriptObject parent, final String name, final JavaScriptExecutor executor) {
-    super(Arguments.requireNotNull(parent).getName() + "." + name, executor);
+    super(Arguments.requireNotNull(parent).getObjectName() + "." + name, executor);
   }
 
 }

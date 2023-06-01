@@ -102,8 +102,6 @@ public interface IHTMLElement
     return getProperty("offsetLeft", Double.class);
   }
 
-  // TODO: offsetParent?
-
   default CompletableFuture<Double> getOffsetTop() {
     return getProperty("offsetTop", Double.class);
   }
@@ -147,14 +145,8 @@ public interface IHTMLElement
   // JavaScript functions
   //
 
-  // TODO: attachInternals()?
-
   default CompletableFuture<Void> click() {
     return callFunction("click", Void.class);
   }
-
-  // TODO: addEventListener()?
-
-  // TODO: removeEventListener()?
 
 }

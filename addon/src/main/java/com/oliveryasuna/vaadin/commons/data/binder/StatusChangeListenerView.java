@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Oliver Yasuna
+ * Copyright 2023 Oliver Yasuna
  *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
  *
@@ -16,13 +16,22 @@
  * TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.oliveryasuna.vaadin.commons.web.dom;
+package com.oliveryasuna.vaadin.commons.data.binder;
+
+import com.vaadin.flow.function.SerializableEventListener;
 
 /**
- * Represents {@code GlobalEventHandlers}.
+ * A listener for {@link StatusChangeEventView}s.
  *
  * @author Oliver Yasuna
+ * @since 5.5.0
  */
-public interface IGlobalEventHandlers extends DomObject {
+@FunctionalInterface
+public interface StatusChangeListenerView extends SerializableEventListener {
+
+  // Methods
+  //--------------------------------------------------
+
+  void statusChange(StatusChangeEventView event);
 
 }

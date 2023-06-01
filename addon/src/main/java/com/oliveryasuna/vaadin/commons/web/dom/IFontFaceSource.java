@@ -25,12 +25,4 @@ package com.oliveryasuna.vaadin.commons.web.dom;
  */
 public interface IFontFaceSource extends DomObject {
 
-  // Methods
-  //--------------------------------------------------
-
-  // JavaScript properties
-  //
-
-  // TODO: fonts?
-
 }

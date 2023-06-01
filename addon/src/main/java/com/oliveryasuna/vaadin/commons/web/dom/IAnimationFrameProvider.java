@@ -18,23 +18,11 @@
 
 package com.oliveryasuna.vaadin.commons.web.dom;
 
-import java.util.concurrent.CompletableFuture;
-
 /**
  * Represents {@code AnimationFrameProvider}.
  *
  * @author Oliver Yasuna
  */
 public interface IAnimationFrameProvider extends DomObject {
-
-  // Methods
-  //--------------------------------------------------
-
-  // JavaScript functions
-  //
-
-  default CompletableFuture<Void> cancelAnimationFrame(final Integer handle) {
-    return callFunction("cancelAnimationFrame", Void.class, handle);
-  }
 
 }

@@ -20,10 +20,14 @@ package com.oliveryasuna.vaadin.commons.component;
 
 import com.oliveryasuna.commons.language.exception.UnsupportedInstantiationException;
 import com.vaadin.flow.component.*;
+import com.vaadin.flow.dom.Element;
+import com.vaadin.flow.function.SerializableConsumer;
 import com.vaadin.flow.shared.Registration;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.concurrent.Future;
+import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -217,6 +221,150 @@ public final class ComponentUtils {
     parent.addComponentAtIndex(parent.indexOf(component) + 1, newSibling);
 
     return true;
+  }
+
+  // TODO: Apache StringUtils like methods.
+  //       E.g., `add` that ignored `null`.
+
+  public static void addTo(final Component parent, final Component... children) {
+    if(parent instanceof HasComponents) {
+      ((HasComponents)parent).add(children);
+    } else {
+      final Element parentElement = parent.getElement();
+
+      for(final Component child : children) {
+        parentElement.appendChild(child.getElement());
+      }
+    }
+  }
+
+  public static void removeFrom(final Component parent, final Component... children) {
+    if(parent instanceof HasComponents) {
+      ((HasComponents)parent).remove(children);
+    } else {
+      final Element parentElement = parent.getElement();
+
+      for(final Component component : children) {
+        parentElement.removeChild(component.getElement());
+      }
+    }
+  }
+
+  public static void remove(final Component... children) {
+    for(final Component component : children) {
+      component.getElement().removeFromParent();
+    }
+  }
+
+  public static void addSlotted(final Component parent, final String slot, final Component... children) {
+    if(parent instanceof HasComponents) {
+      final HasComponents hasComponents = (HasComponents)parent;
+
+      setSlot(slot, children);
+      hasComponents.add(children);
+    } else {
+      final Element parentElement = parent.getElement();
+
+      for(final Component component : children) {
+        setSlot(slot, component);
+        parentElement.appendChild(component.getElement());
+      }
+    }
+  }
+
+  public static void setSlot(final String slot, final Component... components) {
+    for(final Component component : components) {
+      component.getElement().setAttribute("slot", slot);
+    }
+  }
+
+  public static void resetSlot(final Component... components) {
+    for(final Component component : components) {
+      component.getElement().removeAttribute("slot");
+    }
+  }
+
+  public static Stream<Component> getSlotted(final Component parent) {
+    return parent.getChildren()
+        .filter(child -> child.getElement().hasAttribute("slot"));
+  }
+
+  public static Stream<Component> getSlotted(final Component parent, final String slot) {
+    return parent.getChildren()
+        .filter(child -> slot.equals(child.getElement().getAttribute("slot")));
+  }
+
+  public static Stream<Component> getUnslotted(final Component parent) {
+    return parent.getChildren()
+        .filter(child -> !child.getElement().hasAttribute("slot"));
+  }
+
+  public static void removeAllUnslotted(final Component parent) {
+    if(parent instanceof HasComponents) {
+      final HasComponents hasComponents = (HasComponents)parent;
+
+      parent.getChildren()
+          .filter(child -> !child.getElement().hasAttribute("slot"))
+          .forEach(hasComponents::remove);
+    } else {
+      parent.getChildren()
+          .filter(child -> !child.getElement().hasAttribute("slot"))
+          .forEach(ComponentUtils::remove);
+    }
+  }
+
+  public static <C extends Component> Future<Void> access(final C component, final BiConsumer<C, UI> command) {
+    final UI componentUI = component.getUI().orElse(null);
+    final UI threadLocalUI = UI.getCurrent();
+
+    UI ui = null;
+
+    // The thread-local `UI` is not always set in non-UI threads.
+    if(componentUI != null && !componentUI.equals(threadLocalUI)) {
+      // The component is attached to a UI, and
+      // the component's UI is not the same as the thread-local UI (which could be `null`).
+
+      ui = componentUI;
+
+      UI.setCurrent(ui);
+    } else if(componentUI == null && threadLocalUI != null) {
+      // The component is not attached to a UI, and
+      // the thread-local UI is set.
+
+      ui = threadLocalUI;
+    }
+
+    try {
+      if(ui == null) {
+        throw new IllegalStateException("No UI available.");
+      }
+
+      final UI finalUI = ui;
+
+      return finalUI.access(() -> command.accept(component, finalUI));
+    } finally {
+      if(ui != null && !ui.equals(threadLocalUI)) {
+        UI.setCurrent(threadLocalUI);
+      }
+    }
+  }
+
+  public static void runBeforeClientResponse(final Component component, final SerializableConsumer<UI> command) {
+    component.getElement().getNode()
+        .runWhenAttached(ui -> ui.beforeClientResponse(component, context -> command.accept(ui)));
+  }
+
+  public static void runWhenAttachedBeforeClientResponse(final Component component, final SerializableConsumer<UI> command) {
+    component.getElement().getNode()
+        .runWhenAttached(ui -> ui.beforeClientResponse(component, context -> command.accept(ui)));
+  }
+
+  public static boolean hasData(final Component component, final Class<?> type) {
+    return (ComponentUtil.getData(component, type) != null);
+  }
+
+  public static boolean hasData(final Component component, final String key) {
+    return (ComponentUtil.getData(component, key) != null);
   }
 
   // Constructors

@@ -41,8 +41,6 @@ public interface IHtmlOrSvgElement extends DomObject {
     return setProperty("autofocus", autofocus);
   }
 
-  // TODO: dataset.
-
   default CompletableFuture<String> getNonce() {
     return getProperty("nonce", String.class);
   }
@@ -65,7 +63,5 @@ public interface IHtmlOrSvgElement extends DomObject {
   default CompletableFuture<Void> blur() {
     return callFunction("blur", Void.class);
   }
-
-  // TODO: focus()?
 
 }
