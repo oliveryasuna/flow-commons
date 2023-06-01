@@ -26,7 +26,8 @@ import java.util.function.Predicate;
 /**
  * A {@link ComponentRenderer} to represent {@code boolean}s.
  * <p>
- * Uses a {@link Predicate} that uses the input model object to determine if {@link #trueComponent(S)} or {@link #falseComponent(S)} should be rendered.
+ * Uses a {@link Predicate} that uses the input model object to determine if {@link #trueComponent(Object)} or {@link #falseComponent(Object)} should be
+ * rendered.
  *
  * @param <S> The type of input model object.
  *
